@@ -1132,7 +1132,9 @@ function scrubVideo(progress) {
   if (Math.abs(progress - lastProgress) < 0.0003) return;
   lastProgress = progress;
 
-  vid.currentTime = progress * vid.duration;
+  // Vídeo avança de 0.00 a 0.20 (conforme critérios de sucesso)
+  const videoProgress = Math.min(progress / 0.20, 1.0);
+  vid.currentTime = videoProgress * vid.duration;
 
   // Barra de progresso decorativa
   if (progFill) progFill.style.height = (progress * 100) + '%';
@@ -1235,53 +1237,53 @@ if (!NO_MOTION) {
     }
   });
 
-  /* KEYPOINTS DA TIMELINE (4 DOBRAS) */
+  /* KEYPOINTS DA TIMELINE (4 DOBRAS — Alinhadas exatamente com os critérios de sucesso) */
 
   /* --- TRANSIÇÃO 1: HERO -> PROJETOS (Fold 2) --- */
-  /* Projetos sobe — início em 18% */
+  /* Projetos sobe — de 18% a 34% (duração: 0.16) */
   scrollTl.to('[data-third-fold]', {
-    yPercent: 0, ease: 'none', duration: 0.08
+    yPercent: 0, ease: 'none', duration: 0.16
   }, 0.18);
 
-  /* Hero title sai */
+  /* Hero title sai — de 18% a 30% (duração: 0.12) */
   scrollTl.to('[data-hero-title]', {
-    autoAlpha: 0, y: -80, filter: 'blur(10px)', ease: 'none', duration: 0.06
+    autoAlpha: 0, y: -80, filter: 'blur(10px)', ease: 'none', duration: 0.12
   }, 0.18);
 
-  /* Vídeo recua */
+  /* Vídeo recua — de 18% a 34% (duração: 0.16) */
   scrollTl.to('[data-hero-media]', {
-    yPercent: -18, scale: 0.96, autoAlpha: 0.20, ease: 'none', duration: 0.08
+    yPercent: -18, scale: 0.96, autoAlpha: 0.20, ease: 'none', duration: 0.16
   }, 0.18);
 
-  /* Conteúdo de Projetos entra em cascata */
+  /* Conteúdo de Projetos entra em cascata — de 26% a 34% */
   scrollTl.to('[data-third-kicker]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
-  }, 0.24);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
+  }, 0.26);
 
   scrollTl.to('[data-third-title]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
-  }, 0.25);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.06
+  }, 0.27);
 
   scrollTl.to('[data-third-text]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
-  }, 0.26);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.06
+  }, 0.28);
 
   scrollTl.to('[data-third-card]', {
     autoAlpha: 1, y: 0, filter: 'blur(0px)',
-    stagger: 0.015, ease: 'power3.out', duration: 0.04
-  }, 0.27);
+    stagger: 0.015, ease: 'power3.out', duration: 0.06
+  }, 0.29);
 
   scrollTl.to('[data-third-cta]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
   }, 0.32);
 
   scrollTl.to('[data-third-microcopy]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
   }, 0.33);
 
 
   /* --- TRANSIÇÃO 2: PROJETOS -> APLICAÇÕES (Fold 3) --- */
-  /* Conteúdo de Projetos sai — início em 45% */
+  /* Conteúdo de Projetos sai — de 45% a 55% (duração: 0.10) */
   scrollTl.to([
     '[data-third-kicker]',
     '[data-third-title]',
@@ -1290,43 +1292,43 @@ if (!NO_MOTION) {
     '[data-third-cta]',
     '[data-third-microcopy]'
   ], {
-    autoAlpha: 0, y: -40, filter: 'blur(8px)', stagger: 0.015, ease: 'none', duration: 0.06
+    autoAlpha: 0, y: -40, filter: 'blur(8px)', stagger: 0.015, ease: 'none', duration: 0.10
   }, 0.45);
 
-  /* Aplicações sobe */
+  /* Aplicações sobe — de 45% a 61% (duração: 0.16) */
   scrollTl.to('[data-second-fold]', {
-    yPercent: 0, ease: 'none', duration: 0.08
+    yPercent: 0, ease: 'none', duration: 0.16
   }, 0.45);
 
-  /* Conteúdo de Aplicações entra em cascata */
+  /* Conteúdo de Aplicações entra em cascata — de 53% a 61% */
   scrollTl.to('[data-second-kicker]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
-  }, 0.51);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
+  }, 0.53);
 
   scrollTl.to('[data-second-title]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
-  }, 0.52);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.06
+  }, 0.54);
 
   scrollTl.to('[data-second-text]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
-  }, 0.53);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.06
+  }, 0.55);
 
   scrollTl.to('[data-second-card]', {
     autoAlpha: 1, y: 0, filter: 'blur(0px)',
-    stagger: 0.01, ease: 'power3.out', duration: 0.04
-  }, 0.54);
+    stagger: 0.01, ease: 'power3.out', duration: 0.06
+  }, 0.56);
 
   scrollTl.to('[data-second-cta]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
-  }, 0.58);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
+  }, 0.59);
 
   scrollTl.to('[data-second-microcopy]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
-  }, 0.59);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
+  }, 0.60);
 
 
   /* --- TRANSIÇÃO 3: APLICAÇÕES -> ORÇAMENTO (Fold 4) --- */
-  /* Conteúdo de Aplicações sai — início em 70% */
+  /* Conteúdo de Aplicações sai — de 70% a 78% (duração: 0.08) */
   scrollTl.to([
     '[data-second-kicker]',
     '[data-second-title]',
@@ -1335,17 +1337,17 @@ if (!NO_MOTION) {
     '[data-second-cta]',
     '[data-second-microcopy]'
   ], {
-    autoAlpha: 0, y: -40, filter: 'blur(8px)', stagger: 0.01, ease: 'none', duration: 0.06
+    autoAlpha: 0, y: -40, filter: 'blur(8px)', stagger: 0.01, ease: 'none', duration: 0.08
   }, 0.70);
 
-  /* Orçamento sobe */
+  /* Orçamento sobe — de 70% a 82% (duração: 0.12) */
   scrollTl.to('[data-fourth-fold]', {
-    yPercent: 0, ease: 'none', duration: 0.08
+    yPercent: 0, ease: 'none', duration: 0.12
   }, 0.70);
 
-  /* Conteúdo de Orçamento entra em cascata */
+  /* Conteúdo de Orçamento entra em cascata — de 76% a 82% */
   scrollTl.to('[data-fourth-kicker]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
   }, 0.76);
 
   scrollTl.to('[data-fourth-title]', {
@@ -1353,16 +1355,16 @@ if (!NO_MOTION) {
   }, 0.77);
 
   scrollTl.to('[data-fourth-info]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.06
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
   }, 0.78);
 
   scrollTl.to('[data-fourth-form]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.06
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
   }, 0.79);
 
   /* Estende a timeline para durar exatamente 1.00 segundo de tempo interno,
      garantindo sincronia direta de 1:1 entre scroll progress (0 a 1) e tempo da timeline (0 a 1). */
-  scrollTl.to({}, { duration: 0.15 }, 0.85);
+  scrollTl.to({}, { duration: 0.18 }, 0.82);
 
 }
 
@@ -1465,10 +1467,10 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollToProgress(0.0);
     } else if (href === '#projetos') {
       e.preventDefault();
-      scrollToProgress(0.33);
+      scrollToProgress(0.35);
     } else if (href === '#aplicacoes') {
       e.preventDefault();
-      scrollToProgress(0.60);
+      scrollToProgress(0.62);
     } else if (href === '#orcamento') {
       e.preventDefault();
       scrollToProgress(1.00);
@@ -1486,8 +1488,8 @@ document.addEventListener('DOMContentLoaded', () => {
     dot.addEventListener('click', () => {
       const idx = parseInt(dot.dataset.dot);
       let targetProgress = 0;
-      if (idx === 1) targetProgress = 0.33;
-      else if (idx === 2) targetProgress = 0.60;
+      if (idx === 1) targetProgress = 0.35;
+      else if (idx === 2) targetProgress = 0.62;
       else if (idx === 3) targetProgress = 1.00;
       
       scrollToProgress(targetProgress);
