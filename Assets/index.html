@@ -1199,11 +1199,11 @@ if (!NO_MOTION) {
 
         /* Dots: hero=0, projetos=1, aplicacoes=2, orçamento=3 */
         let activeDot = 0;
-        if (self.progress < 0.28) {
+        if (self.progress < 0.18) {
           activeDot = 0;
-        } else if (self.progress < 0.53) {
+        } else if (self.progress < 0.45) {
           activeDot = 1;
-        } else if (self.progress < 0.78) {
+        } else if (self.progress < 0.70) {
           activeDot = 2;
         } else {
           activeDot = 3;
@@ -1225,85 +1225,85 @@ if (!NO_MOTION) {
   /* KEYPOINTS DA TIMELINE (4 DOBRAS) */
 
   /* --- TRANSIÇÃO 1: HERO -> PROJETOS (Fold 2) --- */
-  /* Projetos sobe — início em 28% */
+  /* Projetos sobe — início em 18% */
   scrollTl.to('[data-third-fold]', {
-    yPercent: 0, ease: 'none', duration: 0.12
-  }, 0.28);
+    yPercent: 0, ease: 'none', duration: 0.08
+  }, 0.18);
 
   /* Hero title sai */
   scrollTl.to('[data-hero-title]', {
-    autoAlpha: 0, y: -80, filter: 'blur(10px)', ease: 'none', duration: 0.10
-  }, 0.28);
+    autoAlpha: 0, y: -80, filter: 'blur(10px)', ease: 'none', duration: 0.06
+  }, 0.18);
 
   /* Vídeo recua */
   scrollTl.to('[data-hero-media]', {
-    yPercent: -18, scale: 0.96, autoAlpha: 0.20, ease: 'none', duration: 0.10
-  }, 0.30);
+    yPercent: -18, scale: 0.96, autoAlpha: 0.20, ease: 'none', duration: 0.08
+  }, 0.18);
 
   /* Conteúdo de Projetos entra em cascata */
   scrollTl.to('[data-third-kicker]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
-  }, 0.38);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
+  }, 0.24);
 
   scrollTl.to('[data-third-title]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.07
-  }, 0.40);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.25);
 
   scrollTl.to('[data-third-text]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.07
-  }, 0.42);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.26);
 
   scrollTl.to('[data-third-card]', {
     autoAlpha: 1, y: 0, filter: 'blur(0px)',
-    stagger: 0.03, ease: 'power3.out', duration: 0.08
-  }, 0.44);
+    stagger: 0.015, ease: 'power3.out', duration: 0.04
+  }, 0.27);
 
 
   /* --- TRANSIÇÃO 2: PROJETOS -> APLICAÇÕES (Fold 3) --- */
-  /* Conteúdo de Projetos sai — início em 53% */
+  /* Conteúdo de Projetos sai — início em 45% */
   scrollTl.to([
     '[data-third-kicker]',
     '[data-third-title]',
     '[data-third-text]',
     '[data-third-card]'
   ], {
-    autoAlpha: 0, y: -40, filter: 'blur(8px)', stagger: 0.02, ease: 'none', duration: 0.07
-  }, 0.53);
+    autoAlpha: 0, y: -40, filter: 'blur(8px)', stagger: 0.015, ease: 'none', duration: 0.06
+  }, 0.45);
 
-  /* Aplicações (segunda dobra física) sobe */
+  /* Aplicações sobe */
   scrollTl.to('[data-second-fold]', {
-    yPercent: 0, ease: 'none', duration: 0.12
-  }, 0.53);
+    yPercent: 0, ease: 'none', duration: 0.08
+  }, 0.45);
 
   /* Conteúdo de Aplicações entra em cascata */
   scrollTl.to('[data-second-kicker]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
-  }, 0.63);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
+  }, 0.51);
 
   scrollTl.to('[data-second-title]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
-  }, 0.65);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.52);
 
   scrollTl.to('[data-second-text]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
-  }, 0.67);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.53);
 
   scrollTl.to('[data-second-card]', {
     autoAlpha: 1, y: 0, filter: 'blur(0px)',
-    stagger: 0.02, ease: 'power3.out', duration: 0.06
-  }, 0.69);
+    stagger: 0.01, ease: 'power3.out', duration: 0.04
+  }, 0.54);
 
   scrollTl.to('[data-second-cta]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
-  }, 0.73);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
+  }, 0.58);
 
   scrollTl.to('[data-second-microcopy]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
-  }, 0.74);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
+  }, 0.59);
 
 
   /* --- TRANSIÇÃO 3: APLICAÇÕES -> ORÇAMENTO (Fold 4) --- */
-  /* Conteúdo de Aplicações sai — início em 78% */
+  /* Conteúdo de Aplicações sai — início em 70% */
   scrollTl.to([
     '[data-second-kicker]',
     '[data-second-title]',
@@ -1312,30 +1312,30 @@ if (!NO_MOTION) {
     '[data-second-cta]',
     '[data-second-microcopy]'
   ], {
-    autoAlpha: 0, y: -40, filter: 'blur(8px)', stagger: 0.015, ease: 'none', duration: 0.07
-  }, 0.78);
+    autoAlpha: 0, y: -40, filter: 'blur(8px)', stagger: 0.01, ease: 'none', duration: 0.06
+  }, 0.70);
 
   /* Orçamento sobe */
   scrollTl.to('[data-fourth-fold]', {
-    yPercent: 0, ease: 'none', duration: 0.12
-  }, 0.78);
+    yPercent: 0, ease: 'none', duration: 0.08
+  }, 0.70);
 
   /* Conteúdo de Orçamento entra em cascata */
   scrollTl.to('[data-fourth-kicker]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
-  }, 0.88);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
+  }, 0.76);
 
   scrollTl.to('[data-fourth-title]', {
     autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
-  }, 0.90);
+  }, 0.77);
 
   scrollTl.to('[data-fourth-info]', {
     autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.06
-  }, 0.92);
+  }, 0.78);
 
   scrollTl.to('[data-fourth-form]', {
     autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.06
-  }, 0.94);
+  }, 0.79);
 
 }
 
@@ -1431,13 +1431,13 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollToProgress(0.0);
       } else if (targetId === '#projetos') {
         e.preventDefault();
-        scrollToProgress(0.40);
+        scrollToProgress(0.33);
       } else if (targetId === '#aplicacoes') {
         e.preventDefault();
-        scrollToProgress(0.65);
+        scrollToProgress(0.58);
       } else if (targetId === '#orcamento') {
         e.preventDefault();
-        scrollToProgress(0.90);
+        scrollToProgress(0.85);
       }
     });
   });
@@ -1448,9 +1448,9 @@ document.addEventListener('DOMContentLoaded', () => {
     dot.addEventListener('click', () => {
       const idx = parseInt(dot.dataset.dot);
       let targetProgress = 0;
-      if (idx === 1) targetProgress = 0.40;
-      else if (idx === 2) targetProgress = 0.65;
-      else if (idx === 3) targetProgress = 0.90;
+      if (idx === 1) targetProgress = 0.33;
+      else if (idx === 2) targetProgress = 0.58;
+      else if (idx === 3) targetProgress = 0.85;
       
       scrollToProgress(targetProgress);
     });
