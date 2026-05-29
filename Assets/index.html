@@ -24,8 +24,8 @@
       --text:        #ffffff;
       --text-sub:    rgba(255,255,255,0.55);
       --text-dim:    rgba(255,255,255,0.28);
-      --accent:      #e63030;
-      --accent-rgb:  230, 48, 48;
+      --accent:      #c81d56;
+      --accent-rgb:  200, 29, 86;
       --border:      rgba(255,255,255,0.1);
       --border-mid:  rgba(255,255,255,0.18);
       --font:        'Inter', -apple-system, sans-serif;
@@ -75,6 +75,7 @@
       height: clamp(24px, 3.5vw, 36px);
       width: auto;
       object-fit: contain;
+      transition: filter 0.4s var(--ease);
     }
 
     .hdr-burger {
@@ -87,7 +88,7 @@
     .hdr-burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     .hdr-burger span {
       display: block; width: 100%; height: 1px; background: #fff; border-radius: 2px;
-      transition: transform 0.4s var(--ease), opacity 0.3s;
+      transition: transform 0.4s var(--ease), opacity 0.3s, background 0.4s var(--ease);
     }
     .hdr-burger.is-active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
     .hdr-burger.is-active span:nth-child(2) { opacity: 0; }
@@ -230,8 +231,8 @@
 
     /* headline */
     .headline {
-      font-size: clamp(3rem,7vw,8.5rem);
-      font-weight: 800; line-height: 1.0; letter-spacing: -.07em; color: #fff;
+      font-size: clamp(2.2rem, 4.5vw, 4.8rem);
+      font-weight: 800; line-height: 1.05; letter-spacing: -.04em; color: #fff;
       margin-bottom: clamp(1.2rem,2.5vh,2rem);
     }
     /* linha com máscara para reveal */
@@ -246,13 +247,11 @@
     /* tagline */
     .tagline {
       font-size: clamp(.86rem,1.25vw,1rem); font-weight: 400; line-height: 1.72;
-      color: var(--text-sub); max-width: 440px; margin-bottom: clamp(2rem,4.5vh,3.5rem);
+      color: var(--text-sub); max-width: 500px; margin-bottom: clamp(2rem,4.5vh,3.5rem);
     }
-
-    /* ctas */
-    .cta-row {
-      display: flex; flex-wrap: wrap; align-items: center;
-      gap: clamp(.7rem,1.4vw,1rem);
+    .hero-cta-left {
+      display: flex;
+      align-items: center;
     }
 
     .btn {
@@ -298,7 +297,7 @@
     /* ---- INDICADORES LATERAIS (direita) ---- */
     .side-dots {
       position: absolute; right: clamp(1.5rem,2.5vw,2.5rem); top: 50%; transform: translateY(-50%);
-      z-index: 20; display: flex; flex-direction: column; align-items: center; gap: .55rem;
+      z-index: 750; display: flex; flex-direction: column; align-items: center; gap: .55rem;
     }
     .sdot {
       width: 5px; height: 5px; border-radius: 50%; background: var(--text-dim);
@@ -308,6 +307,7 @@
     .side-lbl {
       writing-mode: vertical-rl; font-size: .57rem; font-weight: 700;
       letter-spacing: .2em; text-transform: uppercase; color: var(--text-dim); margin-top: 1rem;
+      transition: color 0.4s var(--ease);
     }
 
     /* ---- FIXED FOOTER DIREITO ---- */
@@ -316,7 +316,7 @@
       z-index: 700; display: flex; align-items: center; gap: 1.2rem;
       pointer-events: auto;
     }
-    .fs-copy { font-size: .65rem; color: var(--text-dim); letter-spacing: .08em; font-weight: 600; }
+    .fs-copy { font-size: .65rem; color: var(--text-dim); letter-spacing: .08em; font-weight: 600; transition: color 0.4s var(--ease); }
     .fs-icon { 
       color: var(--text-dim); transition: color .3s, transform .3s var(--ease);
       display: flex; align-items: center; justify-content: center;
@@ -327,7 +327,8 @@
     /* ---- BARRA DE PROGRESSO VERTICAL (esquerda) ---- */
     .prog-track {
       position: absolute; left: clamp(1rem,2vw,2rem); top: 28%; bottom: 28%;
-      width: 1px; background: var(--border); z-index: 20;
+      width: 1px; background: var(--border); z-index: 750;
+      transition: background 0.4s var(--ease);
     }
     .prog-fill { position: absolute; top: 0; left: 0; width: 100%; height: 0%; background: var(--accent); box-shadow: 0 0 8px rgba(var(--accent-rgb),.55); }
 
@@ -343,7 +344,7 @@
        ========================================================================== */
     .scroll-experience {
       position: relative;
-      height: 600vh;
+      height: 1000vh;
       background: #0d0d0d;
     }
     .pinned-stage {
@@ -355,20 +356,23 @@
     .hero-section,
     .second-fold,
     .third-fold,
+    .new-fold,
+    .team-fold,
+    .faq-fold,
     .fourth-fold {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100vh;
     }
-    .hero-section { z-index: 2; }
+    .hero-section { z-index: 10; }
 
     /* ==========================================================================
        SEGUNDA DOBRA
        ========================================================================== */
     /* Remove transform CSS — GSAP controla via gsap.set */
     .second-fold {
-      z-index: 3;
+      z-index: 40;
       background: #111111;
       opacity: 1;
       visibility: visible;
@@ -436,7 +440,7 @@
     }
     .sf-card::before {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%), rgba(230,48,48,.06), transparent 40%);
+      background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%), rgba(var(--accent-rgb),.06), transparent 40%);
       opacity: 0; transition: opacity .4s; pointer-events: none;
     }
     .sf-card:hover { border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.055); }
@@ -478,7 +482,7 @@
        TERCEIRA DOBRA — PROJETOS
        ========================================================================== */
     .third-fold {
-      z-index: 4;
+      z-index: 20;
       background: #0c0c0c;
       opacity: 1;
       visibility: visible;
@@ -512,7 +516,7 @@
     }
     .pj-card::before {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(230,48,48,.07), transparent 45%);
+      background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(var(--accent-rgb),.07), transparent 45%);
       opacity: 0; transition: opacity .4s; pointer-events: none; z-index: 3;
     }
     .pj-card:hover { border-color: rgba(255,255,255,.15); background: rgba(255,255,255,.045); transform: translateY(-4px); }
@@ -553,10 +557,581 @@
     }
 
     /* ==========================================================================
+       NOVA DOBRA — EXPERIÊNCIA / CURRÍCULO (Fidelidade ao Design System 4)
+       ========================================================================== */
+    /* ==========================================================================
+       NOVA DOBRA — EXPERIÊNCIA / CURRÍCULO (Fidelidade ao Design System 4)
+       ========================================================================== */
+    .new-fold {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 30; /* Stacking sequential */
+      background-color: #F5F5F0; /* Cor Gray 100 exata do design_system4.html */
+      background-size: 40px 40px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+      opacity: 1;
+      visibility: visible;
+      display: flex;
+      align-items: center;
+      padding: 0 var(--pad-x);
+      padding-top: clamp(4rem, 8vh, 6rem);
+      padding-bottom: clamp(3rem, 6vh, 5rem);
+      overflow: hidden;
+    }
+    .resume-inner {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      z-index: 2;
+      padding-left: clamp(4rem, 8vw, 7rem);
+    }
+    .resume-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(1.5rem, 3vw, 3rem);
+      width: 100%;
+    }
+    .resume-card {
+      background: #ffffff; /* Fundo branco para a dobra clara */
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      transition: background 0.4s var(--ease), border-color 0.4s var(--ease), transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015);
+      position: relative;
+      overflow: hidden;
+    }
+    .resume-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(200, 29, 86, 0.035), transparent 45%);
+      opacity: 0; transition: opacity .4s; pointer-events: none; z-index: 1;
+    }
+    .resume-card:hover::before {
+      opacity: 1;
+      background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.12), transparent 45%);
+    }
+    .resume-card:hover {
+      background: #c81d56; /* Cor de hover exata da imagem */
+      border-color: #c81d56;
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(200, 29, 86, 0.22);
+    }
+    .resume-title, .resume-blocks {
+      position: relative;
+      z-index: 3;
+    }
+    .resume-title {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: #1c1c1c; /* Cor escura do design_system4.html */
+      margin-bottom: clamp(1.5rem, 3vh, 2rem);
+      letter-spacing: -0.02em;
+      transition: color 0.4s var(--ease);
+    }
+    .resume-card:hover .resume-title {
+      color: #ffffff;
+    }
+    .resume-blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .resume-block {
+      display: flex;
+      flex-direction: column;
+    }
+    .resume-cat {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #b89d75; /* Bronze/gold color matching reference screenshot */
+      margin-bottom: 0.4rem;
+      transition: color 0.4s var(--ease);
+    }
+    .resume-sub {
+      font-size: 0.82rem;
+      font-style: italic;
+      color: #444444; /* Cor escura no fundo claro */
+      margin-bottom: 0.2rem;
+      transition: color 0.4s var(--ease);
+    }
+    .resume-date {
+      font-size: 0.76rem;
+      font-style: italic;
+      color: #777777; /* Cor cinza no fundo claro */
+      margin-bottom: 0.6rem;
+      transition: color 0.4s var(--ease);
+    }
+    .resume-desc {
+      font-size: 0.80rem;
+      line-height: 1.6;
+      color: #666666; /* Descrição no fundo claro */
+      transition: color 0.4s var(--ease);
+    }
+    .resume-card:hover .resume-cat {
+      color: #ffffff;
+    }
+    .resume-card:hover .resume-date {
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .resume-card:hover .resume-sub {
+      color: #ffffff;
+    }
+    .resume-card:hover .resume-desc {
+      color: rgba(255, 255, 255, 0.95);
+    }
+    .resume-divider {
+      border: none;
+      height: 1px;
+      background: rgba(0, 0, 0, 0.08);
+      margin: 1.2rem 0;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s var(--ease);
+    }
+    .resume-divider::after {
+      content: '';
+      position: absolute;
+      left: 50%; top: 0; bottom: 0; width: 0;
+      background: rgba(255, 255, 255, 0.35);
+      transition: width 0.6s var(--ease), left 0.6s var(--ease);
+    }
+    .resume-card:hover .resume-divider {
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .resume-card:hover .resume-divider::after {
+      width: 100%;
+      left: 0;
+    }
+    .resume-bg-word {
+      position: absolute;
+      left: clamp(0.5rem, 2vw, 1.5rem);
+      top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+      transform-origin: left center;
+      font-size: clamp(6rem, 16vw, 12rem);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      color: rgba(28, 28, 28, 0.025); /* Palavra escura no fundo claro */
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+    .resume-footer .btn-p {
+      background: #c81d56;
+    }
+    .resume-footer .btn-p:hover {
+      box-shadow: 0 14px 40px rgba(200, 29, 86, 0.45);
+    }
+
+    /* ==========================================================================
+       DOBRA NOSSO TIME
+       ========================================================================== */
+    .team-fold {
+      z-index: 50;
+      background-color: #ffffff;
+      opacity: 1;
+      visibility: visible;
+      display: flex;
+      align-items: center;
+      padding: 0 var(--pad-x);
+      padding-top: clamp(6.5rem, 11vh, 9.5rem);
+      padding-bottom: clamp(3rem, 6vh, 5rem);
+      overflow: hidden;
+      color: #1c1c1c;
+    }
+    
+    .team-grain {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      right: -50%;
+      bottom: -50%;
+      width: 200%;
+      height: 200%;
+      background: transparent url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E") repeat;
+      animation: team-grain-anim 0.8s steps(10) infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    @keyframes team-grain-anim {
+      0%, 100% { transform: translate(0, 0); }
+      10% { transform: translate(-1%, -1%); }
+      20% { transform: translate(-2%, 1%); }
+      30% { transform: translate(1%, -2%); }
+      40% { transform: translate(-1%, 3%); }
+      50% { transform: translate(-2%, 1%); }
+      60% { transform: translate(1%, 2%); }
+      70% { transform: translate(3%, -2%); }
+      80% { transform: translate(-2%, 1%); }
+      90% { transform: translate(1%, 3%); }
+    }
+
+    .team-inner {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      z-index: 3;
+    }
+    
+    .team-header-container {
+      margin-bottom: clamp(2rem, 4vh, 3rem);
+      position: relative;
+      z-index: 10;
+    }
+    
+    .team-breadcrumb {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.4);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    
+    .team-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #1c1c1c;
+      line-height: 1.1;
+    }
+    
+    .team-title span.mil-thin {
+      font-weight: 300;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(0.75rem, 1.5vw, 1.25rem);
+      width: 100%;
+    }
+    
+    .team-card {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+      max-width: 210px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    
+    .team-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+      border-color: rgba(var(--accent-rgb), 0.15);
+    }
+    
+    .team-img-wrap {
+      width: 100%;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      background: #f5f5f5;
+      position: relative;
+    }
+    
+    .team-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease), filter 0.4s var(--ease);
+      filter: grayscale(1);
+    }
+    
+    .team-card:hover .team-img-wrap img {
+      transform: scale(1.04);
+      filter: grayscale(0);
+    }
+    
+    .team-info {
+      padding: 1rem 0.75rem;
+      text-align: left;
+    }
+    
+    .team-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #1c1c1c;
+      margin-bottom: 0.2rem;
+    }
+    
+    .team-role {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .team-bg-geometry {
+      position: absolute;
+      top: 35%;
+      right: -5%;
+      transform: translateY(-50%);
+      width: clamp(280px, 40vw, 550px);
+      height: clamp(280px, 40vw, 550px);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.5;
+    }
+    
+    .team-bg-geometry svg {
+      width: 100%;
+      height: 100%;
+      animation: team-spin 35s linear infinite;
+    }
+    
+    @keyframes team-spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media(max-width: 900px) {
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media(max-width: 500px) {
+      .team-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ==========================================================================
+       DOBRA FAQ
+       ========================================================================== */
+    .faq-fold {
+      z-index: 60;
+      background-color: #F5F5F0;
+      background-size: 40px 40px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+      opacity: 1;
+      visibility: visible;
+      display: flex;
+      align-items: center;
+      padding: 0 var(--pad-x);
+      padding-top: clamp(6.5rem, 11vh, 9.5rem);
+      padding-bottom: clamp(3rem, 6vh, 5rem);
+      overflow: hidden;
+      color: #1c1c1c;
+    }
+    
+    .faq-inner {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      z-index: 3;
+    }
+    
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      width: 100%;
+      align-items: flex-start;
+    }
+    
+    .faq-info {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .faq-breadcrumb {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #b89d75;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    
+    .faq-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #1c1c1c;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    
+    .faq-title span.mil-thin {
+      font-weight: 300;
+    }
+    
+    .faq-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #666666;
+      margin-bottom: 2rem;
+      max-width: 400px;
+    }
+    
+    .faq-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .faq-item {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    
+    .faq-item[open] {
+      border-color: rgba(var(--accent-rgb), 0.25);
+    }
+    
+    .faq-question {
+      padding: 1.25rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #1c1c1c;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+      user-select: none;
+      transition: color 0.3s;
+    }
+    
+    .faq-question::-webkit-details-marker {
+      display: none;
+    }
+    
+    .faq-question:hover {
+      color: var(--accent);
+    }
+    
+    .faq-icon {
+      width: 18px;
+      height: 18px;
+      position: relative;
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+    
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      background-color: currentColor;
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-icon::before {
+      top: 8px; left: 2px; width: 14px; height: 2px;
+    }
+    
+    .faq-icon::after {
+      top: 2px; left: 8px; width: 2px; height: 14px;
+    }
+    
+    .faq-item[open] .faq-icon::after {
+      transform: rotate(90deg) scaleY(0);
+    }
+    
+    .faq-answer {
+      padding: 0 1.5rem 1.25rem 1.5rem;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #666666;
+      border-top: 1px solid rgba(0, 0, 0, 0.03);
+      animation: faq-fade-in 0.4s ease;
+    }
+    
+    @keyframes faq-fade-in {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .faq-bg-word {
+      position: absolute;
+      left: clamp(0.5rem, 2vw, 1.5rem);
+      top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+      transform-origin: left center;
+      font-size: clamp(6rem, 16vw, 12rem);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      color: rgba(28, 28, 28, 0.025);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+    
+    @media(max-width: 900px) {
+      .faq-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .faq-bg-word { display: none; }
+    }
+
+    /* HUD Adaptação para Dobra Clara */
+    body.light-hud .hdr-brand img {
+      filter: brightness(0); /* Faz a logo branca virar preta */
+    }
+    body.light-hud .hdr-burger {
+      background: rgba(0,0,0,.04);
+      border-color: rgba(0,0,0,.12);
+    }
+    body.light-hud .hdr-burger span {
+      background: #1c1c1c;
+    }
+    body.light-hud .sdot {
+      background: rgba(0, 0, 0, 0.22);
+    }
+    body.light-hud .sdot.on {
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(var(--accent-rgb),.4);
+    }
+    body.light-hud .side-lbl {
+      color: rgba(0, 0, 0, 0.4);
+    }
+    body.light-hud .fixed-social .fs-copy {
+      color: rgba(0, 0, 0, 0.4);
+    }
+    body.light-hud .fixed-social .fs-icon {
+      color: rgba(0, 0, 0, 0.4);
+    }
+    body.light-hud .fixed-social .fs-icon:hover {
+      color: #1c1c1c;
+    }
+    body.light-hud .prog-track {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    @media(max-width: 900px) {
+      .resume-grid { grid-template-columns: 1fr; }
+      .resume-inner { padding-left: 0; }
+      .resume-bg-word { display: none; }
+    }
+
+    /* ==========================================================================
        QUARTA DOBRA — ORÇAMENTO
        ========================================================================== */
     .fourth-fold {
-      z-index: 5;
+      z-index: 70;
       background: #111111;
       opacity: 1;
       visibility: visible;
@@ -609,7 +1184,7 @@
     }
     .contact-form::before {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 50%), rgba(230,48,48,.03), transparent 45%);
+      background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 50%), rgba(var(--accent-rgb),.03), transparent 45%);
       opacity: 0; transition: opacity .4s; pointer-events: none;
     }
     .contact-form:hover::before { opacity: 1; }
@@ -691,28 +1266,30 @@
   <!-- FIXED SOCIAL FOOTER -->
   <div class="fixed-social" id="fixed-social" aria-label="Redes Sociais">
     <span class="fs-copy">© 2026 Rabisko</span>
-    <a href="#instagram" class="fs-icon" aria-label="Instagram">
+    <a href="https://www.instagram.com/rabiskodesign/" target="_blank" class="fs-icon" aria-label="Instagram">
       <svg viewBox="0 0 24 24">
         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
       </svg>
     </a>
-    <a href="#facebook" class="fs-icon" aria-label="Facebook">
+    <a href="https://www.facebook.com/RabiskoDesign/?locale=pt_BR" target="_blank" class="fs-icon" aria-label="Facebook">
       <svg viewBox="0 0 24 24">
         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
       </svg>
     </a>
   </div>
-  <!-- MENU OVERLAY -->
   <div class="menu-overlay" id="menu-overlay" aria-hidden="true"></div>
   <nav class="full-menu" id="full-menu" aria-hidden="true">
     <div class="menu-nav">
       <a href="#hero" class="menu-link is-active" style="transition-delay: 0.1s">Início</a>
-      <a href="#projetos" class="menu-link" style="transition-delay: 0.18s">Projetos</a>
-      <a href="#aplicacoes" class="menu-link" style="transition-delay: 0.26s">Aplicações</a>
-      <a href="#orcamento" class="menu-link" style="transition-delay: 0.34s">Orçamento</a>
+      <a href="#projetos" class="menu-link" style="transition-delay: 0.15s">Projetos</a>
+      <a href="#experiencia" class="menu-link" style="transition-delay: 0.20s">Experiência</a>
+      <a href="#aplicacoes" class="menu-link" style="transition-delay: 0.25s">Aplicações</a>
+      <a href="#nosso-time" class="menu-link" style="transition-delay: 0.30s">Nosso Time</a>
+      <a href="#faq" class="menu-link" style="transition-delay: 0.35s">FAQ</a>
+      <a href="#orcamento" class="menu-link" style="transition-delay: 0.40s">Orçamento</a>
     </div>
     <div class="menu-footer">
-      <a href="tel:+5511999999999">+55 (11) 9 9999-9999</a>
+      <a href="tel:+5541984998106">+55 (41) 98499-8106</a>
       <a href="mailto:orcamento@rabisko.com.br">orcamento@rabisko.com.br</a>
     </div>
   </nav>
@@ -720,6 +1297,23 @@
   <!-- SCROLL EXPERIENCE -->
   <main class="scroll-experience">
     <div class="pinned-stage" id="pinned-stage">
+
+      <!-- DOTS LATERAIS (Persistent over all folds) -->
+      <div class="side-dots" id="dots" aria-hidden="true">
+        <div class="sdot on" data-dot="0"></div>
+        <div class="sdot" data-dot="1"></div>
+        <div class="sdot" data-dot="2"></div>
+        <div class="sdot" data-dot="3"></div>
+        <div class="sdot" data-dot="4"></div>
+        <div class="sdot" data-dot="5"></div>
+        <div class="sdot" data-dot="6"></div>
+        <span class="side-lbl">Visual Impact</span>
+      </div>
+
+      <!-- BARRA PROGRESSO (Persistent over all folds) -->
+      <div class="prog-track" aria-hidden="true">
+        <div class="prog-fill" id="prog-fill"></div>
+      </div>
 
       <!-- ============ HERO SECTION ============ -->
       <section class="hero-section" id="hero" aria-label="Hero — Rabisko grandes formatos">
@@ -743,58 +1337,42 @@
           <div class="hero-col" data-scroll-title data-hero-title>
 
             <div class="scroll-out">
-              <p class="eyebrow" aria-hidden="true">Impressão em grandes formatos</p>
+              <p class="eyebrow" aria-hidden="true">FACHADAS EM ACM • LETRA CAIXA • COMUNICAÇÃO VISUAL</p>
             </div>
 
             <h1 class="headline">
-              <span class="hl-line scroll-out"><span class="hl-in" id="h1">Grandes</span></span>
-              <span class="hl-line scroll-out"><span class="hl-in" id="h2"><span class="accent-word">formatos.</span></span></span>
-              <span class="hl-line scroll-out"><span class="hl-in" id="h3">Presença</span></span>
-              <span class="hl-line scroll-out"><span class="hl-in" id="h4">gigante.</span></span>
+              <span class="hl-line scroll-out"><span class="hl-in" id="h1">Fachadas que fazem</span></span>
+              <span class="hl-line scroll-out"><span class="hl-in" id="h2">sua marca</span></span>
+              <span class="hl-line scroll-out"><span class="hl-in" id="h3"><span class="accent-word">ser vista,</span></span></span>
+              <span class="hl-line scroll-out"><span class="hl-in" id="h4">lembrada e escolhida.</span></span>
             </h1>
 
             <div class="scroll-out">
               <p class="tagline">
-                Fachadas, lonas, ACM, adesivos e projetos visuais sob medida
-                para marcas que precisam ser vistas.
+                Projetos em ACM, letra caixa, lonas, adesivos e comunicação visual sob medida para empresas que querem transmitir mais presença, confiança e profissionalismo desde o primeiro olhar.
               </p>
             </div>
 
             <div class="scroll-out">
-              <div class="cta-row" role="group" aria-label="Ações principais">
+              <div class="hero-cta-left">
                 <a href="#orcamento" class="btn btn-p">
-                  Solicitar orçamento
+                  Receber estudo gratuito da minha fachada
                   <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                     <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </a>
-                <a href="#aplicacoes" class="btn btn-s">Ver aplicações</a>
               </div>
             </div>
 
             <div class="scroll-out" style="margin-top: auto; display: flex; width: 100%;">
               <div class="hero-foot-l" style="margin-top: 0; width: 100%;" aria-hidden="true">
-                <span class="foot-lbl">01 / Hero</span>
+                <span class="foot-lbl">01 / Início</span>
                 <span class="foot-rule"></span>
-                <span class="foot-lbl">Large Format</span>
+                <span class="foot-lbl">A primeira impressão da sua empresa não pode parecer improvisada.</span>
               </div>
             </div>
 
           </div>
-        </div>
-
-        <!-- DOTS LATERAIS -->
-        <div class="side-dots" id="dots" aria-hidden="true">
-          <div class="sdot on" data-dot="0"></div>
-          <div class="sdot" data-dot="1"></div>
-          <div class="sdot" data-dot="2"></div>
-          <div class="sdot" data-dot="3"></div>
-          <span class="side-lbl">Visual Impact</span>
-        </div>
-
-        <!-- BARRA PROGRESSO -->
-        <div class="prog-track" aria-hidden="true">
-          <div class="prog-fill" id="prog-fill"></div>
         </div>
 
         <!-- LINHA BASE -->
@@ -826,7 +1404,7 @@
           <!-- Grid de Projetos -->
           <div class="pj-grid" data-third-grid>
 
-            <a href="#orcamento" class="pj-card" data-third-card>
+            <div class="pj-card" data-third-card>
               <div class="pj-card-img-wrap">
                 <img src="./IMGS/fachada_winners.jpg" alt="Fachada ACM Matte" />
                 <div class="pj-card-overlay"></div>
@@ -836,9 +1414,9 @@
                 <h3 class="pj-card-title">Fachada ACM Matte — Winners</h3>
                 <p class="pj-card-text">Design minimalista e acabamento impecável em ACM preto fosco com iluminação de LED projetada.</p>
               </div>
-            </a>
+            </div>
 
-            <a href="#orcamento" class="pj-card" data-third-card>
+            <div class="pj-card" data-third-card>
               <div class="pj-card-img-wrap">
                 <img src="./IMGS/frota_morada.png" alt="Envelopamento de Frota ME. Morada" />
                 <div class="pj-card-overlay"></div>
@@ -848,9 +1426,9 @@
                 <h3 class="pj-card-title">Frota Corporativa ME. Morada</h3>
                 <p class="pj-card-text">Envelopamento completo de frota com adesivos de alta performance e proteção UV para máxima durabilidade.</p>
               </div>
-            </a>
+            </div>
 
-            <a href="#orcamento" class="pj-card" data-third-card>
+            <div class="pj-card" data-third-card>
               <div class="pj-card-img-wrap">
                 <img src="./IMGS/lona_evento.jpg" alt="Mega Lona Sunset Festival" />
                 <div class="pj-card-overlay"></div>
@@ -860,7 +1438,7 @@
                 <h3 class="pj-card-title">Sunset Festival 150m²</h3>
                 <p class="pj-card-text">Impressão e estruturação tensionada de grandes dimensões com cores vivas e alta resistência mecânica.</p>
               </div>
-            </a>
+            </div>
 
           </div><!-- /.pj-grid -->
 
@@ -876,6 +1454,81 @@
           </div>
 
         </div><!-- /.pj-inner -->
+      </section>
+
+      <!-- ============ TERCEIRA DOBRA (EXPERIÊNCIA / SOBRE) ============ -->
+      <section class="new-fold" id="experiencia" data-new-fold aria-label="Tecnologia e Engenharia Visual">
+        
+        <!-- Palavra decorativa de fundo -->
+        <span class="resume-bg-word" aria-hidden="true">resume</span>
+
+        <div class="resume-inner">
+          <div class="resume-grid">
+            
+            <!-- Coluna 1: Tecnologia & Precisão -->
+            <div class="resume-card" data-new-card>
+              <h2 class="resume-title" data-new-title-1>Tecnologia & Precisão</h2>
+              <div class="resume-blocks">
+                
+                <div class="resume-block">
+                  <span class="resume-cat">Acabamento High-End</span>
+                  <span class="resume-sub">Fidelidade absoluta de cores e texturas</span>
+                  <span class="resume-date">Padrão Industrial Rabisko</span>
+                  <p class="resume-desc">Utilizamos tintas com proteção UV e substratos selecionados para garantir que sua comunicação externa resista ao sol, à chuva e ao tempo sem perder a vivacidade e o brilho original.</p>
+                </div>
+
+                <hr class="resume-divider" />
+
+                <div class="resume-block">
+                  <span class="resume-cat">Engenharia Visual</span>
+                  <span class="resume-sub">Projetos estruturais calculados sob medida</span>
+                  <span class="resume-date">Segurança & Durabilidade</span>
+                  <p class="resume-desc">De painéis gigantes em ACM a mega lonas tensionadas: calculamos a resistência mecânica e de ventos de cada estrutura, garantindo instalações físicas 100% seguras e duráveis.</p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Coluna 2: Impacto & Presença -->
+            <div class="resume-card" data-new-card>
+              <h2 class="resume-title" data-new-title-2>Impacto & Presença</h2>
+              <div class="resume-blocks">
+                
+                <div class="resume-block">
+                  <span class="resume-cat">Fachadas & Revestimentos</span>
+                  <span class="resume-sub">Sua marca com autoridade imediata na rua</span>
+                  <span class="resume-date">ACM, Letra Caixa & LED</span>
+                  <p class="resume-desc">Transformamos a fachada de lojas, concessionárias e indústrias em pontos de referência urbana, unindo ACM matte, recortes computadorizados e projetos luminotécnicos de alto padrão.</p>
+                </div>
+
+                <hr class="resume-divider" />
+
+                <div class="resume-block">
+                  <span class="resume-cat">Adesivagem & Frotas</span>
+                  <span class="resume-sub">Presença móvel e vitrines de alta conversão</span>
+                  <span class="resume-date">Envelopamento Premium</span>
+                  <p class="resume-desc">Adesivagem corporativa de veículos, frotas e vitrines de lojas com acabamento cirúrgico e película protetora premium. Menos bolhas, mais durabilidade e máximo retorno visual.</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div><!-- /.resume-grid -->
+
+          <!-- Rodapé de Experiência / CTA -->
+          <div class="resume-footer" data-new-footer style="margin-top: clamp(2rem, 4vh, 3rem); display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 2rem; flex-wrap: wrap;">
+            <a href="#orcamento" class="btn btn-p beam-button" style="padding: 1.1rem 2.5rem; font-size: 0.76rem; color: #fff;">
+              Iniciar meu projeto visual
+              <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="width: 14px; height: 14px; transition: transform .3s var(--ease);">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <p class="resume-microcopy" aria-hidden="true" style="font-size: .6rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(28, 28, 28, 0.4); transition: color 0.4s var(--ease);">
+              Grandes Formatos • Impacto Urbano • Instalação Segura
+            </p>
+          </div>
+
+        </div><!-- /.resume-inner -->
       </section>
 
       <!-- ============ SEGUNDA DOBRA (APLICAÇÕES) ============ -->
@@ -941,17 +1594,217 @@
 
           </div><!-- /.sf-cards -->
 
-          <div class="sf-footer">
-            <a href="#orcamento" class="sf-cta" data-second-cta>
-              Ver possibilidades
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3 8h10M9 4l4 4-4 4"/>
+          <div class="sf-footer" style="margin-top: clamp(2rem, 4vh, 3rem); display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 2rem; flex-wrap: wrap;">
+            <a href="#orcamento" class="btn btn-p beam-button" data-second-cta style="padding: 1.1rem 2.5rem; font-size: 0.76rem; color: #fff;">
+              Solicitar orçamento
+              <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="width: 14px; height: 14px; transition: transform .3s var(--ease);">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </a>
-            <p class="sf-microcopy" data-second-microcopy aria-hidden="true">Produção sob medida • Acabamento profissional • Instalação orientada</p>
+            <p class="sf-microcopy" data-second-microcopy aria-hidden="true" style="font-size: .6rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-dim);">
+              Produção sob medida • Acabamento profissional • Instalação orientada
+            </p>
           </div>
 
         </div><!-- /.sf-inner -->
+      </section>
+
+      <!-- ============ DOBRA NOSSO TIME ============ -->
+      <section class="team-fold" id="nosso-time" data-team-fold aria-label="Nosso Time Criativo">
+        
+        <!-- Textura Animada de Película -->
+        <div class="team-grain" aria-hidden="true"></div>
+
+        <!-- Geometria 3D SVG Rotativa -->
+        <div class="team-bg-geometry" aria-hidden="true">
+          <svg viewBox="0 0 500 500" fill="none" stroke="rgba(0,0,0,0.05)" stroke-width="1.2">
+            <circle cx="250" cy="250" r="200" stroke-dasharray="3 3"/>
+            <ellipse cx="250" cy="250" rx="200" ry="80"/>
+            <ellipse cx="250" cy="250" rx="200" ry="140"/>
+            <ellipse cx="250" cy="250" rx="80" ry="200"/>
+            <ellipse cx="250" cy="250" rx="140" ry="200"/>
+            <path d="M 50 250 L 250 50 L 450 250 L 250 450 Z" />
+            <path d="M 108 108 L 392 392" />
+            <path d="M 108 392 L 392 108" />
+            <path d="M 250 50 L 250 450" />
+            <path d="M 50 250 L 450 250" />
+          </svg>
+        </div>
+
+        <div class="team-inner">
+          <div class="team-header-container">
+            <span class="team-breadcrumb">Início / Nosso Time</span>
+            <h2 class="team-title">Conheça <span class="mil-thin">Nosso</span> Time Criativo</h2>
+          </div>
+
+          <div class="team-grid">
+            
+            <div class="team-card">
+              <div class="team-img-wrap">
+                <img src="./IMGS/team_1.png" alt="Ana Silva" loading="lazy" />
+              </div>
+              <div class="team-info">
+                <h3 class="team-name">Ana Silva</h3>
+                <span class="team-role">Diretora de Arte</span>
+              </div>
+            </div>
+
+            <div class="team-card">
+              <div class="team-img-wrap">
+                <img src="./IMGS/team_2.png" alt="Carlos Souza" loading="lazy" />
+              </div>
+              <div class="team-info">
+                <h3 class="team-name">Carlos Souza</h3>
+                <span class="team-role">Engenheiro Visual</span>
+              </div>
+            </div>
+
+            <div class="team-card">
+              <div class="team-img-wrap">
+                <img src="./IMGS/team_3.png" alt="Mariana Costa" loading="lazy" />
+              </div>
+              <div class="team-info">
+                <h3 class="team-name">Mariana Costa</h3>
+                <span class="team-role">Design Especialista</span>
+              </div>
+            </div>
+
+            <div class="team-card">
+              <div class="team-img-wrap">
+                <img src="./IMGS/team_4.png" alt="Juliana Lins" loading="lazy" />
+              </div>
+              <div class="team-info">
+                <h3 class="team-name">Juliana Lins</h3>
+                <span class="team-role">Atendimento</span>
+              </div>
+            </div>
+
+            <div class="team-card">
+              <div class="team-img-wrap">
+                <img src="./IMGS/team_5.png" alt="Ricardo Santos" loading="lazy" />
+              </div>
+              <div class="team-info">
+                <h3 class="team-name">Ricardo Santos</h3>
+                <span class="team-role">Diretor de Operações</span>
+              </div>
+            </div>
+
+            <div class="team-card">
+              <div class="team-img-wrap">
+                <img src="./IMGS/team_6.png" alt="Lucas Oliveira" loading="lazy" />
+              </div>
+              <div class="team-info">
+                <h3 class="team-name">Lucas Oliveira</h3>
+                <span class="team-role">Especialista em ACM</span>
+              </div>
+            </div>
+
+            <div class="team-card">
+              <div class="team-img-wrap">
+                <img src="./IMGS/team_7.png" alt="Beatriz Ramos" loading="lazy" />
+              </div>
+              <div class="team-info">
+                <h3 class="team-name">Beatriz Ramos</h3>
+                <span class="team-role">Planejamento</span>
+              </div>
+            </div>
+
+            <div class="team-card">
+              <div class="team-img-wrap">
+                <img src="./IMGS/team_dog.png" alt="Pipoca" loading="lazy" />
+              </div>
+              <div class="team-info">
+                <h3 class="team-name">Pipoca</h3>
+                <span class="team-role">Diretor de Felicidade</span>
+              </div>
+            </div>
+
+          </div><!-- /.team-grid -->
+        </div><!-- /.team-inner -->
+      </section>
+
+      <!-- ============ DOBRA FAQ ============ -->
+      <section class="faq-fold" id="faq" data-faq-fold aria-label="Perguntas Frequentes">
+        <!-- Palavra decorativa de fundo -->
+        <span class="faq-bg-word" aria-hidden="true">faq</span>
+
+        <div class="faq-inner">
+          <div class="faq-grid">
+            
+            <!-- Coluna 1: Título e Apresentação -->
+            <div class="faq-info" data-faq-info>
+              <span class="faq-breadcrumb">Dúvidas</span>
+              <h2 class="faq-title">Perguntas <br><span class="mil-thin">Frequentes</span></h2>
+              <p class="faq-text">
+                Encontre respostas rápidas para as principais dúvidas sobre prazos de entrega, processos de montagem, materiais e garantias estruturais.
+              </p>
+              <div class="faq-cta-box">
+                <a href="#orcamento" class="btn btn-p beam-button">
+                  Falar com especialista
+                  <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Coluna 2: Acordeon de Dúvidas -->
+            <div class="faq-accordion" data-faq-accordion>
+              
+              <details class="faq-item">
+                <summary class="faq-question">
+                  Qual é o prazo médio de produção dos projetos?
+                  <span class="faq-icon"></span>
+                </summary>
+                <div class="faq-answer">
+                  <p>O prazo médio de produção varia entre 5 a 10 dias úteis após a aprovação final do layout e especificação técnica, dependendo da complexidade estrutural e dimensões do projeto.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary class="faq-question">
+                  Vocês realizam a instalação física no local?
+                  <span class="faq-icon"></span>
+                </summary>
+                <div class="faq-answer">
+                  <p>Sim, dispomos de uma equipe própria de engenharia e instalação altamente qualificada para realizar a montagem física de fachadas, painéis de ACM e mega lonas com total segurança e conformidade técnica.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary class="faq-question">
+                  Quais materiais são utilizados para garantir a durabilidade externa?
+                  <span class="faq-icon"></span>
+                </summary>
+                <div class="faq-answer">
+                  <p>Trabalhamos com ACM (Alumínio Composto) de alta densidade, chapas galvanizadas, lonas tensionadas de alta resistência mecânica e tintas com aditivos de proteção UV para garantir resistência máxima ao sol e à chuva.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary class="faq-question">
+                  É possível solicitar um projeto com dimensões personalizadas?
+                  <span class="faq-icon"></span>
+                </summary>
+                <div class="faq-answer">
+                  <p>Com certeza. Todos os nossos projetos são desenvolvidos sob medida (tailor-made) de acordo com a arquitetura física da sua empresa e os objetivos de impacto visual da sua marca.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary class="faq-question">
+                  Vocês dão garantia técnica para fachadas e ACM?
+                  <span class="faq-icon"></span>
+                </summary>
+                <div class="faq-answer">
+                  <p>Sim, oferecemos garantia estrutural de até 2 anos para fachadas em ACM e acabamentos metálicos, assegurando a integridade e fixação contra fatores climáticos normais.</p>
+                </div>
+              </details>
+
+            </div><!-- /.faq-accordion -->
+
+          </div><!-- /.faq-grid -->
+        </div><!-- /.faq-inner -->
       </section>
 
       <!-- ============ QUARTA DOBRA (ORÇAMENTO) ============ -->
@@ -979,7 +1832,7 @@
 
               <div class="contact-details">
                 
-                <a href="https://wa.me/5511999999999" target="_blank" class="contact-item">
+                <a href="https://wa.me/5541984998106" target="_blank" class="contact-item">
                   <div class="contact-item-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -987,7 +1840,7 @@
                   </div>
                   <div class="contact-item-text">
                     <span>WhatsApp Comercial</span>
-                    +55 (11) 9 9999-9999
+                    +55 (41) 98499-8106
                   </div>
                 </a>
 
@@ -1004,7 +1857,7 @@
                   </div>
                 </a>
 
-                <div class="contact-item">
+                <a href="https://www.google.com/maps/search/?api=1&query=R.+Gilberto+Nascimento%2C+680+-+Planta+Ara%C3%A7atuba%2C+Piraquara+-+PR%2C+83301-480" target="_blank" class="contact-item">
                   <div class="contact-item-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
@@ -1012,10 +1865,10 @@
                     </svg>
                   </div>
                   <div class="contact-item-text">
-                    <span>Nossa Indústria</span>
-                    São Paulo — SP
+                    <span>Onde Estamos</span>
+                    R. Gilberto Nascimento, 680 - Planta Araçatuba, Piraquara - PR, 83301-480
                   </div>
-                </div>
+                </a>
 
               </div>
             </div>
@@ -1118,13 +1971,7 @@ function markVideoReady() {
 }
 
 vid.addEventListener('loadedmetadata', markVideoReady);
-vid.addEventListener('canplay', () => { if (vid.duration > 0) markVideoReady(); });
-vid.addEventListener('error', () => {
-  // Mantém poster como fallback
-  if (poster) { poster.style.opacity = '1'; poster.style.zIndex = '5'; }
-});
-
-vid.load();
+vid.addEventListener('canplay', markVideoReady);
 
 /* Atualiza currentTime do vídeo conforme progresso do scroll */
 function scrubVideo(progress) {
@@ -1132,16 +1979,14 @@ function scrubVideo(progress) {
   if (Math.abs(progress - lastProgress) < 0.0003) return;
   lastProgress = progress;
 
-  // Vídeo avança de 0.00 a 0.20 (conforme critérios de sucesso)
-  const videoProgress = Math.min(progress / 0.20, 1.0);
+  // Vídeo avança de 0.00 a 0.15 (conforme critérios de sucesso)
+  const videoProgress = Math.min(progress / 0.15, 1.0);
   vid.currentTime = videoProgress * vid.duration;
 
   // Barra de progresso decorativa
   if (progFill) progFill.style.height = (progress * 100) + '%';
 
-  // Dots ativos
-  const active = Math.min(Math.floor(progress * dots.length), dots.length - 1);
-  dots.forEach((d, i) => d.classList.toggle('on', i === active));
+
 }
 
 /* updateTitleByScroll — controlado pelo mesmo self.progress do vídeo */
@@ -1163,14 +2008,17 @@ function updateTitleByScroll(progress) {
    SCROLL EXPERIENCE — Arquitetura definitiva
    pin: ".pinned-stage" (GSAP) + gsap.set() para estados iniciais + apenas .to()
    Sem CSS sticky, sem .from(), sem race condition.
-========================================================================== */
+   ========================================================================== */
 const allDots = document.querySelectorAll('[data-dot]');
 
 if (!NO_MOTION) {
 
   /* 1. Estados iniciais garantidos via gsap.set() ANTES da timeline */
   gsap.set('[data-third-fold]', { yPercent: 100, autoAlpha: 1 });
+  gsap.set('[data-new-fold]', { yPercent: 100, autoAlpha: 1 });
   gsap.set('[data-second-fold]', { yPercent: 100, autoAlpha: 1 });
+  gsap.set('[data-team-fold]', { yPercent: 100, autoAlpha: 1 });
+  gsap.set('[data-faq-fold]', { yPercent: 100, autoAlpha: 1 });
   gsap.set('[data-fourth-fold]', { yPercent: 100, autoAlpha: 1 });
   
   gsap.set([
@@ -1183,12 +2031,31 @@ if (!NO_MOTION) {
   ], { autoAlpha: 0, y: 40, filter: 'blur(8px)' });
 
   gsap.set([
+    '[data-new-card]',
+    '[data-new-footer]'
+  ], { autoAlpha: 0, y: 40, filter: 'blur(8px)' });
+
+  gsap.set([
     '[data-second-kicker]',
     '[data-second-title]',
     '[data-second-text]',
     '[data-second-card]',
     '[data-second-cta]',
     '[data-second-microcopy]'
+  ], { autoAlpha: 0, y: 40, filter: 'blur(8px)' });
+
+  gsap.set([
+    '.team-breadcrumb',
+    '.team-title',
+    '.team-card'
+  ], { autoAlpha: 0, y: 40, filter: 'blur(8px)' });
+
+  gsap.set([
+    '.faq-breadcrumb',
+    '.faq-title',
+    '.faq-text',
+    '.faq-cta-box',
+    '.faq-item'
   ], { autoAlpha: 0, y: 40, filter: 'blur(8px)' });
 
   gsap.set([
@@ -1212,16 +2079,22 @@ if (!NO_MOTION) {
         /* Vídeo: scrub 1:1 com o scroll */
         scrubVideo(self.progress);
 
-        /* Dots: hero=0, projetos=1, aplicacoes=2, orçamento=3 */
+        /* Dots: hero=0, projetos=1, experiencia=2, aplicacoes=3, time=4, faq=5, orçamento=6 */
         let activeDot = 0;
-        if (self.progress < 0.18) {
+        if (self.progress < 0.10) {
           activeDot = 0;
-        } else if (self.progress < 0.45) {
+        } else if (self.progress < 0.25) {
           activeDot = 1;
-        } else if (self.progress < 0.70) {
+        } else if (self.progress < 0.40) {
           activeDot = 2;
-        } else {
+        } else if (self.progress < 0.56) {
           activeDot = 3;
+        } else if (self.progress < 0.74) {
+          activeDot = 4;
+        } else if (self.progress < 0.91) {
+          activeDot = 5;
+        } else {
+          activeDot = 6;
         }
         allDots.forEach(d => {
           const idx = parseInt(d.dataset.dot);
@@ -1233,57 +2106,61 @@ if (!NO_MOTION) {
         menuLinks.forEach((link, idx) => {
           link.classList.toggle('is-active', idx === activeDot);
         });
+
+        /* Ativa HUD adaptado para dobras claras (Experiência = 0.33 a 0.44, Nosso Time + FAQ = 0.62 a 0.94) */
+        const isLightHUD = (self.progress >= 0.33 && self.progress < 0.44) || 
+                           (self.progress >= 0.62 && self.progress < 0.94);
+        document.body.classList.toggle('light-hud', isLightHUD);
       }
     }
   });
 
-  /* KEYPOINTS DA TIMELINE (4 DOBRAS — Alinhadas exatamente com os critérios de sucesso) */
+  /* KEYPOINTS DA TIMELINE (7 DOBRAS — Alinhadas exatamente com os novos critérios de rolagem) */
 
   /* --- TRANSIÇÃO 1: HERO -> PROJETOS (Fold 2) --- */
-  /* Projetos sobe — de 18% a 34% (duração: 0.16) */
+  /* Projetos sobe — de 10% a 18% (duração: 0.08) */
   scrollTl.to('[data-third-fold]', {
-    yPercent: 0, ease: 'none', duration: 0.16
-  }, 0.18);
-
-  /* Hero title sai — de 18% a 30% (duração: 0.12) */
+    yPercent: 0, ease: 'none', duration: 0.08
+  }, 0.10);
+  /* Hero title sai — de 10% a 17% (duração: 0.07) */
   scrollTl.to('[data-hero-title]', {
-    autoAlpha: 0, y: -80, filter: 'blur(10px)', ease: 'none', duration: 0.12
-  }, 0.18);
+    autoAlpha: 0, y: -80, filter: 'blur(10px)', ease: 'none', duration: 0.07
+  }, 0.10);
 
-  /* Vídeo recua — de 18% a 34% (duração: 0.16) */
+  /* Vídeo recua — de 10% a 18% (duração: 0.08) */
   scrollTl.to('[data-hero-media]', {
-    yPercent: -18, scale: 0.96, autoAlpha: 0.20, ease: 'none', duration: 0.16
-  }, 0.18);
+    yPercent: -18, scale: 0.96, autoAlpha: 0.20, ease: 'none', duration: 0.08
+  }, 0.10);
 
-  /* Conteúdo de Projetos entra em cascata — de 26% a 34% */
+  /* Conteúdo de Projetos entra em cascata — de 13% a 18% */
   scrollTl.to('[data-third-kicker]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
-  }, 0.26);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.13);
 
   scrollTl.to('[data-third-title]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.06
-  }, 0.27);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.14);
 
   scrollTl.to('[data-third-text]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.06
-  }, 0.28);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.15);
 
   scrollTl.to('[data-third-card]', {
     autoAlpha: 1, y: 0, filter: 'blur(0px)',
-    stagger: 0.015, ease: 'power3.out', duration: 0.06
-  }, 0.29);
+    stagger: 0.015, ease: 'power3.out', duration: 0.04
+  }, 0.15);
 
   scrollTl.to('[data-third-cta]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
-  }, 0.32);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.16);
 
   scrollTl.to('[data-third-microcopy]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
-  }, 0.33);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.17);
 
 
-  /* --- TRANSIÇÃO 2: PROJETOS -> APLICAÇÕES (Fold 3) --- */
-  /* Conteúdo de Projetos sai — de 45% a 55% (duração: 0.10) */
+  /* --- TRANSIÇÃO 2: PROJETOS -> SOBRE/EXPERIÊNCIA (Fold 3) --- */
+  /* Conteúdo de Projetos sai — de 25% a 30% (duração: 0.05) */
   scrollTl.to([
     '[data-third-kicker]',
     '[data-third-title]',
@@ -1292,43 +2169,73 @@ if (!NO_MOTION) {
     '[data-third-cta]',
     '[data-third-microcopy]'
   ], {
-    autoAlpha: 0, y: -40, filter: 'blur(8px)', stagger: 0.015, ease: 'none', duration: 0.10
-  }, 0.45);
+    autoAlpha: 0, y: -40, filter: 'blur(8px)', stagger: 0.01, ease: 'none', duration: 0.05
+  }, 0.25);
 
-  /* Aplicações sobe — de 45% a 61% (duração: 0.16) */
+  /* Experiência sobe — de 25% a 33% (duração: 0.08) */
+  scrollTl.to('[data-new-fold]', {
+    yPercent: 0, ease: 'none', duration: 0.08
+  }, 0.25);
+
+  /* Parallax na palavra de fundo "resume" — de 25% a 37% */
+  scrollTl.fromTo('.resume-bg-word', 
+    { y: 80 }, 
+    { y: -80, ease: 'none', duration: 0.12 }, 
+    0.25
+  );
+
+  /* Conteúdo de Experiência entra em cascata — de 29% a 33% */
+  scrollTl.to([
+    '[data-new-card]',
+    '[data-new-footer]'
+  ], {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', stagger: 0.03, ease: 'power3.out', duration: 0.04
+  }, 0.29);
+
+
+  /* --- TRANSIÇÃO 3: SOBRE/EXPERIÊNCIA -> APLICAÇÕES (Fold 4) --- */
+  /* Conteúdo de Experiência sai — de 40% a 45% (duração: 0.05) */
+  scrollTl.to([
+    '[data-new-card]',
+    '[data-new-footer]'
+  ], {
+    autoAlpha: 0, y: -40, filter: 'blur(8px)', stagger: 0.02, ease: 'none', duration: 0.05
+  }, 0.40);
+
+  /* Aplicações sobe — de 40% a 48% (duração: 0.08) */
   scrollTl.to('[data-second-fold]', {
-    yPercent: 0, ease: 'none', duration: 0.16
-  }, 0.45);
+    yPercent: 0, ease: 'none', duration: 0.08
+  }, 0.40);
 
-  /* Conteúdo de Aplicações entra em cascata — de 53% a 61% */
+  /* Conteúdo de Aplicações entra em cascata — de 43% a 48% */
   scrollTl.to('[data-second-kicker]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
-  }, 0.53);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.43);
 
   scrollTl.to('[data-second-title]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.06
-  }, 0.54);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.44);
 
   scrollTl.to('[data-second-text]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.06
-  }, 0.55);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.45);
 
   scrollTl.to('[data-second-card]', {
     autoAlpha: 1, y: 0, filter: 'blur(0px)',
-    stagger: 0.01, ease: 'power3.out', duration: 0.06
-  }, 0.56);
+    stagger: 0.015, ease: 'power3.out', duration: 0.04
+  }, 0.45);
 
   scrollTl.to('[data-second-cta]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
-  }, 0.59);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.46);
 
   scrollTl.to('[data-second-microcopy]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
-  }, 0.60);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.47);
 
 
-  /* --- TRANSIÇÃO 3: APLICAÇÕES -> ORÇAMENTO (Fold 4) --- */
-  /* Conteúdo de Aplicações sai — de 70% a 78% (duração: 0.08) */
+  /* --- TRANSIÇÃO 4: APLICAÇÕES -> NOSSO TIME (Fold 5) --- */
+  /* Conteúdo de Aplicações sai — de 56% a 62% (duração: 0.06) */
   scrollTl.to([
     '[data-second-kicker]',
     '[data-second-title]',
@@ -1337,34 +2244,111 @@ if (!NO_MOTION) {
     '[data-second-cta]',
     '[data-second-microcopy]'
   ], {
-    autoAlpha: 0, y: -40, filter: 'blur(8px)', stagger: 0.01, ease: 'none', duration: 0.08
-  }, 0.70);
+    autoAlpha: 0, y: -40, filter: 'blur(8px)', stagger: 0.01, ease: 'none', duration: 0.06
+  }, 0.56);
 
-  /* Orçamento sobe — de 70% a 82% (duração: 0.12) */
-  scrollTl.to('[data-fourth-fold]', {
-    yPercent: 0, ease: 'none', duration: 0.12
-  }, 0.70);
+  /* Nosso Time sobe — de 56% a 65% (duração: 0.09) */
+  scrollTl.to('[data-team-fold]', {
+    yPercent: 0, ease: 'none', duration: 0.09
+  }, 0.56);
 
-  /* Conteúdo de Orçamento entra em cascata — de 76% a 82% */
-  scrollTl.to('[data-fourth-kicker]', {
+  /* Conteúdo de Nosso Time entra em cascata — de 61% a 65% */
+  scrollTl.to('.team-breadcrumb', {
     autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
-  }, 0.76);
+  }, 0.61);
+
+  scrollTl.to('.team-title', {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.62);
+
+  scrollTl.to('.team-card', {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)',
+    stagger: 0.01, ease: 'power3.out', duration: 0.04
+  }, 0.63);
+
+
+  /* --- TRANSIÇÃO 5: NOSSO TIME -> FAQ (Fold 6) --- */
+  /* Conteúdo de Nosso Time sai — de 74% a 80% (duração: 0.06) */
+  scrollTl.to([
+    '.team-breadcrumb',
+    '.team-title',
+    '.team-card'
+  ], {
+    autoAlpha: 0, y: -40, filter: 'blur(8px)', stagger: 0.01, ease: 'none', duration: 0.06
+  }, 0.74);
+
+  /* FAQ sobe — de 74% a 83% (duração: 0.09) */
+  scrollTl.to('[data-faq-fold]', {
+    yPercent: 0, ease: 'none', duration: 0.09
+  }, 0.74);
+
+  /* Parallax na palavra de fundo "faq" — de 74% a 90% */
+  scrollTl.fromTo('.faq-bg-word',
+    { y: 80 },
+    { y: -80, ease: 'none', duration: 0.16 },
+    0.74
+  );
+
+  /* Conteúdo de FAQ entra em cascata — de 79% a 83% */
+  scrollTl.to('.faq-breadcrumb', {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.79);
+
+  scrollTl.to('.faq-title', {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.80);
+
+  scrollTl.to('.faq-text', {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.81);
+
+  scrollTl.to('.faq-cta-box', {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.04
+  }, 0.82);
+
+  scrollTl.to('.faq-item', {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)',
+    stagger: 0.01, ease: 'power3.out', duration: 0.04
+  }, 0.82);
+
+
+  /* --- TRANSIÇÃO 6: FAQ -> ORÇAMENTO (Fold 7) --- */
+  /* Conteúdo de FAQ sai — de 91% a 95% (duração: 0.04) */
+  scrollTl.to([
+    '.faq-breadcrumb',
+    '.faq-title',
+    '.faq-text',
+    '.faq-cta-box',
+    '.faq-item'
+  ], {
+    autoAlpha: 0, y: -40, filter: 'blur(8px)', stagger: 0.01, ease: 'none', duration: 0.04
+  }, 0.91);
+
+  /* Orçamento sobe — de 91% a 97% (duração: 0.06) */
+  scrollTl.to('[data-fourth-fold]', {
+    yPercent: 0, ease: 'none', duration: 0.06
+  }, 0.91);
+
+  /* Conteúdo de Orçamento entra em cascata — de 94% a 97% */
+  scrollTl.to('[data-fourth-kicker]', {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
+  }, 0.94);
 
   scrollTl.to('[data-fourth-title]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
-  }, 0.77);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
+  }, 0.95);
 
   scrollTl.to('[data-fourth-info]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
-  }, 0.78);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
+  }, 0.95);
 
   scrollTl.to('[data-fourth-form]', {
-    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.05
-  }, 0.79);
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
+  }, 0.96);
 
   /* Estende a timeline para durar exatamente 1.00 segundo de tempo interno,
      garantindo sincronia direta de 1:1 entre scroll progress (0 a 1) e tempo da timeline (0 a 1). */
-  scrollTl.to({}, { duration: 0.18 }, 0.82);
+  scrollTl.to({}, { duration: 0.03 }, 0.97);
 
 }
 
@@ -1399,7 +2383,7 @@ function runEntryAnims() {
     .from('.tagline', { opacity: 0, y: 14, duration: 0.9 }, 0.95)
 
     /* CTAs */
-    .from('.cta-row', { opacity: 0, y: 12, duration: 0.9 }, 1.1)
+    .from('.hero-cta-left', { opacity: 0, y: 12, duration: 0.9 }, 1.1)
 
     /* Rodapé esquerdo */
     .from('.hero-foot-l', { opacity: 0, duration: 0.7 }, 1.25)
@@ -1420,7 +2404,7 @@ document.addEventListener('DOMContentLoaded', () => {
      FLASHLIGHT EFFECT — Coordenadas nos cards e formulário
      ============================================================ */
   function initFlashlightEffect() {
-    document.querySelectorAll('.sf-card, .pj-card, .contact-form').forEach(card => {
+    document.querySelectorAll('.sf-card, .pj-card, .contact-form, .resume-card').forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -1467,10 +2451,19 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollToProgress(0.0);
     } else if (href === '#projetos') {
       e.preventDefault();
-      scrollToProgress(0.35);
+      scrollToProgress(0.21);
+    } else if (href === '#experiencia') {
+      e.preventDefault();
+      scrollToProgress(0.36);
     } else if (href === '#aplicacoes') {
       e.preventDefault();
-      scrollToProgress(0.62);
+      scrollToProgress(0.52);
+    } else if (href === '#nosso-time') {
+      e.preventDefault();
+      scrollToProgress(0.69);
+    } else if (href === '#faq') {
+      e.preventDefault();
+      scrollToProgress(0.87);
     } else if (href === '#orcamento') {
       e.preventDefault();
       scrollToProgress(1.00);
@@ -1488,9 +2481,13 @@ document.addEventListener('DOMContentLoaded', () => {
     dot.addEventListener('click', () => {
       const idx = parseInt(dot.dataset.dot);
       let targetProgress = 0;
-      if (idx === 1) targetProgress = 0.35;
-      else if (idx === 2) targetProgress = 0.62;
-      else if (idx === 3) targetProgress = 1.00;
+      if (idx === 0) targetProgress = 0.0;
+      else if (idx === 1) targetProgress = 0.21;
+      else if (idx === 2) targetProgress = 0.36;
+      else if (idx === 3) targetProgress = 0.52;
+      else if (idx === 4) targetProgress = 0.69;
+      else if (idx === 5) targetProgress = 0.87;
+      else if (idx === 6) targetProgress = 1.00;
       
       scrollToProgress(targetProgress);
     });
