@@ -1360,6 +1360,10 @@ if (!NO_MOTION) {
     autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.06
   }, 0.79);
 
+  /* Estende a timeline para durar exatamente 1.00 segundo de tempo interno,
+     garantindo sincronia direta de 1:1 entre scroll progress (0 a 1) e tempo da timeline (0 a 1). */
+  scrollTl.to({}, { duration: 0.15 }, 0.85);
+
 }
 
 /* ============================================================
@@ -1445,29 +1449,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Intercepta cliques de âncoras internas
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', e => {
-      const targetId = anchor.getAttribute('href');
-      if (targetId === '#hero' || targetId === '#') {
-        e.preventDefault();
-        scrollToProgress(0.0);
-      } else if (targetId === '#projetos') {
-        e.preventDefault();
-        scrollToProgress(0.33);
-      } else if (targetId === '#aplicacoes') {
-        e.preventDefault();
-        scrollToProgress(0.58);
-      } else if (targetId === '#orcamento') {
-        e.preventDefault();
-        scrollToProgress(0.85);
-        // Foca o primeiro input do formulário de orçamento após a rolagem concluir
-        setTimeout(() => {
-          const inputName = document.getElementById('form-name');
-          if (inputName) inputName.focus();
-        }, 1100);
-      }
-    });
+  // Intercepta cliques de todas as âncoras na página (Event Delegation)
+  document.addEventListener('click', e => {
+    const anchor = e.target.closest('a[href^="#"]');
+    if (!anchor) return;
+    
+    // Se for link do menu, fecha o menu
+    if (anchor.classList.contains('menu-link')) {
+      if (typeof toggleMenu === 'function') toggleMenu(false);
+    }
+    
+    const href = anchor.getAttribute('href');
+    if (href === '#hero' || href === '#') {
+      e.preventDefault();
+      scrollToProgress(0.0);
+    } else if (href === '#projetos') {
+      e.preventDefault();
+      scrollToProgress(0.33);
+    } else if (href === '#aplicacoes') {
+      e.preventDefault();
+      scrollToProgress(0.60);
+    } else if (href === '#orcamento') {
+      e.preventDefault();
+      scrollToProgress(1.00);
+      // Foca o primeiro input do formulário de orçamento após a rolagem concluir
+      setTimeout(() => {
+        const inputName = document.getElementById('form-name');
+        if (inputName) inputName.focus();
+      }, 1100);
+    }
   });
 
   // Torna os dots clicáveis
@@ -1477,8 +1487,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const idx = parseInt(dot.dataset.dot);
       let targetProgress = 0;
       if (idx === 1) targetProgress = 0.33;
-      else if (idx === 2) targetProgress = 0.58;
-      else if (idx === 3) targetProgress = 0.85;
+      else if (idx === 2) targetProgress = 0.60;
+      else if (idx === 3) targetProgress = 1.00;
       
       scrollToProgress(targetProgress);
     });
@@ -1508,10 +1518,7 @@ document.addEventListener('DOMContentLoaded', () => {
   btnMenu.addEventListener('click', () => toggleMenu());
   if(menuOverlay) menuOverlay.addEventListener('click', () => toggleMenu(false));
 
-  // Fecha ao clicar num link
-  document.querySelectorAll('.menu-link').forEach(link => {
-    link.addEventListener('click', () => toggleMenu(false));
-  });
+  // (Tratado pelo Event Delegation global acima)
 });
 
 window.addEventListener('resize', () => ScrollTrigger.refresh(), { passive: true });
