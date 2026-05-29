@@ -818,6 +818,11 @@
             Grandes marcas, presença <span class="accent-word">gigante.</span>
           </h2>
 
+          <!-- Texto de apoio -->
+          <p class="sf-body" data-third-text>
+            Estruturas monumentais que traduzem a força da sua marca no mundo físico. Projetos sob medida desenvolvidos com precisão cirúrgica e acabamento de altíssimo padrão para marcas que lideram.
+          </p>
+
           <!-- Grid de Projetos -->
           <div class="pj-grid" data-third-grid>
 
@@ -1158,6 +1163,7 @@ if (!NO_MOTION) {
   gsap.set([
     '[data-third-kicker]',
     '[data-third-title]',
+    '[data-third-text]',
     '[data-third-card]'
   ], { autoAlpha: 0, y: 40, filter: 'blur(8px)' });
 
@@ -1243,10 +1249,14 @@ if (!NO_MOTION) {
     autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.07
   }, 0.40);
 
+  scrollTl.to('[data-third-text]', {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.07
+  }, 0.42);
+
   scrollTl.to('[data-third-card]', {
     autoAlpha: 1, y: 0, filter: 'blur(0px)',
     stagger: 0.03, ease: 'power3.out', duration: 0.08
-  }, 0.42);
+  }, 0.44);
 
 
   /* --- TRANSIÇÃO 2: PROJETOS -> APLICAÇÕES (Fold 3) --- */
@@ -1254,6 +1264,7 @@ if (!NO_MOTION) {
   scrollTl.to([
     '[data-third-kicker]',
     '[data-third-title]',
+    '[data-third-text]',
     '[data-third-card]'
   ], {
     autoAlpha: 0, y: -40, filter: 'blur(8px)', stagger: 0.02, ease: 'none', duration: 0.07
