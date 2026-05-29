@@ -864,6 +864,17 @@
 
           </div><!-- /.pj-grid -->
 
+          <!-- Rodapé de Projetos -->
+          <div class="sf-footer" style="margin-top: clamp(1.5rem, 3vh, 2.5rem);">
+            <a href="#orcamento" class="sf-cta" data-third-cta>
+              Quero um projeto sob medida
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4"/>
+              </svg>
+            </a>
+            <p class="sf-microcopy" data-third-microcopy aria-hidden="true">Portfólio Premium • Fidelidade de Cores • Engenharia de Estruturas</p>
+          </div>
+
         </div><!-- /.pj-inner -->
       </section>
 
@@ -1164,7 +1175,9 @@ if (!NO_MOTION) {
     '[data-third-kicker]',
     '[data-third-title]',
     '[data-third-text]',
-    '[data-third-card]'
+    '[data-third-card]',
+    '[data-third-cta]',
+    '[data-third-microcopy]'
   ], { autoAlpha: 0, y: 40, filter: 'blur(8px)' });
 
   gsap.set([
@@ -1258,6 +1271,14 @@ if (!NO_MOTION) {
     stagger: 0.015, ease: 'power3.out', duration: 0.04
   }, 0.27);
 
+  scrollTl.to('[data-third-cta]', {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
+  }, 0.32);
+
+  scrollTl.to('[data-third-microcopy]', {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.03
+  }, 0.33);
+
 
   /* --- TRANSIÇÃO 2: PROJETOS -> APLICAÇÕES (Fold 3) --- */
   /* Conteúdo de Projetos sai — início em 45% */
@@ -1265,7 +1286,9 @@ if (!NO_MOTION) {
     '[data-third-kicker]',
     '[data-third-title]',
     '[data-third-text]',
-    '[data-third-card]'
+    '[data-third-card]',
+    '[data-third-cta]',
+    '[data-third-microcopy]'
   ], {
     autoAlpha: 0, y: -40, filter: 'blur(8px)', stagger: 0.015, ease: 'none', duration: 0.06
   }, 0.45);
