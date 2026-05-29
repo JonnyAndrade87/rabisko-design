@@ -1461,6 +1461,11 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (targetId === '#orcamento') {
         e.preventDefault();
         scrollToProgress(0.85);
+        // Foca o primeiro input do formulário de orçamento após a rolagem concluir
+        setTimeout(() => {
+          const inputName = document.getElementById('form-name');
+          if (inputName) inputName.focus();
+        }, 1100);
       }
     });
   });
