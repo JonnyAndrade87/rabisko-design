@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rabisko — Grandes Formatos. Presença Gigante.</title>
+  <meta name="description" content="Fachadas, lonas, ACM, adesivos e projetos visuais sob medida para marcas que precisam ser vistas." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- GSAP + ScrollTrigger + Lenis -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <style>
+    /* ==========================================================================
+       TOKENS — design_system4.html
+       ========================================================================== */
+    :root {
+      --bg:          #0d0d0d;
+      --text:        #ffffff;
+      --text-sub:    rgba(255,255,255,0.55);
+      --text-dim:    rgba(255,255,255,0.28);
+      --accent:      #e63030;
+      --accent-rgb:  230, 48, 48;
+      --border:      rgba(255,255,255,0.1);
+      --border-mid:  rgba(255,255,255,0.18);
+      --font:        'Inter', -apple-system, sans-serif;
+      --ease:        cubic-bezier(0.16, 1, 0.3, 1);
+      --pad-x:       clamp(2rem, 5vw, 5rem);
+    }
+
+    /* ==========================================================================
+       RESET
+       ========================================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* grain sutil — pointer-events: none para não bloquear interações */
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.65;
+    }
+
+    /* ==========================================================================
+       HEADER — fixo, z-index alto
+       ========================================================================== */
+    .hdr {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 800;
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+      padding: clamp(1.1rem, 2.2vw, 1.8rem) var(--pad-x);
+      max-width: 1440px;
+      margin: 0 auto;
+      /* visível por padrão — GSAP anima a partir de translateY(-16px) */
+    }
+
+    .hdr-brand {
+      display: flex; align-items: center; gap: 0.75rem;
+      text-decoration: none; flex-shrink: 0;
+    }
+    .hdr-logo {
+      height: clamp(24px, 3.5vw, 36px);
+      width: auto;
+      object-fit: contain;
+    }
+
+    .hdr-burger {
+      display: flex; flex-direction: column; justify-content: center; gap: 5px;
+      width: 44px; height: 44px; cursor: pointer; flex-shrink: 0; z-index: 810;
+      background: rgba(255,255,255,.06); border: 1px solid var(--border-mid); border-radius: 7px; padding: 12px;
+      transition: background .3s, border-color .3s;
+    }
+    .hdr-burger:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.3); }
+    .hdr-burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .hdr-burger span {
+      display: block; width: 100%; height: 1px; background: #fff; border-radius: 2px;
+      transition: transform 0.4s var(--ease), opacity 0.3s;
+    }
+    .hdr-burger.is-active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hdr-burger.is-active span:nth-child(2) { opacity: 0; }
+    .hdr-burger.is-active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ==========================================================================
+       SIDE MENU (DRAWER)
+       ========================================================================== */
+    .menu-overlay {
+      position: fixed; inset: 0; z-index: 780;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0s 0.5s;
+    }
+    .menu-overlay.is-open {
+      opacity: 1; visibility: visible;
+      transition: opacity 0.5s ease, visibility 0s 0s;
+    }
+
+    .full-menu {
+      position: fixed; top: 0; right: 0; bottom: 0; z-index: 790;
+      width: 100%; max-width: 480px;
+      background: #181818;
+      border-left: 1px solid var(--border);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: clamp(2rem, 5vh, 4rem) clamp(2rem, 4vw, 4rem);
+      transform: translateX(100%);
+      transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1), visibility 0s 0.7s;
+      visibility: hidden;
+    }
+    .full-menu.is-open {
+      transform: translateX(0);
+      visibility: visible;
+      transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1), visibility 0s 0s;
+    }
+    
+    .menu-nav {
+      display: flex; flex-direction: column; gap: clamp(1.2rem, 3vh, 1.6rem);
+      width: 100%;
+    }
+    .menu-link {
+      font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+      font-weight: 700; letter-spacing: -0.01em; line-height: 1.2;
+      color: rgba(255, 255, 255, 0.4); text-decoration: none;
+      transition: color 0.3s, transform 0.4s var(--ease);
+      display: inline-block; width: fit-content;
+      opacity: 0; transform: translateX(30px);
+    }
+    .menu-link.is-active {
+      color: #ffffff;
+    }
+    .full-menu.is-open .menu-link {
+      opacity: 1; transform: translateX(0);
+    }
+    .menu-link:hover { color: #ffffff; transform: translateX(-8px) !important; }
+    
+    .menu-footer {
+      width: 100%;
+      margin-top: clamp(3rem, 8vh, 5rem); display: flex; flex-direction: column; gap: 1rem;
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-sub);
+      opacity: 0; transform: translateY(15px); transition: opacity 0.5s, transform 0.5s;
+    }
+    .full-menu.is-open .menu-footer {
+      opacity: 1; transform: translateY(0);
+      transition-delay: 0.4s;
+    }
+    .menu-footer a { color: inherit; text-decoration: none; transition: color 0.3s; }
+    .menu-footer a:hover { color: #fff; }
+
+    /* ==========================================================================
+       HERO — fullscreen, pinned via ScrollTrigger
+       ========================================================================== */
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    /* ---- VÍDEO FULL-BLEED ---- */
+    .v-wrap {
+      position: absolute; inset: 0; z-index: 0;
+    }
+
+    /* poster — sempre visível como fallback */
+    .v-poster {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center; z-index: 1;
+    }
+
+    /* vídeo — começa em opacity 0, vira 1 ao carregar */
+    #vid {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center; z-index: 2;
+      opacity: 0; transition: opacity .9s ease;
+    }
+    #vid.rdy { opacity: 1; }
+
+    /* ---- OVERLAYS CINEMATOGRÁFICOS ---- */
+    .ov {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    /* vinheta radial */
+    .ov-v { z-index: 3; background: radial-gradient(ellipse at 60% 50%, transparent 20%, rgba(0,0,0,.55) 100%); }
+    /* gradiente esquerda — legibilidade do texto */
+    .ov-l { z-index: 4; background: linear-gradient(100deg, rgba(13,13,13,.92) 0%, rgba(13,13,13,.55) 30%, rgba(13,13,13,.1) 60%, transparent 80%); }
+    /* base inferior */
+    .ov-b { z-index: 5; background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.65) 100%); }
+    /* topo (funde com header) */
+    .ov-t { z-index: 6; background: linear-gradient(180deg, rgba(13,13,13,.55) 0%, transparent 20%); }
+
+    /* ---- CONTEÚDO SOBREPOSTO ---- */
+    .hero-content {
+      position: absolute; inset: 0; z-index: 10;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 0 var(--pad-x);
+      padding-top: clamp(5rem,10vh,8rem);
+      padding-bottom: clamp(3rem,6vh,5rem);
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    /* coluna de texto — metade esquerda */
+    .hero-col {
+      max-width: clamp(320px, 50%, 700px);
+      display: flex; flex-direction: column;
+    }
+
+    /* eyebrow */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: .65rem;
+      font-size: .67rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: clamp(1.5rem,3.5vh,2.5rem);
+    }
+    .eyebrow::before {
+      content: ''; display: block; width: 22px; height: 1px; background: var(--accent); flex-shrink: 0;
+    }
+
+    /* headline */
+    .headline {
+      font-size: clamp(3rem,7vw,8.5rem);
+      font-weight: 800; line-height: 1.0; letter-spacing: -.07em; color: #fff;
+      margin-bottom: clamp(1.2rem,2.5vh,2rem);
+    }
+    /* linha com máscara para reveal */
+    .hl-line { display: block; overflow: hidden; line-height: 0.92; }
+    .hl-in   { display: block; } /* GSAP anima a partir de translateY(110%) */
+
+    .accent-word {
+      color: var(--accent);
+      text-shadow: 0 0 60px rgba(var(--accent-rgb),.28);
+    }
+
+    /* tagline */
+    .tagline {
+      font-size: clamp(.86rem,1.25vw,1rem); font-weight: 400; line-height: 1.72;
+      color: var(--text-sub); max-width: 440px; margin-bottom: clamp(2rem,4.5vh,3.5rem);
+    }
+
+    /* ctas */
+    .cta-row {
+      display: flex; flex-wrap: wrap; align-items: center;
+      gap: clamp(.7rem,1.4vw,1rem);
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: var(--font); font-size: .74rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase; text-decoration: none;
+      padding: 1rem 2rem; border-radius: 100px; cursor: pointer; border: none;
+      position: relative; overflow: hidden; white-space: nowrap;
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .3s;
+    }
+    /* beam */
+    .btn::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
+      transform: translateX(-110%) skewX(-18deg);
+      transition: transform .55s var(--ease);
+    }
+    .btn:hover::before { transform: translateX(210%) skewX(-18deg); }
+
+    .btn-p { background: var(--accent); color: #fff; }
+    .btn-p:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(var(--accent-rgb),.5); }
+    .btn-p:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+    .btn-s {
+      background: rgba(255,255,255,.07); color: rgba(255,255,255,.85);
+      border: 1px solid var(--border-mid);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    }
+    .btn-s:hover { background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.3); transform: translateY(-2px); color: #fff; }
+    .btn-s:focus-visible { outline: 2px solid rgba(255,255,255,.55); outline-offset: 4px; }
+
+    .btn-arrow { display: inline-flex; width: 14px; height: 14px; transition: transform .3s var(--ease); }
+    .btn:hover .btn-arrow { transform: translateX(4px); }
+
+    /* rodapé interno esquerda */
+    .hero-foot-l {
+      margin-top: auto; padding-top: clamp(2rem,5vh,4rem);
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .foot-lbl { font-size: .6rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--text-dim); }
+    .foot-rule { flex: 1; max-width: 44px; height: 1px; background: var(--border); }
+
+    /* ---- INDICADORES LATERAIS (direita) ---- */
+    .side-dots {
+      position: absolute; right: clamp(1.5rem,2.5vw,2.5rem); top: 50%; transform: translateY(-50%);
+      z-index: 20; display: flex; flex-direction: column; align-items: center; gap: .55rem;
+    }
+    .sdot {
+      width: 5px; height: 5px; border-radius: 50%; background: var(--text-dim);
+      transition: background .3s, transform .3s;
+    }
+    .sdot.on { background: var(--accent); transform: scale(1.6); box-shadow: 0 0 8px rgba(var(--accent-rgb),.7); }
+    .side-lbl {
+      writing-mode: vertical-rl; font-size: .57rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--text-dim); margin-top: 1rem;
+    }
+
+    /* ---- FIXED FOOTER DIREITO ---- */
+    .fixed-social {
+      position: fixed; right: clamp(1.5rem, 2.5vw, 2.5rem); bottom: clamp(1.5rem, 3vh, 2.5rem);
+      z-index: 700; display: flex; align-items: center; gap: 1.2rem;
+      pointer-events: auto;
+    }
+    .fs-copy { font-size: .65rem; color: var(--text-dim); letter-spacing: .08em; font-weight: 600; }
+    .fs-icon { 
+      color: var(--text-dim); transition: color .3s, transform .3s var(--ease);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .fs-icon svg { width: 16px; height: 16px; fill: currentColor; }
+    .fs-icon:hover { color: #fff; transform: translateY(-2px); }
+
+    /* ---- BARRA DE PROGRESSO VERTICAL (esquerda) ---- */
+    .prog-track {
+      position: absolute; left: clamp(1rem,2vw,2rem); top: 28%; bottom: 28%;
+      width: 1px; background: var(--border); z-index: 20;
+    }
+    .prog-fill { position: absolute; top: 0; left: 0; width: 100%; height: 0%; background: var(--accent); box-shadow: 0 0 8px rgba(var(--accent-rgb),.55); }
+
+    /* ---- LINHA DECORATIVA BASE ---- */
+    .base-line {
+      position: absolute; bottom: 0; left: 0; width: 42%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-mid) 20%, rgba(var(--accent-rgb),.45) 100%);
+      z-index: 20;
+    }
+
+    /* ==========================================================================
+       SCROLL EXPERIENCE — palco fixo
+       ========================================================================== */
+    .scroll-experience {
+      position: relative;
+      height: 320vh;
+      background: #0d0d0d;
+    }
+    .pinned-stage {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      background: #0d0d0d;
+    }
+    .hero-section,
+    .second-fold {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100vh;
+    }
+    .hero-section { z-index: 2; }
+
+    /* ==========================================================================
+       SEGUNDA DOBRA
+       ========================================================================== */
+    /* Remove transform CSS — GSAP controla via gsap.set */
+    .second-fold {
+      z-index: 3;
+      background: #111111;
+      opacity: 1;
+      visibility: visible;
+      display: flex;
+      align-items: center;
+      padding: 0 var(--pad-x);
+      padding-top: clamp(5rem, 10vh, 8rem);
+      padding-bottom: clamp(3rem, 6vh, 5rem);
+      overflow: hidden;
+    }
+    /* Palavra gigante de fundo */
+    .sf-bg-word {
+      position: absolute;
+      right: -0.1em; bottom: -0.1em;
+      font-size: clamp(8rem, 22vw, 20rem);
+      font-weight: 900; letter-spacing: -.06em;
+      color: rgba(255,255,255,.025);
+      white-space: nowrap; pointer-events: none; user-select: none;
+      line-height: 1;
+    }
+    .sf-inner {
+      position: relative;
+      width: 100%; max-width: 1200px; margin: 0 auto; z-index: 2;
+    }
+    /* Kicker */
+    .sf-kicker {
+      display: inline-flex; align-items: center; gap: .65rem;
+      font-size: .63rem; font-weight: 700; letter-spacing: .28em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: clamp(1.2rem, 3vh, 2rem);
+    }
+    .sf-kicker::before {
+      content: ''; display: block; width: 22px; height: 1px; background: var(--accent); flex-shrink: 0;
+    }
+    /* Título */
+    .sf-title {
+      font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+      font-weight: 800; letter-spacing: -.04em; line-height: 1.05;
+      color: #fff; margin-bottom: clamp(1rem, 2.5vh, 1.8rem);
+      max-width: 680px;
+    }
+    /* Texto corpo */
+    .sf-body {
+      font-size: clamp(.82rem, 1.1vw, .95rem); font-weight: 400; line-height: 1.75;
+      color: var(--text-sub); max-width: 520px;
+      margin-bottom: clamp(2rem, 4vh, 3.5rem);
+      border-left: 2px solid var(--accent);
+      padding-left: 1rem;
+    }
+    /* Grid de cards */
+    .sf-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(.8rem, 1.5vw, 1.4rem);
+      margin-bottom: clamp(2rem, 4vh, 3rem);
+    }
+    /* Card */
+    .sf-card {
+      padding: clamp(1.2rem, 2vw, 1.8rem);
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px;
+      display: flex; flex-direction: column; gap: .75rem;
+      position: relative; overflow: hidden;
+      transition: border-color .35s, background .35s;
+    }
+    .sf-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%), rgba(230,48,48,.06), transparent 40%);
+      opacity: 0; transition: opacity .4s; pointer-events: none;
+    }
+    .sf-card:hover { border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.055); }
+    .sf-card:hover::before { opacity: 1; }
+    .sf-card-num {
+      font-size: .55rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--accent); font-variant-numeric: tabular-nums;
+    }
+    .sf-card-icon {
+      width: 26px; height: 26px; color: rgba(255,255,255,.4);
+    }
+    .sf-card-title {
+      font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+      color: #fff; line-height: 1.3;
+    }
+    .sf-card-text {
+      font-size: .74rem; font-weight: 400; line-height: 1.72;
+      color: var(--text-sub);
+    }
+    /* Rodapé */
+    .sf-footer {
+      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+    }
+    .sf-cta {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(255,255,255,.55); text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,.15); padding-bottom: 2px;
+      transition: color .3s, border-color .3s;
+    }
+    .sf-cta:hover { color: #fff; border-color: rgba(255,255,255,.55); }
+    .sf-cta svg { width: 12px; height: 12px; transition: transform .3s var(--ease); }
+    .sf-cta:hover svg { transform: translateX(4px); }
+    .sf-microcopy {
+      font-size: .6rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    @media(max-width: 900px) {
+      .sf-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media(max-width: 600px) {
+      .sf-cards { grid-template-columns: 1fr; }
+    }
+
+    /* ==========================================================================
+       RESPONSIVE
+       ========================================================================== */
+    [data-scroll-title] {
+      will-change: transform, opacity, filter;
+      transform-origin: left center;
+    }
+    @media(max-width:768px) {
+      .side-dots, .fixed-social, .prog-track { display: none; }
+      .hero-col { max-width: 100%; }
+      .ov-l {
+        background: linear-gradient(180deg, rgba(13,13,13,.72) 0%, rgba(13,13,13,.35) 50%, rgba(13,13,13,.72) 100%);
+      }
+      .sf-cards { flex-direction: column; }
+      .sf-card { max-width: 100%; }
+    }
+
+    /* reduced motion — remove transições */
+    @media(prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="hdr" id="hdr" role="banner">
+    <a href="/" class="hdr-brand" aria-label="Rabisko — Início">
+      <img src="./LOGOS/logo1_completa_branca.png" alt="Rabisko Logo" class="hdr-logo" />
+    </a>
+    <button class="hdr-burger" id="btn-menu" aria-label="Alternar menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- FIXED SOCIAL FOOTER -->
+  <div class="fixed-social" id="fixed-social" aria-label="Redes Sociais">
+    <span class="fs-copy">© 2026 Rabisko</span>
+    <a href="#instagram" class="fs-icon" aria-label="Instagram">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+      </svg>
+    </a>
+    <a href="#facebook" class="fs-icon" aria-label="Facebook">
+      <svg viewBox="0 0 24 24">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+      </svg>
+    </a>
+  </div>
+  <!-- MENU OVERLAY -->
+  <div class="menu-overlay" id="menu-overlay" aria-hidden="true"></div>
+  <nav class="full-menu" id="full-menu" aria-hidden="true">
+    <div class="menu-nav">
+      <a href="#hero" class="menu-link is-active" style="transition-delay: 0.1s">Início</a>
+      <a href="#projetos" class="menu-link" style="transition-delay: 0.18s">Projetos</a>
+      <a href="#aplicacoes" class="menu-link" style="transition-delay: 0.26s">Aplicações</a>
+      <a href="#orcamento" class="menu-link" style="transition-delay: 0.34s">Orçamento</a>
+    </div>
+    <div class="menu-footer">
+      <a href="tel:+5511999999999">+55 (11) 9 9999-9999</a>
+      <a href="mailto:orcamento@rabisko.com.br">orcamento@rabisko.com.br</a>
+    </div>
+  </nav>
+
+  <!-- SCROLL EXPERIENCE -->
+  <main class="scroll-experience">
+    <div class="pinned-stage" id="pinned-stage">
+
+      <!-- ============ HERO SECTION ============ -->
+      <section class="hero-section" id="hero" aria-label="Hero — Rabisko grandes formatos">
+
+        <!-- VÍDEO FULL-BLEED -->
+        <div class="v-wrap" aria-hidden="true" data-hero-media>
+          <img class="v-poster" id="poster" src="./IMGS/image.jpg" alt="" role="presentation" />
+          <video id="vid" src="./IMGS/video2.mp4"
+                 preload="auto" muted playsinline poster="./IMGS/image.jpg"
+                 aria-hidden="true"></video>
+        </div>
+
+        <!-- OVERLAYS -->
+        <div class="ov ov-v" aria-hidden="true"></div>
+        <div class="ov ov-l" aria-hidden="true"></div>
+        <div class="ov ov-b" aria-hidden="true"></div>
+        <div class="ov ov-t" aria-hidden="true"></div>
+
+        <!-- CONTEÚTO -->
+        <div class="hero-content">
+          <div class="hero-col" data-scroll-title data-hero-title>
+
+            <div class="scroll-out">
+              <p class="eyebrow" aria-hidden="true">Impressão em grandes formatos</p>
+            </div>
+
+            <h1 class="headline">
+              <span class="hl-line scroll-out"><span class="hl-in" id="h1">Grandes</span></span>
+              <span class="hl-line scroll-out"><span class="hl-in" id="h2"><span class="accent-word">formatos.</span></span></span>
+              <span class="hl-line scroll-out"><span class="hl-in" id="h3">Presença</span></span>
+              <span class="hl-line scroll-out"><span class="hl-in" id="h4">gigante.</span></span>
+            </h1>
+
+            <div class="scroll-out">
+              <p class="tagline">
+                Fachadas, lonas, ACM, adesivos e projetos visuais sob medida
+                para marcas que precisam ser vistas.
+              </p>
+            </div>
+
+            <div class="scroll-out">
+              <div class="cta-row" role="group" aria-label="Ações principais">
+                <a href="#orcamento" class="btn btn-p">
+                  Solicitar orçamento
+                  <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+                <a href="#aplicacoes" class="btn btn-s">Ver aplicações</a>
+              </div>
+            </div>
+
+            <div class="scroll-out" style="margin-top: auto; display: flex; width: 100%;">
+              <div class="hero-foot-l" style="margin-top: 0; width: 100%;" aria-hidden="true">
+                <span class="foot-lbl">01 / Hero</span>
+                <span class="foot-rule"></span>
+                <span class="foot-lbl">Large Format</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- DOTS LATERAIS -->
+        <div class="side-dots" id="dots" aria-hidden="true">
+          <div class="sdot on" data-dot="0"></div>
+          <div class="sdot" data-dot="1"></div>
+          <span class="side-lbl">Visual Impact</span>
+        </div>
+
+        <!-- BARRA PROGRESSO -->
+        <div class="prog-track" aria-hidden="true">
+          <div class="prog-fill" id="prog-fill"></div>
+        </div>
+
+        <!-- LINHA BASE -->
+        <div class="base-line" aria-hidden="true"></div>
+
+      </section>
+
+      <!-- ============ SEGUNDA DOBRA ============ -->
+      <section class="second-fold" id="aplicacoes" data-second-fold aria-label="Aplicações em grande formato">
+
+        <!-- Palavra decorativa de fundo -->
+        <span class="sf-bg-word" aria-hidden="true">VISUAL</span>
+
+        <div class="sf-inner">
+
+          <!-- Kicker -->
+          <span class="sf-kicker" data-second-kicker>Aplicações</span>
+
+          <!-- Título -->
+          <h2 class="sf-title" data-second-title>
+            Grandes formatos para marcas
+            que precisam <span class="accent-word">ser vistas.</span>
+          </h2>
+
+          <!-- Texto de apoio -->
+          <p class="sf-body" data-second-text>
+            Da fachada ao ponto de venda, criamos peças de comunicação visual com presença, acabamento e impacto para transformar espaços em experiências de marca.
+          </p>
+
+          <!-- Cards -->
+          <div class="sf-cards">
+
+            <article class="sf-card" data-second-card>
+              <div class="sf-card-num" aria-hidden="true">01</div>
+              <svg class="sf-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+              </svg>
+              <h3 class="sf-card-title">Fachadas, lonas e banners</h3>
+              <p class="sf-card-text">Comunicação externa de alto impacto para lojas, eventos, obras, campanhas e pontos comerciais.</p>
+            </article>
+
+            <article class="sf-card" data-second-card>
+              <div class="sf-card-num" aria-hidden="true">02</div>
+              <svg class="sf-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+              <h3 class="sf-card-title">ACM e revestimentos</h3>
+              <p class="sf-card-text">Acabamentos profissionais para marcas que querem transmitir estrutura, credibilidade e presença visual.</p>
+            </article>
+
+            <article class="sf-card" data-second-card>
+              <div class="sf-card-num" aria-hidden="true">03</div>
+              <svg class="sf-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8zM1 18h3m9 0h9M6 21v-3m6 3v-3"/>
+              </svg>
+              <h3 class="sf-card-title">Adesivos e envelopamento</h3>
+              <p class="sf-card-text">Vitrines, paredes, veículos e ambientes personalizados com soluções sob medida para cada projeto.</p>
+            </article>
+
+            <article class="sf-card" data-second-card>
+              <div class="sf-card-num" aria-hidden="true">04</div>
+              <svg class="sf-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              <h3 class="sf-card-title">Projetos especiais</h3>
+              <p class="sf-card-text">Produção visual para ideias fora do padrão, com orientação técnica do conceito à instalação.</p>
+            </article>
+
+          </div><!-- /.sf-cards -->
+
+          <div class="sf-footer">
+            <a href="#orcamento" class="sf-cta" data-second-cta>
+              Ver possibilidades
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4"/>
+              </svg>
+            </a>
+            <p class="sf-microcopy" data-second-microcopy aria-hidden="true">Produção sob medida • Acabamento profissional • Instalação orientada</p>
+          </div>
+
+        </div><!-- /.sf-inner -->
+      </section>
+
+    </div><!-- /.pinned-stage -->
+  </main>
+
+
+<script>
+/* ============================================================
+   CONFIGURAÇÃO — prefers-reduced-motion
+============================================================ */
+const NO_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ============================================================
+   GSAP — registra plugin
+============================================================ */
+gsap.registerPlugin(ScrollTrigger);
+
+/* ============================================================
+   LENIS — smooth scroll
+   Integração correta com GSAP/ScrollTrigger
+============================================================ */
+let lenis;
+
+try {
+  lenis = new Lenis({
+    duration: 1.35,
+    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smooth: true,
+    smoothTouch: false,
+  });
+
+  // RAF loop principal
+  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+
+  // Lenis informa ScrollTrigger sobre posição real do scroll
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.lagSmoothing(0);
+
+} catch (e) {
+  // Se Lenis falhar (CDN), continua sem smooth scroll
+  console.warn('Lenis não disponível, continuando sem smooth scroll.');
+}
+
+/* ============================================================
+   VÍDEO — setup e scrubbing
+============================================================ */
+const vid    = document.getElementById('vid');
+const poster = document.getElementById('poster');
+const progFill = document.getElementById('prog-fill');
+const dots   = document.querySelectorAll('.sdot');
+
+let videoReady = false;
+let lastProgress = -1;
+
+/* Quando metadados carregarem, vídeo está pronto */
+function markVideoReady() {
+  if (videoReady) return;
+  videoReady = true;
+  vid.currentTime = 0;
+  vid.classList.add('rdy');          // opacity 0 → 1
+  if (poster) poster.style.opacity = '0';
+}
+
+vid.addEventListener('loadedmetadata', markVideoReady);
+vid.addEventListener('canplay', () => { if (vid.duration > 0) markVideoReady(); });
+vid.addEventListener('error', () => {
+  // Mantém poster como fallback
+  if (poster) { poster.style.opacity = '1'; poster.style.zIndex = '5'; }
+});
+
+vid.load();
+
+/* Atualiza currentTime do vídeo conforme progresso do scroll */
+function scrubVideo(progress) {
+  if (!videoReady || !vid.duration) return;
+  if (Math.abs(progress - lastProgress) < 0.0003) return;
+  lastProgress = progress;
+
+  vid.currentTime = progress * vid.duration;
+
+  // Barra de progresso decorativa
+  if (progFill) progFill.style.height = (progress * 100) + '%';
+
+  // Dots ativos
+  const active = Math.min(Math.floor(progress * dots.length), dots.length - 1);
+  dots.forEach((d, i) => d.classList.toggle('on', i === active));
+}
+
+/* updateTitleByScroll — controlado pelo mesmo self.progress do vídeo */
+const titleScroll = document.querySelector('[data-scroll-title]');
+
+function updateTitleByScroll(progress) {
+  if (!titleScroll) return;
+  const exitProgress = gsap.utils.clamp(0, 1, gsap.utils.mapRange(0.45, 0.75, 0, 1, progress));
+  gsap.set(titleScroll, {
+    autoAlpha: 1 - exitProgress,
+    y: -70 * exitProgress,
+    scale: 1 - 0.04 * exitProgress,
+    filter: `blur(${10 * exitProgress}px)`,
+    pointerEvents: exitProgress >= 0.95 ? 'none' : 'auto'
+  });
+}
+
+/* ==========================================================================
+   SCROLL EXPERIENCE — Arquitetura definitiva
+   pin: ".pinned-stage" (GSAP) + gsap.set() para estados iniciais + apenas .to()
+   Sem CSS sticky, sem .from(), sem race condition.
+========================================================================== */
+const allDots = document.querySelectorAll('[data-dot]');
+
+if (!NO_MOTION) {
+
+  /* 1. Estados iniciais garantidos via gsap.set() ANTES da timeline */
+  gsap.set('[data-second-fold]', { yPercent: 100, autoAlpha: 1 });
+  gsap.set([
+    '[data-second-kicker]',
+    '[data-second-title]',
+    '[data-second-text]',
+    '[data-second-card]',
+    '[data-second-cta]',
+    '[data-second-microcopy]'
+  ], { autoAlpha: 0, y: 40, filter: 'blur(8px)' });
+
+  /* 2. Timeline principal com pin GSAP (não CSS sticky) */
+  const scrollTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.scroll-experience',
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 1,
+      pin: '.pinned-stage',
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onUpdate(self) {
+        /* Vídeo: scrub 1:1 com o scroll */
+        scrubVideo(self.progress);
+
+        /* Dots: hero=0, segunda dobra=1 */
+        const onHero = self.progress < 0.65;
+        allDots.forEach(d => {
+          const idx = parseInt(d.dataset.dot);
+          d.classList.toggle('on', onHero ? idx === 0 : idx === 1);
+        });
+      }
+    }
+  });
+
+  /* KEYPOINTS DA TIMELINE
+     0.00 → 0.62 | Hero protagonista — vídeo avança, título permanece
+     0.62 → 0.80 | Segunda dobra sobe de baixo
+     0.66 → 0.76 | Hero title sai (levemente após a segunda começar a entrar)
+     0.68 → 0.78 | Vídeo recua
+     0.78 → 1.00 | Conteúdo da segunda dobra entra em cascata
+  */
+
+  /* Segunda dobra sobe — início em 62% */
+  scrollTl.to('[data-second-fold]', {
+    yPercent: 0, ease: 'none', duration: 0.30
+  }, 0.62);
+
+  /* Hero title sai — DEPOIS que a segunda já está entrando (66%) */
+  scrollTl.to('[data-hero-title]', {
+    autoAlpha: 0, y: -80, filter: 'blur(10px)', ease: 'none', duration: 0.20
+  }, 0.66);
+
+  /* Vídeo recua */
+  scrollTl.to('[data-hero-media]', {
+    yPercent: -18, scale: 0.96, autoAlpha: 0.25, ease: 'none', duration: 0.22
+  }, 0.68);
+
+  /* Conteúdo da segunda dobra — só .to() para garantir visibilidade */
+  scrollTl.to('[data-second-kicker]', {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.10
+  }, 0.78);
+
+  scrollTl.to('[data-second-title]', {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.14
+  }, 0.81);
+
+  scrollTl.to('[data-second-text]', {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.14
+  }, 0.84);
+
+  scrollTl.to('[data-second-card]', {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)',
+    stagger: 0.04, ease: 'power3.out', duration: 0.16
+  }, 0.87);
+
+  scrollTl.to('[data-second-cta]', {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.12
+  }, 0.93);
+
+  scrollTl.to('[data-second-microcopy]', {
+    autoAlpha: 1, y: 0, filter: 'blur(0px)', ease: 'power3.out', duration: 0.12
+  }, 0.95);
+
+}
+
+/* ============================================================
+   ANIMAÇÕES DE ENTRADA
+   
+   Elementos NÃO têm opacity:0 no CSS.
+   GSAP anima "from" (estado inicial) para o estado final.
+   Isso garante que se o JS falhar, o conteúdo ainda aparece.
+============================================================ */
+function runEntryAnims() {
+  if (NO_MOTION) return; // exibe tudo imediatamente sem animação
+
+  const ease = 'power4.out';
+
+  const tl = gsap.timeline({ defaults: { ease } });
+
+  tl
+    /* Header desliza de cima */
+    .from('#hdr', { y: -20, opacity: 0, duration: 1.1 }, 0.08)
+
+    /* Eyebrow */
+    .from('.eyebrow', { opacity: 0, duration: 0.8 }, 0.4)
+
+    /* Headline — stagger por linha (DS4: text-reveal-content) */
+    .from(['#h1','#h2','#h3','#h4'], {
+      y: '108%', opacity: 0,
+      duration: 1.15, stagger: 0.1, ease: 'power3.out',
+    }, 0.55)
+
+    /* Tagline */
+    .from('.tagline', { opacity: 0, y: 14, duration: 0.9 }, 0.95)
+
+    /* CTAs */
+    .from('.cta-row', { opacity: 0, y: 12, duration: 0.9 }, 1.1)
+
+    /* Rodapé esquerdo */
+    .from('.hero-foot-l', { opacity: 0, duration: 0.7 }, 1.25)
+
+    /* Elementos direita */
+    .from(['#dots'], { opacity: 0, duration: 0.8, stagger: 0.12 }, 0.95)
+    .from(['#fixed-social', '.base-line'], { opacity: 0, duration: 0.7, stagger: 0.08 }, 1.15);
+}
+
+/* ============================================================
+   INIT
+============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  runEntryAnims();
+  ScrollTrigger.refresh();
+
+  /* MENU TOGGLE */
+  const btnMenu = document.getElementById('btn-menu');
+  const fullMenu = document.getElementById('full-menu');
+  const menuOverlay = document.getElementById('menu-overlay');
+  let menuOpen = false;
+
+  function toggleMenu(state) {
+    menuOpen = typeof state === 'boolean' ? state : !menuOpen;
+    btnMenu.classList.toggle('is-active', menuOpen);
+    fullMenu.classList.toggle('is-open', menuOpen);
+    if(menuOverlay) menuOverlay.classList.toggle('is-open', menuOpen);
+    
+    btnMenu.setAttribute('aria-expanded', menuOpen);
+    fullMenu.setAttribute('aria-hidden', !menuOpen);
+    
+    if (lenis) {
+      if (menuOpen) lenis.stop();
+      else lenis.start();
+    }
+  }
+
+  btnMenu.addEventListener('click', () => toggleMenu());
+  if(menuOverlay) menuOverlay.addEventListener('click', () => toggleMenu(false));
+
+  // Fecha ao clicar num link
+  document.querySelectorAll('.menu-link').forEach(link => {
+    link.addEventListener('click', () => toggleMenu(false));
+  });
+});
+
+window.addEventListener('resize', () => ScrollTrigger.refresh(), { passive: true });
+</script>
+
+</body>
+</html>

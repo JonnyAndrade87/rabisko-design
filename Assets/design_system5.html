@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAMSAY Design System 5.0</title>
+
+    <!-- Google Fonts: Montserrat & Poppins (RAMSAY Core) -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i&display=swap" rel="stylesheet">
+    
+    <!-- Linearicons (RAMSAY Core Icons) -->
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    
+    <style>
+        /* ==========================================================================
+           1. CORE TOKENS (RAMSAY)
+           ========================================================================== */
+        :root {
+            /* Colors: RAMSAY Dark Theme */
+            --bg-main: #1b1b1b;
+            --bg-secondary: #222222;
+            --bg-boxed: #2a2a2a;
+            
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --text-muted: #777777;
+            
+            --border-color: rgba(255, 255, 255, 0.1);
+            
+            /* Accent: RAMSAY Signature Blue/Gold */
+            --accent: #2b77c0; 
+            
+            /* Typography */
+            --font-display: 'Montserrat', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+
+            /* Easing */
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ==========================================================================
+           2. BASE STYLES & RESETS
+           ========================================================================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-main);
+            color: var(--text-secondary);
+            overflow-x: hidden;
+            line-height: 1.8;
+            font-size: 15px;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* ==========================================================================
+           3. LOADER & BACKGROUNDS (RAMSAY)
+           ========================================================================== */
+        /* Loader */
+        .loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-main); z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s; }
+        .spinner { width: 40px; height: 40px; position: relative; }
+        .double-bounce1, .double-bounce2 { width: 100%; height: 100%; border-radius: 50%; background-color: var(--accent); opacity: 0.6; position: absolute; top: 0; left: 0; animation: sk-bounce 2.0s infinite ease-in-out; }
+        .double-bounce2 { animation-delay: -1.0s; }
+        @keyframes sk-bounce { 0%, 100% { transform: scale(0.0) } 50% { transform: scale(1.0) } }
+        .loaded .loader { opacity: 0; pointer-events: none; }
+
+        /* Masked Backgrounds */
+        .section-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center; z-index: 0;
+            background-color: var(--bg-main);
+        }
+        .section-bg.mask::after {
+            content: ''; position: absolute; inset: 0;
+            background: rgba(27, 27, 27, 0.85); /* Deep mask */
+        }
+
+        /* RAMSAY Vertical Title */
+        .vertical-title {
+            position: absolute; left: 3rem; top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+            transform-origin: left center;
+            font-family: var(--font-display);
+            font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.4em;
+            color: rgba(255,255,255,0.15); z-index: 10;
+            white-space: nowrap;
+        }
+        .vertical-title span { color: var(--text-primary); }
+
+        /* ==========================================================================
+           4. ANIMATIONS (RAMSAY)
+           ========================================================================== */
+        .fadeY { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease-out); }
+        .fadeY.active { opacity: 1; transform: translateY(0); }
+        .fadeY-1 { transition-delay: 0.1s; }
+        .fadeY-2 { transition-delay: 0.2s; }
+        .fadeY-3 { transition-delay: 0.3s; }
+        .fadeY-4 { transition-delay: 0.4s; }
+
+        /* ==========================================================================
+           5. LAYOUT & TYPOGRAPHY
+           ========================================================================== */
+        section { position: relative; padding: 120px 0 120px 100px; min-height: 100vh; display: flex; align-items: center; border-bottom: 1px solid var(--border-color); }
+        @media(max-width: 991px) { section { padding: 80px 0 80px 0; } .vertical-title { display: none; } }
+        
+        .boxed-inner { background: var(--bg-boxed); padding: 5rem; border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
+        
+        /* RAMSAY Typography */
+        h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 700; color: var(--text-primary); margin-bottom: 1rem; }
+        .display-2 { font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.1; letter-spacing: -1px; }
+        .title { font-size: 2.5rem; letter-spacing: -0.5px; margin-bottom: 3rem; }
+        .resume-header { font-size: 2rem; margin-bottom: 2.5rem; }
+        
+        .text-primary { color: var(--accent); }
+        .text-white { color: #ffffff; }
+
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        
+        @media(max-width: 768px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } .boxed-inner { padding: 3rem 2rem; } }
+
+        /* ==========================================================================
+           6. UI COMPONENTS (RAMSAY)
+           ========================================================================== */
+        /* Buttons */
+        .btn {
+            display: inline-block; font-family: var(--font-display); font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.2em;
+            padding: 18px 45px; cursor: pointer; transition: all 0.3s ease;
+            text-decoration: none; border: 2px solid transparent; border-radius: 0;
+            background: var(--accent); color: #fff;
+        }
+        .btn:hover { background: #fff; color: #000; }
+        .btn-outline { background: transparent; border-color: var(--text-primary); color: var(--text-primary); }
+        .btn-outline:hover { background: var(--text-primary); color: #000; }
+
+        /* Resume Rows */
+        .resume-row { border-left: 1px solid var(--border-color); padding-left: 35px; position: relative; margin-bottom: 40px; }
+        .resume-row::before { content: ''; position: absolute; left: -6px; top: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg-boxed); }
+        .resume-type { font-family: var(--font-display); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-primary); margin-bottom: 8px; }
+        .resume-study { font-family: var(--font-body); font-size: 13px; font-style: italic; color: var(--text-muted); display: block; margin-bottom: 15px; }
+        .resume-text { color: var(--text-secondary); font-size: 14px; }
+
+        /* Progress Bars */
+        .progress-block { margin-bottom: 25px; }
+        .progress-header { display: flex; justify-content: space-between; font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--text-primary); margin-bottom: 10px; }
+        .progress { height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden; }
+        .progress-bar { height: 100%; background: var(--accent); width: 0; transition: width 1.5s var(--ease-out); }
+
+        /* Inputs */
+        .form-group { margin-bottom: 30px; position: relative; }
+        .form-group input, .form-group textarea {
+            width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 15px 0; font-family: var(--font-body); font-size: 14px; color: var(--text-primary);
+            outline: none; transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+        .form-group textarea { height: 100px; resize: none; }
+
+        /* Icons */
+        .icon-box { text-align: center; padding: 30px 20px; transition: transform 0.3s ease; }
+        .icon-box:hover { transform: translateY(-10px); }
+        .icon-box span { font-size: 40px; color: var(--accent); margin-bottom: 20px; display: inline-block; }
+        .icon-box h4 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Navbar */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+            padding: 40px 50px; display: flex; justify-content: space-between; align-items: center;
+        }
+        .brand { font-family: var(--font-display); font-size: 24px; font-weight: 700; letter-spacing: 1px; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 15px; }
+        .brand img { width: 40px; }
+        .contacts { font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: 1px; color: var(--text-primary); }
+    </style>
+</head>
+<body>
+
+    <!-- Loader -->
+    <div class="loader">
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="navbar fadeY fadeY-1">
+        <a href="#" class="brand">
+            <div style="width: 40px; height: 40px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px;">R</div>
+            Ramsay
+        </a>
+        <div class="contacts d-none d-md-block">
+            DESIGN SYSTEM / V 5.0
+        </div>
+    </header>
+
+    <!-- ==========================================
+         SECTION 1: HERO SHOWCASE
+    =========================================== -->
+    <section id="hero">
+        <div class="section-bg mask" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2069');"></div>
+        
+        <div class="vertical-title fadeY fadeY-3"><span>Intro</span>duction</div>
+
+        <div class="container" style="position: relative; z-index: 10;">
+            <div class="row">
+                <div class="col-md-10">
+                    <h1 class="display-2 fadeY fadeY-1 text-white"><span class="text-primary">Howdy,</span> I'm Ramsay</h1>
+                    <p class="fadeY fadeY-2" style="max-width: 600px; margin-top: 1rem; margin-bottom: 3rem; font-size: 18px;">
+                        A pure, unadulterated extraction of the RAMSAY Template. Showcasing breathtaking editorial typography, elegant components, and smooth fade animations.
+                    </p>
+                    
+                    <div class="fadeY fadeY-3">
+                        <a href="#components" class="btn">
+                            <span class="lnr lnr-laptop" style="margin-right: 10px; font-size: 14px;"></span>
+                            Explore System
+                        </a>
+                        <a href="#typography" class="btn btn-outline" style="margin-left: 15px;">
+                            <span class="lnr lnr-book" style="margin-right: 10px; font-size: 14px;"></span>
+                            View Docs
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 2: TYPOGRAPHY
+    =========================================== -->
+    <section id="typography" style="background: var(--bg-secondary);">
+        <div class="vertical-title fadeY"><span>Typo</span>graphy</div>
+        <div class="container">
+            <div class="boxed-inner">
+                <h2 class="title fadeY fadeY-1"><span class="text-primary">Dual</span> Type System</h2>
+
+                <div class="grid-2 fadeY fadeY-2" style="margin-bottom: 4rem;">
+                    <div>
+                        <h4 style="font-size: 24px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent);">Montserrat</h4>
+                        <p style="margin-top: 10px;">The primary display face. Used for grand, impactful headings (`display-2`, `title`, `.resume-type`) with tight letter-spacing and heavy weights (500, 600, 700).</p>
+                    </div>
+                    <div>
+                        <h4 style="font-family: var(--font-body); font-size: 24px; color: #fff;">Poppins</h4>
+                        <p style="margin-top: 10px;">The secondary body face. Brings a geometric, readable, and elegant contrast when used in light weights (300, 400) for descriptions.</p>
+                    </div>
+                </div>
+
+                <div class="fadeY fadeY-3">
+                    <div class="resume-row">
+                        <h6 class="resume-type">H1 Display / .display-2</h6>
+                        <i class="resume-study">Montserrat / clamp(3rem, 6vw, 5.5rem) / Wght 700 / LS -1px</i>
+                        <h1 class="display-2" style="margin:0;">Ramsay Studio</h1>
+                    </div>
+                    <div class="resume-row">
+                        <h6 class="resume-type">Section Title / .title</h6>
+                        <i class="resume-study">Montserrat / 2.5rem / Wght 700 / LS -0.5px</i>
+                        <h2 class="title" style="margin:0;">Specialization</h2>
+                    </div>
+                    <div class="resume-row">
+                        <h6 class="resume-type">Body Default / body</h6>
+                        <i class="resume-study">Poppins / 15px / Wght 300 / LH 1.8</i>
+                        <p class="resume-text" style="margin:0;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Rerum fuga dicta voluptatum hic aut aspernatur magnam voluptates itaque atque quae laudantium.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 3: COLOR SYSTEM
+    =========================================== -->
+    <section id="colors">
+        <div class="vertical-title fadeY"><span>Col</span>ors</div>
+        <div class="container">
+            <h2 class="title fadeY fadeY-1"><span class="text-primary">Color</span> Palette</h2>
+
+            <div class="grid-3 fadeY fadeY-2">
+                <div>
+                    <div style="height: 150px; background: #1b1b1b; border: 1px solid var(--border-color); margin-bottom: 20px;"></div>
+                    <h6 class="resume-type">Main Background</h6>
+                    <i class="resume-study">HEX #1B1B1B</i>
+                </div>
+                <div>
+                    <div style="height: 150px; background: #2a2a2a; border: 1px solid var(--border-color); margin-bottom: 20px;"></div>
+                    <h6 class="resume-type">Boxed Inner</h6>
+                    <i class="resume-study">HEX #2A2A2A</i>
+                </div>
+                <div>
+                    <div style="height: 150px; background: var(--accent); margin-bottom: 20px;"></div>
+                    <h6 class="resume-type text-primary">Primary Accent</h6>
+                    <i class="resume-study">HEX #2B77C0</i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 4: UI COMPONENTS
+    =========================================== -->
+    <section id="components" style="background: var(--bg-secondary);">
+        <div class="vertical-title fadeY"><span>Comp</span>onents</div>
+        <div class="container">
+            
+            <div class="grid-2">
+                <!-- Resume & Progress -->
+                <div class="boxed-inner fadeY fadeY-1">
+                    <h2 class="resume-header title">Resume & Progress</h2>
+                    
+                    <div class="resume-row">
+                        <h6 class="resume-type">Webdesigner & Front-End</h6>
+                        <i class="resume-study">University of studies, Poland, Cracow<br>Jan 2004 - Dec 2006</i>
+                        <p class="resume-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus nobis animi assumenda sint recusandae!</p>
+                    </div>
+
+                    <div style="margin-top: 40px;">
+                        <div class="progress-block">
+                            <div class="progress-header"><span>Mobile Design</span> <span>80%</span></div>
+                            <div class="progress"><div class="progress-bar" data-width="80"></div></div>
+                        </div>
+                        <div class="progress-block">
+                            <div class="progress-header"><span>Coding</span> <span>70%</span></div>
+                            <div class="progress"><div class="progress-bar" data-width="70"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Forms -->
+                <div class="boxed-inner fadeY fadeY-2">
+                    <h2 class="resume-header title">Forms & Inputs</h2>
+                    
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Name*">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email*">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Message*"></textarea>
+                        </div>
+                        <div style="margin-top: 30px;">
+                            <button type="button" class="btn">Contact me</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 5: ICONOGRAPHY
+    =========================================== -->
+    <section id="icons">
+        <div class="vertical-title fadeY"><span>Icon</span>ography</div>
+        <div class="container">
+            <h2 class="title fadeY fadeY-1 text-center"><span class="text-primary">Linear</span>icons</h2>
+
+            <div class="grid-3 fadeY fadeY-2">
+                <div class="icon-box">
+                    <span class="lnr lnr-laptop-phone"></span>
+                    <h4 class="text-white">Mobile Design</h4>
+                    <p>Working with client and community, we deliver masterplans that create vibrant new places.</p>
+                </div>
+                <div class="icon-box">
+                    <span class="lnr lnr-code"></span>
+                    <h4 class="text-white">Coding</h4>
+                    <p>Rerum fuga dicta voluptatum hic aut aspernatur magnam voluptates itaque atque quae.</p>
+                </div>
+                <div class="icon-box">
+                    <span class="lnr lnr-diamond"></span>
+                    <h4 class="text-white">Illustration</h4>
+                    <p>Working with client and community, we deliver masterplans that create vibrant new places.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script Engine -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Remove Loader
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 1000);
+
+            // Scroll Reveal Observer (RAMSAY fadeY)
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        
+                        // Trigger Progress Bars
+                        const progressBars = entry.target.querySelectorAll('.progress-bar');
+                        progressBars.forEach(bar => {
+                            const width = bar.getAttribute('data-width');
+                            if(width) bar.style.width = width + '%';
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fadeY, .boxed-inner').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

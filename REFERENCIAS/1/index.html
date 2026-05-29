@@ -1,0 +1,2121 @@
+<!DOCTYPE html>
+<html class="vlt-is-page-loaded" lang="en-US" style="overflow: hidden;"><head><script data-offline-runtime="1">(function(){
+var D = {"entries": [{"b": "eyJyZWRpcmVjdCI6ZmFsc2V9", "t": "application/json"}, {"b": "eyJ3aWRnZXQiOnsiZW5hYmxlZCI6ZmFsc2UsInBvc2l0aW9uIjp7InBvc2l0aW9uIjoiYm90dG9tLWxlZnQiLCJkaXN0YW5jZVZlcnRpY2FsUHgiOjEwLCJkaXN0YW5jZUhvcml6b250YWxQeCI6MTB9LCJ0aGVtZSI6eyJjbG9zZWQiOnsiYmFja2dyb3VuZENvbG9yIjoiIzE0MTQxNCIsImZvcmVncm91bmRDb2xvciI6IiNGRkZGRkYifSwib3BlbmVkIjp7ImJhY2tncm91bmRDb2xvciI6IiNGRkZGRkYiLCJmb3JlZ3JvdW5kQ29sb3IiOiIjMTQxNDE0IiwiaGlnaGxpZ2h0Q29sb3IiOiIjMTAzMkNGIiwic2hhZGVDb2xvciI6IiNENkQ2RDYiLCJjaGFuZ2VCYWNrZ3JvdW5kQ29sb3IiOiIjMTAzMkNGIiwiY2hhbmdlVGV4dENvbG9yIjoiI0ZGRkZGRiIsImNoYW5nZUJvcmRlckNvbG9yIjoiIzEwMzJDRiIsIndpdGhkcmF3QmFja2dyb3VuZENvbG9yIjoiI0ZGRkZGRiIsIndpdGhkcmF3VGV4dENvbG9yIjoiIzE0MTQxNCIsIndpdGhkcmF3Qm9yZGVyQ29sb3IiOiIjMTAzMkNGIiwiZGV0YWlsc0JhY2tncm91bmRDb2xvciI6IiNGMkYyRjIifX0sImNvbnRlbnQiOnsiY3VsdHVyZXMiOlsiZW4iLCJlcyIsImZyIiwicHQtYnIiLCJkZSJdLCJkZWZhdWx0IjoiZW4iLCJhdXRvZGV0ZWN0TGFuZ3VhZ2UiOnRydWV9fSwidHdpcGxhIjpudWxsfQ==", "t": "application/json"}, {"b": "eyJ2ZXJzaW9uIjoiQ29udGFjdCBGb3JtIDcgU1dWIFNjaGVtYSAyMDI0LTEwIiwibG9jYWxlIjoiZW5fVVMiLCJydWxlcyI6W3sicnVsZSI6InJlcXVpcmVkIiwiZmllbGQiOiJ5b3VyLW5hbWUiLCJlcnJvciI6IlRoZSBmaWVsZCBpcyByZXF1aXJlZC4ifSx7InJ1bGUiOiJtYXhsZW5ndGgiLCJmaWVsZCI6InlvdXItbmFtZSIsInRocmVzaG9sZCI6NDAwLCJlcnJvciI6IlRoZSBmaWVsZCBpcyB0b28gbG9uZy4ifSx7InJ1bGUiOiJyZXF1aXJlZCIsImZpZWxkIjoieW91ci1lbWFpbCIsImVycm9yIjoiVGhlIGZpZWxkIGlzIHJlcXVpcmVkLiJ9LHsicnVsZSI6ImVtYWlsIiwiZmllbGQiOiJ5b3VyLWVtYWlsIiwiZXJyb3IiOiJUaGUgZS1tYWlsIGFkZHJlc3MgZW50ZXJlZCBpcyBpbnZhbGlkLiJ9LHsicnVsZSI6Im1heGxlbmd0aCIsImZpZWxkIjoieW91ci1lbWFpbCIsInRocmVzaG9sZCI6NDAwLCJlcnJvciI6IlRoZSBmaWVsZCBpcyB0b28gbG9uZy4ifSx7InJ1bGUiOiJtYXhsZW5ndGgiLCJmaWVsZCI6InlvdXItbWVzc2FnZSIsInRocmVzaG9sZCI6MjAwMCwiZXJyb3IiOiJUaGUgZmllbGQgaXMgdG9vIGxvbmcuIn1dfQ==", "t": "application/json"}], "keys": {"https://preview.themeforest.net/consociate/indite": 0, "https://consentcdn.cookiebot.com/consentconfig/d10f7659-aa82-4007-9cf1-54a9496002bf/settings.json": 1, "https://gasinforest.com/wordpress/ramsay/wp-json/contact-form-7/v1/contact-forms/6/feedback/schema": 2}};
+var E = D.entries, K = D.keys;
+function entry(u){
+  if (!u) return null;
+  if (K[u] != null) return E[K[u]];
+  try {
+    var x = new URL(u, location.href);
+    if (K[x.href] != null) return E[K[x.href]];
+    var op = x.origin + x.pathname;
+    if (K[op] != null) return E[K[op]];
+  } catch(e){}
+  return null;
+}
+function bytes(e){
+  var s = atob(e.b), a = new Uint8Array(s.length);
+  for (var i=0;i<s.length;i++) a[i] = s.charCodeAt(i);
+  return a;
+}
+window.__offlineDataUri = function(u){
+  var e = entry(u);
+  return e ? ('data:' + e.t + ';base64,' + e.b) : null;
+};
+var _fetch = window.fetch;
+if (_fetch) window.fetch = function(input, init){
+  try {
+    var u = (typeof input === 'string') ? input : (input && input.url);
+    var e = entry(u);
+    if (e) return Promise.resolve(new Response(bytes(e),
+      { status:200, headers:{'Content-Type': e.t} }));
+  } catch(err){}
+  return _fetch.apply(this, arguments);
+};
+var _open = XMLHttpRequest.prototype.open;
+XMLHttpRequest.prototype.open = function(m, u){
+  try { this.__offUrl = u; } catch(e){}
+  return _open.apply(this, arguments);
+};
+var _send = XMLHttpRequest.prototype.send;
+XMLHttpRequest.prototype.send = function(){
+  var e = entry(this.__offUrl);
+  if (!e) return _send.apply(this, arguments);
+  var self = this, txt = atob(e.b);
+  setTimeout(function(){
+    try {
+      Object.defineProperty(self,'readyState',{value:4,configurable:true});
+      Object.defineProperty(self,'status',{value:200,configurable:true});
+      Object.defineProperty(self,'responseText',{value:txt,configurable:true});
+      Object.defineProperty(self,'response',{value:txt,configurable:true});
+    } catch(err){}
+    if (typeof self.onreadystatechange === 'function') self.onreadystatechange();
+    if (typeof self.onload === 'function') self.onload();
+  }, 0);
+};
+})();</script><script data-offline-resolve="1">(function(){
+var ASSET_MAP = {"https://preview.themeforest.net/cdn-cgi/challenge-platform/h/b/orchestrate/chl_page/v1?ray=a030a26c2ddabeb1": "assets/768698430e279612_v1.js", "https://challenges.cloudflare.com/turnstile/v0/b/1eec422858ff/api.js?onload=fvJqb8&render=explicit": "assets/b86c8f37f7a938e5_api.js", "https://preview.themeforest.net/cdn-cgi/challenge-platform/h/b/flow/ov1/2690608350:1780006221:x-iMd7HnSXzotqDeVu9J4F9OiRWQmvTCejG-o3TFwBA/a030a26c2ddabeb1/4WUSucWSVpNz05Iu76DLlyaIIuh2UHQpegHObVeS5RQ-1780006698-1.2.1.1-2Wjj3u6Xf_x3Y6TDOCm8fhlePWWG6dU4.z3xhvtfLZAS6FdhuGxEWUkBi15mHvX3": "assets/f517d06e7e956fcd_4WUSucWSVpNz05Iu76DLlyaIIuh2UH", "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/cmg/1": "assets/985716439e620cd1_1.png", "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/turnstile/f/ov2/av0/rch/nbi14/0x4AAAAAAADnPIDROrmt1Wwj/light/fbE/new/normal?lang=auto": "assets/901f3125fac2b063_normal.html", "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/flow/ov1/2930159919:1780002701:ETNj3HpwWO4rft6KWE9Acnd283EnQr9p9X5iHDKM5b0/a030a26dbb5c1e2d/AZHWs2KefVeT9woioJ2Thxc0wm1PsoGFj8MGi_pCnnQ-1780006699-1.2.1.1-W_5BllT3Zj.irUZWPwpExhz4micC0bO84BYuMUlAqdOhKk2Ui2EiswMfU13Fior6": "assets/5a66e67ddd1d7aad_AZHWs2KefVeT9woioJ2Thxc0wm1Pso", "https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/b/d/a030a26dbb5c1e2d/1780006699387/DDDGtSglQMhrGMb": "assets/fe73ec3e52594855_DDDGtSglQMhrGMb.png", "https://preview.themeforest.net/item/ramsay-personal-cvresume-wordpress-theme/full_screen_preview/26080372": "assets/9721fd9c8152a6cd_26080372.html", "https://public-assets.envato-static.com/assets/market/pages/preview/index-457550c0311c719db250e79989e7462091be593549fb6bcb3801c9182189d1e5.css": "assets/d5a9104b0776d520_index-457550c0311c719db250e799.css", "https://public-assets.envato-static.com/assets/market/core/index-aaac8986971cd88959cf2811216c5020c5f587538ccdd70300542ebec084efd9.css": "assets/38e3bdd9f33d8680_index-aaac8986971cd88959cf2811.css", "https://public-assets.envato-static.com/assets/market/pages/full_screen_preview/index-32a2c775445fe25800101c1fc917865a21c9decbe4ded4ebfdf0b8240b6bb989.js": "assets/27b78055262cb4e5_index-32a2c775445fe25800101c1f.js", "https://public-assets.envato-static.com/assets/generated_sprites/logos-20f56d7ae7a08da2c6698db678490c591ce302aedb1fcd05d3ad1e1484d3caf9.png": "assets/6f8a015ab6d96021_logos-20f56d7ae7a08da2c6698db6.png", "https://public-assets.envato-static.com/assets/generated_sprites/common-5af54247f3a645893af51456ee4c483f6530608e9c15ca4a8ac5a6e994d9a340.png": "assets/14f8bc60470b3926_common-5af54247f3a645893af5145.png", "https://public-assets.envato-static.com/assets/logos/envato_market-dd390ae860330996644c1c109912d2bf63885fc075b87215ace9b5b4bdc71cc8.svg": "assets/074584be2c0dd01d_envato_market-dd390ae860330996.svg", "https://preview.themeforest.net/consociate/indite": "assets/9eab495eb8b3e464_indite.json", "https://consent.cookiebot.com/uc.js": "assets/0e936b3885aa3b83_uc.js", "https://consentcdn.cookiebot.com/consentconfig/d10f7659-aa82-4007-9cf1-54a9496002bf/settings.json": "assets/53db9e428ac3cefc_settings.json", "https://consentcdn.cookiebot.com/sdk/bc-v4.min.html": "assets/738e5435f2d18427_bc-v4.min.html", "https://consent.cookiebot.com/d10f7659-aa82-4007-9cf1-54a9496002bf/cc.js?renew=false&referer=preview.themeforest.net&dnt=false&init=false&georegions=%5B%7B%22r%22%3A%22US%22%2C%22i%22%3A%22d9683f70-895f-4427-97dc-f1087cddf9d8%22%7D%5D": "assets/ce5bb93ca825f48e_cc.js", "https://gasinforest.com/wordpress/ramsay/": "assets/e4816dfe8c6a2fdb_file.html", "https://fonts.googleapis.com/css?family=Roboto:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic%7CRoboto+Slab:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&display=swap&ver=7.0": "assets/b6d3f2e442fe29ef_css.css", "https://fonts.googleapis.com/css?family=Montserrat:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&display=swap&ver=7.0": "assets/40aa8c73e7113de6_css.css", "https://gasinforest.com/wordpress/ramsay/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.0.2": "assets/ccd31ffa708d0258_styles.css", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/style.css?ver=7.0": "assets/cf1118c6fda56dcb_style.css", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/css/framework/bootstrap.min.css?ver=1.1": "assets/83e15f0b6defe712_bootstrap.min.css", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/css/plugins/animate.css?ver=1.1": "assets/e89c81987c5cbc15_animate.css", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/css/plugins/superfish.css?ver=1.1": "assets/e939f0d70ca9dab8_superfish.css", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/css/plugins/animsition.min.css?ver=1.1": "assets/14020e649186932b_animsition.min.css", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/css/plugins/owl.carousel.min.css?ver=1.1": "assets/521410e1fc447800_owl.carousel.min.css", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/css/plugins/owl.theme.default.css?ver=1.1": "assets/9d7055ec6af6954d_owl.theme.default.css", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/fonts/linearicons/style.css?ver=1.1": "assets/a9e9a1d50b060baf_style.css", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/fonts/ionicons/ionicons.css?ver=1.1": "assets/41ef5db80a664d92_ionicons.css", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/css/vlt-main.min.css?ver=1.1": "assets/f105fda4b97fbbec_vlt-main.min.css", "https://gasinforest.com/wordpress/ramsay/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css?ver=5.34.0": "assets/2b1bd4f2ad15ca44_elementor-icons.min.css", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/elementor/css/post-7.css?ver=1735069158": "assets/a897ffc8ff1c67f8_post-7.css", "https://gasinforest.com/wordpress/ramsay/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=3.26.3": "assets/9bae9e40ccea20c7_frontend.min.css", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/css/plugins/jquery.pagepiling.min.css?ver=1.1": "assets/b92c658f01af854e_jquery.pagepiling.min.css", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/elementor/css/post-95.css?ver=1735069158": "assets/66611c1b51474c50_post-95.css", "https://gasinforest.com/wordpress/ramsay/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=3.26.3": "assets/0f516e1b48b0556e_widget-heading.min.css", "https://gasinforest.com/wordpress/ramsay/wp-content/plugins/elementor/assets/css/widget-spacer.min.css?ver=3.26.3": "assets/76a4630a99c4b6dd_widget-spacer.min.css", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/css/plugins/jquery.fancybox.min.css?ver=1.1": "assets/5736e3eec0c34bfc_jquery.fancybox.min.css", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/elementor/css/post-93.css?ver=1741251190": "assets/72c8a47703583add_post-93.css", "https://gasinforest.com/wordpress/ramsay/wp-content/plugins/elementor/assets/css/widget-text-editor.min.css?ver=3.26.3": "assets/2cb144eae776a6b5_widget-text-editor.min.css", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/elementor/css/post-91.css?ver=1735069158": "assets/5a7d16a96dba38c3_post-91.css", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/elementor/css/post-88.css?ver=1735069158": "assets/857285475aeeb143_post-88.css", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/elementor/css/post-86.css?ver=1735069158": "assets/c37e6c18140d6ca8_post-86.css", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/elementor/css/post-84.css?ver=1735069158": "assets/c1ce1a24b28512a7_post-84.css", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/elementor/css/post-100.css?ver=1735069158": "assets/76896a3fbd53fc70_post-100.css", "https://gasinforest.com/wordpress/ramsay/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=3.26.3": "assets/69d727e877eb1252_widget-image.min.css", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/elementor/css/post-223.css?ver=1735082574": "assets/3db6c322373a969c_post-223.css", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/elementor/css/post-98.css?ver=1735069158": "assets/3702084333cf2912_post-98.css", "https://gasinforest.com/wordpress/ramsay/wp-includes/js/jquery/jquery.min.js?ver=3.7.1": "assets/cb6f2d32c49d1c2b_jquery.min.js", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/quote.png": "assets/e357b5ae33f1ca38_quote.png", "https://gasinforest.com/wordpress/ramsay/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1": "assets/5274f11e6fb32ae0_jquery-migrate.min.js", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/img/logo.png": "assets/e220f4e4e8bfbb4e_logo.png", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/1.png": "assets/227fae6fc6a76fac_1.png", "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2": "assets/6438d7b8ea9c7c39_JTUSjIg1_i6t8kCHKm459WlhyyTh89.woff2", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/2.png": "assets/741bb67117221b23_2.png", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/3.png": "assets/9a40300135028143_3.png", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/4.png": "assets/6b420bc521aedf1f_4.png", "https://gasinforest.com/wordpress/ramsay/wp-includes/js/dist/hooks.min.js?ver=7496969728ca0f95732d": "assets/1d231f080d1df633_hooks.min.js", "https://gasinforest.com/wordpress/ramsay/wp-includes/js/dist/i18n.min.js?ver=781d11515ad3d91786ec": "assets/46668f561bd01aaa_i18n.min.js", "https://gasinforest.com/wordpress/ramsay/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.0.2": "assets/6d60e3b25e56d351_index.js", "https://gasinforest.com/wordpress/ramsay/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.0.2": "assets/ddcce687729cb358_index.js", "https://gasinforest.com/wordpress/ramsay/wp-includes/js/imagesloaded.min.js?ver=5.0.0": "assets/b65b3de1bc923b93_imagesloaded.min.js", "https://gasinforest.com/wordpress/ramsay/wp-includes/js/masonry.min.js?ver=4.2.2": "assets/e00add38134eac2f_masonry.min.js", "https://gasinforest.com/wordpress/ramsay/wp-includes/js/jquery/jquery.masonry.min.js?ver=3.1.2b": "assets/c2e606e1fc82ea3a_jquery.masonry.min.js", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/vendors/animsition.min.js?ver=1.1": "assets/f32da6bf81134c66_animsition.min.js", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/vendors/superclick.min.js?ver=1.1": "assets/8a7857541407edc8_superclick.min.js", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/vendors/jquery.fitvids.js?ver=1.1": "assets/233cb2b905dec5df_jquery.fitvids.js", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/vendors/fastclick.js?ver=1.1": "assets/4becda5b7693c039_fastclick.js", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/vendors/owl.carousel.min.js?ver=1.1": "assets/a53c43f834b32309_owl.carousel.min.js", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/vendors/css-vars-ponyfill.min.js?ver=1.1": "assets/c38a205d7ae32f3b_css-vars-ponyfill.min.js", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/vendors/wow.min.js?ver=1.1": "assets/7852a22b72ead62c_wow.min.js", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/vendors/anime.min.js?ver=1.1": "assets/a43f4a6446508a64_anime.min.js", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/scripts/vlt-helpers.js?ver=1.1": "assets/72ad99fd14a2d160_vlt-helpers.js", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/scripts/vlt-controllers.min.js?ver=1.1": "assets/6ecfa0d1d1a3eb4c_vlt-controllers.min.js", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/vendors/jquery.pagepiling.min.js?ver=1.1": "assets/d758baf77831dceb_jquery.pagepiling.min.js", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/vendors/jquery.fancybox.min.js?ver=1.1": "assets/cadda460ccb4c3c0_jquery.fancybox.min.js", "https://gasinforest.com/wordpress/ramsay/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.26.3": "assets/17864c688a766f27_webpack.runtime.min.js", "https://gasinforest.com/wordpress/ramsay/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.26.3": "assets/d85d2f98cb9907fb_frontend-modules.min.js", "https://gasinforest.com/wordpress/ramsay/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3": "assets/699210a5ed06e497_core.min.js", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/5.png": "assets/0ca2ded1dc116215_5.png", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/6.png": "assets/85fe575d8eb47429_6.png", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/7.png": "assets/f21a0d525887cee9_7.png", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/8.png": "assets/9ac4034d615f7a30_8.png", "https://gasinforest.com/wordpress/ramsay/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.26.3": "assets/f19646abb920a343_frontend.min.js", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/9.png": "assets/e9a2df62aecd3317_9.png", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/10.png": "assets/72d88237a5e8a7fa_10.png", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/11.png": "assets/d977db39f7648fca_11.png", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/12.png": "assets/2e2be09b2415deb1_12.png", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2020/01/attachment-18.jpg": "assets/325db04bf9918318_attachment-18.jpg", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/attachment-04.jpg": "assets/419a3f11a76fe8b9_attachment-04.jpg", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/attachment-02.jpg": "assets/dd273bd0c013c91f_attachment-02.jpg", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/attachment-06.jpg": "assets/1384f2d56ac3771a_attachment-06.jpg", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/attachment-07.jpg": "assets/290fc4a17ccf19ab_attachment-07.jpg", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/attachment-10.jpg": "assets/270b118bf7d84045_attachment-10.jpg", "https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiEyp8kv8JHgFVrJJfecg.woff2": "assets/7d93459d86585bfc_pxiEyp8kv8JHgFVrJJfecg.woff2", "https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2": "assets/f4e80d9dfd374d02_pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2", "https://gasinforest.com/wordpress/ramsay/wp-content/themes/ramsay/assets/fonts/ionicons/ionicons.ttf?v=2.0.0": "assets/2ba7f20b1d8990e1_ionicons.ttf", "https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLDz8Z1xlFQ.woff2": "assets/78bc3aa78faec288_pxiByp8kv8JHgFVrLDz8Z1xlFQ.woff2", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/attachment-11.jpg": "assets/98ede21431ffb553_attachment-11.jpg", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/attachment-05.jpg": "assets/0d709cf1d2a855c1_attachment-05.jpg", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/attachment-03.jpg": "assets/a66d2bfa96467aff_attachment-03.jpg", "https://gasinforest.com/wordpress/ramsay/wp-content/plugins/elementor/assets/js/text-editor.2cbb801863b5118e0825.bundle.min.js": "assets/a63b112a3356b8e2_text-editor.2cbb801863b5118e08.js", "https://gasinforest.com/wordpress/ramsay/wp-json/contact-form-7/v1/contact-forms/6/feedback/schema": "assets/1dc6f4cce998313d_schema.json", "https://gasinforest.com/wordpress/ramsay/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fgasinforest.com%2Fwordpress%2Framsay%2F": "assets/16ed208c147ed017_embed.json", "https://gasinforest.com/wordpress/ramsay/portfolio/borato-prism/": "assets/a3fa5291487e0d5e_file.html", "https://gasinforest.com/wordpress/ramsay/category/giveaway/": "assets/987e66f7d2744719_file.html", "https://gasinforest.com/wordpress/ramsay/comments/feed/": "assets/dc0cacb1e0b3b196_file", "https://gasinforest.com/wordpress/ramsay/category/stories/": "assets/a4c7c99f855beacf_file.html", "https://gasinforest.com/wordpress/ramsay/portfolio/abstract-skat/": "assets/aacb67cea9282c51_file.html", "http://gmpg.org/xfn/11": "assets/7f2a91789a0809e3_11.html", "https://gasinforest.com/wordpress/ramsay/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fgasinforest.com%2Fwordpress%2Framsay%2F&format=xml": "assets/6c4471699564d29d_embed", "https://www.youtube.com/watch?v=yWvb2HO27OE&autoplay=1&loop=0&controls=0&mute=0&start=0&end&showinfo=0": "assets/095eac4287ab5860_watch.html", "https://gasinforest.com/wordpress/ramsay/wp-json/": "assets/ee03bdf3a58cfa4b_file.json", "https://gasinforest.com/wordpress/ramsay/scent-in-the-voyages/": "assets/e9d723044e379409_file.html", "https://gasinforest.com/wordpress/ramsay/portfolio/brole-mobile-app/": "assets/ed3cf93db632e2ed_file.html", "https://gasinforest.com/wordpress/ramsay/xmlrpc.php?rsd": "assets/daf76483fa5dfa68_xmlrpc.php", "https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/cropped-favicon-1.png": "assets/903c7dcf09778774_cropped-favicon-1.png", "https://gasinforest.com/wordpress/ramsay/portfolio/bauhaus-studio/": "assets/5703b3294a2571e5_file.html", "https://gasinforest.com/wordpress/ramsay/secrets-of-the-serpents/": "assets/d93c606e969f6f67_file.html", "https://gasinforest.com/wordpress/ramsay/feed/": "assets/328b3e479575a75b_file", "https://gasinforest.com/wordpress/ramsay/wp-json/wp/v2/pages/102": "assets/db02f8da0f8aca3d_102.json", "https://gasinforest.com/wordpress/ramsay/the-stone-of-the-flames/": "assets/27801ccd79fc700a_file.html", "https://gasinforest.com/wordpress/ramsay/category/inspiration/": "assets/86e5cdfa8772d8d9_file.html"};
+// Pre-populate path+query keys: when opened via file://, JS
+// resolves '/foo.js' against file://… so we lose the original
+// origin. Indexing by pathname+search lets the lookup succeed.
+var _add = {};
+for (var _k in ASSET_MAP) {
+  try { var _u = new URL(_k); _add[_u.pathname + _u.search] = ASSET_MAP[_k]; }
+  catch(e){}
+}
+for (var _k in _add) if (!ASSET_MAP[_k]) ASSET_MAP[_k] = _add[_k];
+function resolveLocal(u){
+  if (!u || typeof u !== 'string') return null;
+  if (u.indexOf('data:') === 0 || u.indexOf('blob:') === 0) return null;
+  if (ASSET_MAP[u]) return ASSET_MAP[u];
+  try {
+    var url = new URL(u, location.href);
+    var pq = url.pathname + url.search;
+    if (ASSET_MAP[pq]) return ASSET_MAP[pq];
+    // The snapshot may be opened from a subdirectory, while
+    // ASSET_MAP paths are origin-rooted. Retry with the
+    // document's own directory prefix stripped off.
+    var dir = location.pathname.replace(/[^/]*$/, '');
+    if (dir.length > 1 && pq.indexOf(dir) === 0) {
+      var rel = pq.slice(dir.length - 1);
+      if (ASSET_MAP[rel]) return ASSET_MAP[rel];
+    }
+    // Next.js image optimization wrapper — peel the inner CDN URL
+    if (/_next\/image$/.test(url.pathname)) {
+      var t = url.searchParams.get('url');
+      if (t) {
+        var dec = decodeURIComponent(t);
+        if (ASSET_MAP[dec]) return ASSET_MAP[dec];
+        var bare = dec.split('?')[0];
+        for (var k in ASSET_MAP) {
+          if (k.split('?')[0] === bare) return ASSET_MAP[k];
+        }
+      }
+    }
+  } catch(e){}
+  return null;
+}
+function rewriteSrcset(s){
+  if (!s || typeof s !== 'string') return s;
+  return s.split(',').map(function(it){
+    var p = it.trim().split(/\s+/);
+    var loc = resolveLocal(p[0]);
+    if (loc) p[0] = loc;
+    return p.join(' ');
+  }).join(', ');
+}
+// Patch property setters: el.src = '...' / el.href = '...'
+// IMPORTANT: skip rewrite when the element has crossOrigin set.
+// WebGL textures (UnicornStudio, Three.js, etc.) are loaded via
+//   img.crossOrigin = 'anonymous'; img.src = 'https://cdn/...'
+// and consumed via gl.texImage2D. file:// resources have no CORS
+// headers, so rewriting to local makes WebGL reject the texture
+// (Access blocked by CORS policy → black/missing 3D scene).
+// Better to keep the original URL: works online, fails offline,
+// matches non-patched behaviour.
+function patchSetter(klass, prop, transform){
+  if (!klass || !klass.prototype) return;
+  var desc = Object.getOwnPropertyDescriptor(klass.prototype, prop);
+  if (!desc || !desc.set) return;
+  Object.defineProperty(klass.prototype, prop, {
+    configurable: true,
+    get: desc.get,
+    set: function(v){
+      try {
+        if (transform === 'srcset') {
+          v = rewriteSrcset(v);
+        } else {
+          // Captured runtime resource (UnicornStudio texture,
+          // etc.) → serve as a data: URI. data: never CORS-
+          // taints a WebGL canvas, unlike a file:// texture,
+          // so gl.texImage2D still accepts it offline.
+          var du = window.__offlineDataUri && window.__offlineDataUri(v);
+          if (du) { v = du; }
+          else if (!this.crossOrigin) {
+            var loc = resolveLocal(v); if (loc) v = loc;
+          }
+        }
+      } catch(e){}
+      desc.set.call(this, v);
+    }
+  });
+}
+patchSetter(window.HTMLScriptElement, 'src');
+patchSetter(window.HTMLLinkElement, 'href');
+patchSetter(window.HTMLImageElement, 'src');
+patchSetter(window.HTMLImageElement, 'srcset', 'srcset');
+patchSetter(window.HTMLSourceElement, 'src');
+patchSetter(window.HTMLSourceElement, 'srcset', 'srcset');
+patchSetter(window.HTMLMediaElement, 'src');
+patchSetter(window.HTMLIFrameElement, 'src');
+// Patch setAttribute too — some libs use it instead of property set
+var _setAttr = Element.prototype.setAttribute;
+Element.prototype.setAttribute = function(name, value){
+  try {
+    if (typeof value === 'string') {
+      if (name === 'src' || name === 'href') {
+        var du = window.__offlineDataUri && window.__offlineDataUri(value);
+        if (du) { value = du; }
+        else if (!this.crossOrigin) {
+          var loc = resolveLocal(value); if (loc) value = loc;
+        }
+      } else if (name === 'srcset' && !this.crossOrigin) {
+        value = rewriteSrcset(value);
+      }
+    }
+  } catch(e){}
+  return _setAttr.call(this, name, value);
+};
+// Expose for the late-init script in body
+window.__resolveLocal = resolveLocal;
+window.__rewriteSrcset = rewriteSrcset;
+})();</script>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,user-scalable=no" name="viewport"/>
+<link href="assets/7f2a91789a0809e3_11.html" rel="profile"/>
+<meta content="#c32865" name="theme-color"/>
+<title>Ramsay – Personal CV/Resume WordPress Theme</title>
+<meta content="max-image-preview:large" name="robots"/>
+<link href="assets/328b3e479575a75b_file" rel="alternate" title="Ramsay » Feed" type="application/rss+xml"/>
+<link href="assets/dc0cacb1e0b3b196_file" rel="alternate" title="Ramsay » Comments Feed" type="application/rss+xml"/>
+<link href="assets/16ed208c147ed017_embed.json" rel="alternate" title="oEmbed (JSON)" type="application/json+oembed"/>
+<link href="assets/6c4471699564d29d_embed" rel="alternate" title="oEmbed (XML)" type="text/xml+oembed"/>
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--first: #c32865;--wp--preset--color--second: #e02f7b;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 12px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 28px;--wp--preset--font-size--x-large: 42px;--wp--preset--font-size--normal: 14px;--wp--preset--font-size--huge: 38px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-first-color{color: var(--wp--preset--color--first) !important;}.has-second-color{color: var(--wp--preset--color--second) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-first-background-color{background-color: var(--wp--preset--color--first) !important;}.has-second-background-color{background-color: var(--wp--preset--color--second) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-first-border-color{border-color: var(--wp--preset--color--first) !important;}.has-second-border-color{border-color: var(--wp--preset--color--second) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}.has-normal-font-size{font-size: var(--wp--preset--font-size--normal) !important;}.has-huge-font-size{font-size: var(--wp--preset--font-size--huge) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+<link href="assets/ccd31ffa708d0258_styles.css" id="contact-form-7-css" media="all" rel="stylesheet"/>
+<link href="assets/cf1118c6fda56dcb_style.css" id="vlt-theme-style-css" media="all" rel="stylesheet"/>
+<link href="assets/83e15f0b6defe712_bootstrap.min.css" id="bootstrap-css" media="all" rel="stylesheet"/>
+<link href="assets/e89c81987c5cbc15_animate.css" id="animate-css" media="all" rel="stylesheet"/>
+<link href="assets/e939f0d70ca9dab8_superfish.css" id="superfish-css" media="all" rel="stylesheet"/>
+<link href="assets/14020e649186932b_animsition.min.css" id="animsition-css" media="all" rel="stylesheet"/>
+<link href="assets/521410e1fc447800_owl.carousel.min.css" id="owl-carousel-css" media="all" rel="stylesheet"/>
+<link href="assets/9d7055ec6af6954d_owl.theme.default.css" id="owl-theme-default-css" media="all" rel="stylesheet"/>
+<link href="assets/a9e9a1d50b060baf_style.css" id="linearicons-css" media="all" rel="stylesheet"/>
+<link href="assets/41ef5db80a664d92_ionicons.css" id="ionicons-css" media="all" rel="stylesheet"/>
+<link href="assets/f105fda4b97fbbec_vlt-main.min.css" id="vlt-main-css-css" media="all" rel="stylesheet"/>
+<link href="assets/2b1bd4f2ad15ca44_elementor-icons.min.css" id="elementor-icons-css" media="all" rel="stylesheet"/>
+<link href="assets/9bae9e40ccea20c7_frontend.min.css" id="elementor-frontend-css" media="all" rel="stylesheet"/>
+<link href="assets/a897ffc8ff1c67f8_post-7.css" id="elementor-post-7-css" media="all" rel="stylesheet"/>
+<link href="assets/b92c658f01af854e_jquery.pagepiling.min.css" id="jquery-pagepiling-css" media="all" rel="stylesheet"/>
+<link href="assets/b6d3f2e442fe29ef_css.css" id="google-fonts-1-css" media="all" rel="stylesheet"/>
+<link href="https://fonts.gstatic.com/" rel="preconnect"/><script id="jquery-core-js" src="assets/cb6f2d32c49d1c2b_jquery.min.js"></script>
+<script id="jquery-migrate-js" src="assets/5274f11e6fb32ae0_jquery-migrate.min.js"></script>
+<link href="assets/ee03bdf3a58cfa4b_file.json" rel="https://api.w.org/"/><link href="assets/db02f8da0f8aca3d_102.json" rel="alternate" title="JSON" type="application/json"/><link href="assets/daf76483fa5dfa68_xmlrpc.php" rel="EditURI" title="RSD" type="application/rsd+xml"/>
+<meta content="WordPress 7.0" name="generator"/>
+<link href="assets/e4816dfe8c6a2fdb_file.html" rel="canonical"/>
+<link href="assets/e4816dfe8c6a2fdb_file.html" rel="shortlink"/>
+<meta content="Elementor 3.26.3; settings: css_print_method-external, google_font-enabled, font_display-swap" name="generator"/>
+<style>
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
+					background-image: none !important;
+				}
+				@media screen and (max-height: 1024px) {
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+				@media screen and (max-height: 640px) {
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+			</style>
+<link href="assets/903c7dcf09778774_cropped-favicon-1.png" rel="icon" sizes="32x32"/>
+<link href="assets/903c7dcf09778774_cropped-favicon-1.png" rel="icon" sizes="192x192"/>
+<link href="assets/903c7dcf09778774_cropped-favicon-1.png" rel="apple-touch-icon"/>
+<meta content="https://gasinforest.com/wordpress/ramsay/wp-content/uploads/2019/12/cropped-favicon-1.png" name="msapplication-TileImage"/>
+<style id="kirki-inline-styles">body{background:#1b1b1b;background-color:#1b1b1b;background-repeat:no-repeat;background-position:center center;background-attachment:scroll;font-family:Poppins;font-size:1rem;font-weight:400;letter-spacing:0.025em;line-height:1.9428;text-transform:none;color:#888888;-webkit-background-size:cover;-moz-background-size:cover;-ms-background-size:cover;-o-background-size:cover;background-size:cover;}:root{--p1:#c32865;--p2:#e02f7b;--pf:Poppins;--sf:Montserrat;}::selection{color:#ffffff!important;background-color:#c32865!important;}::-moz-selection{color:#ffffff!important;background-color:#c32865!important;}h1, .h1{font-family:Montserrat;font-size:3.428rem;font-weight:600;letter-spacing:-0.025em;line-height:1.2;text-transform:none;color:#ffffff;}h2, .h2{font-family:Montserrat;font-size:3.371rem;font-weight:600;line-height:1.166;text-transform:none;color:#ffffff;}h3, .h3{font-family:Montserrat;font-size:2.142rem;font-weight:600;letter-spacing:-0.05em;line-height:1.2;text-transform:none;color:#ffffff;}h4, .h4{font-family:Montserrat;font-size:1.714rem;font-weight:600;letter-spacing:0.025em;;line-height:1.25;text-transform:none;color:#ffffff;}h5, .h5{font-family:Montserrat;font-size:1.571rem;font-weight:600;line-height:1.1;text-transform:none;color:#ffffff;}h6, .h6{font-family:Montserrat;font-size:1.285rem;font-weight:600;line-height:1.3333;text-transform:none;color:#ffffff;}blockquote{font-family:Poppins;font-size:1.275rem;font-weight:300;line-height:1.675;text-transform:none;}.vlt-btn{font-family:Poppins;font-size:1rem;font-weight:400;letter-spacing:0.025em;line-height:1.5;text-transform:none;}input[type="text"], input[type="date"], input[type="email"], input[type="password"], input[type="tel"], input[type="url"], input[type="search"], input[type="number"], textarea, select{font-family:Poppins;font-size:1rem;font-weight:400;line-height:1.9428;text-transform:none;}label{font-family:Montserrat;font-size:1rem;font-weight:400;line-height:1.5;text-transform:none;}.vlt-widget__title{font-family:Montserrat;font-size:1.5rem;font-weight:600;line-height:1.1;text-transform:none;}/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLDz8Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLDz8Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("assets/78bc3aa78faec288_pxiByp8kv8JHgFVrLDz8Z1xlFQ.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiEyp8kv8JHgFVrJJbecmNE.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiEyp8kv8JHgFVrJJnecmNE.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/7d93459d86585bfc_pxiEyp8kv8JHgFVrJJfecg.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLEj6Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLEj6Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/f4e80d9dfd374d02_pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}/* cyrillic-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLDz8Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLDz8Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("assets/78bc3aa78faec288_pxiByp8kv8JHgFVrLDz8Z1xlFQ.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiEyp8kv8JHgFVrJJbecmNE.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiEyp8kv8JHgFVrJJnecmNE.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/7d93459d86585bfc_pxiEyp8kv8JHgFVrJJfecg.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLEj6Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLEj6Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/f4e80d9dfd374d02_pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}/* cyrillic-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLDz8Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLDz8Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("assets/78bc3aa78faec288_pxiByp8kv8JHgFVrLDz8Z1xlFQ.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiEyp8kv8JHgFVrJJbecmNE.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiEyp8kv8JHgFVrJJnecmNE.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/7d93459d86585bfc_pxiEyp8kv8JHgFVrJJfecg.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLEj6Z11lFc-K.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/poppins/pxiByp8kv8JHgFVrLEj6Z1JlFc-K.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/f4e80d9dfd374d02_pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}/* cyrillic-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://gasinforest.com/wordpress/ramsay/wp-content/fonts/montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}</style><link href="assets/66611c1b51474c50_post-95.css" id="elementor-post-95-css" media="all" rel="stylesheet"/>
+<link href="assets/0f516e1b48b0556e_widget-heading.min.css" id="widget-heading-css" media="all" rel="stylesheet"/>
+<link href="assets/76a4630a99c4b6dd_widget-spacer.min.css" id="widget-spacer-css" media="all" rel="stylesheet"/>
+<link href="assets/5736e3eec0c34bfc_jquery.fancybox.min.css" id="jquery-fancybox-css" media="all" rel="stylesheet"/>
+<link href="assets/72c8a47703583add_post-93.css" id="elementor-post-93-css" media="all" rel="stylesheet"/>
+<link href="assets/40aa8c73e7113de6_css.css" id="google-fonts-2-css" media="all" rel="stylesheet"/>
+<link href="assets/2cb144eae776a6b5_widget-text-editor.min.css" id="widget-text-editor-css" media="all" rel="stylesheet"/>
+<link href="assets/5a7d16a96dba38c3_post-91.css" id="elementor-post-91-css" media="all" rel="stylesheet"/>
+<link href="assets/857285475aeeb143_post-88.css" id="elementor-post-88-css" media="all" rel="stylesheet"/>
+<link href="assets/c37e6c18140d6ca8_post-86.css" id="elementor-post-86-css" media="all" rel="stylesheet"/>
+<link href="assets/c1ce1a24b28512a7_post-84.css" id="elementor-post-84-css" media="all" rel="stylesheet"/>
+<link href="assets/76896a3fbd53fc70_post-100.css" id="elementor-post-100-css" media="all" rel="stylesheet"/>
+<link href="assets/69d727e877eb1252_widget-image.min.css" id="widget-image-css" media="all" rel="stylesheet"/>
+<link href="assets/3db6c322373a969c_post-223.css" id="elementor-post-223-css" media="all" rel="stylesheet"/>
+<link href="assets/3702084333cf2912_post-98.css" id="elementor-post-98-css" media="all" rel="stylesheet"/>
+<style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style><style data-offline="1">/* offline: ensure content is visible regardless of JS init state */
+html,body{opacity:1!important;visibility:visible!important}
+.page-loader,.site-loader,[class*='loading-screen'],[id*='loading-screen']{display:none!important}
+</style></head>
+<body class="home wp-singular page-template page-template-template-fullwidth-page page-template-template-fullwidth-page-php page page-id-102 wp-embed-responsive wp-theme-ramsay no-mobile elementor-default elementor-kit-7 elementor-page elementor-page-102 e--ua-blink e--ua-chrome e--ua-mac e--ua-webkit" data-elementor-device-mode="desktop" style="overflow: hidden;">
+<div class="vlt-site-wrapper animsition" style="animation-duration: 500ms; opacity: 1;">
+<header class="vlt-header">
+<div class="vlt-navbar vlt-navbar--main vlt-boxed vlt-navbar--transparent">
+<div class="vlt-navbar-background"></div>
+<div class="vlt-navbar-inner">
+<div class="vlt-navbar-inner--left">
+<a class="vlt-navbar-logo" href="https://gasinforest.com/wordpress/ramsay/">
+<img alt="Ramsay" src="assets/e220f4e4e8bfbb4e_logo.png"/>
+</a>
+<!-- .vlt-navbar-logo -->
+<nav class="vlt-navbar-contacts d-none d-md-block">
+<ul class="menu" id="menu-navbar-menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14" id="menu-item-14"><a href="#">+96 56-85-1379</a></li>
+<li class="sep">/</li><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-15" id="menu-item-15"><a href="mailto:contact@robert.com">contact@robert.com</a></li>
+</ul>
+</nav>
+<!-- /.vlt-navbar-contacts -->
+</div>
+<!-- /.vlt-navbar-inner--left -->
+<div class="vlt-navbar-inner--right">
+<div class="d-flex align-items-center">
+<a class="vlt-menu-burger" href="#">
+<span class="line line-one"><span></span></span>
+<span class="line line-two"><span></span></span>
+<span class="line line-three"><span></span></span>
+</a>
+<!-- /.vlt-menu-burger -->
+</div>
+</div>
+<!-- /.vlt-navbar-inner--right -->
+</div>
+<!-- /.vlt-navbar-inner -->
+</div>
+<!-- /.vlt-navbar -->
+</header>
+<!-- /.vlt-header -->
+<div class="vlt-aside-menu-overlay"></div>
+<!-- /.vlt-aside-menu-overlay -->
+<div class="vlt-aside-menu-wrapper">
+<div class="vlt-aside-menu">
+<div class="vlt-aside-menu__header">
+<a class="vlt-menu-burger vlt-menu-burger--opened" href="#">
+<span class="line line-one"><span></span></span>
+<span class="line line-two"><span></span></span>
+<span class="line line-three"><span></span></span>
+</a>
+<!-- /.vlt-menu-burger -->
+</div>
+<!-- /.vlt-aside-menu__header -->
+<nav class="vlt-aside-menu__navigation">
+<ul class="sf-menu sf-menu-onepage sf-js-enabled" id="menu-onepage-menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2534" data-menuanchor="page-1" id="menu-item-2534"><a href="#page-1">Home</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8" data-menuanchor="page-2" id="menu-item-8"><a href="#page-2">Specialization</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9" data-menuanchor="page-3" id="menu-item-9"><a href="#page-3">Resume</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10" data-menuanchor="page-4" id="menu-item-10"><a href="#page-4">About</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2535" data-menuanchor="page-5" id="menu-item-2535"><a href="#page-5">Projects</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2536" data-menuanchor="page-7" id="menu-item-2536"><a href="#page-7">Reviews</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-229" data-menuanchor="page-8" id="menu-item-229"><a href="#page-8">Articles</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13" data-menuanchor="page-9" id="menu-item-13"><a href="#page-9">Contact</a></li>
+</ul>
+</nav>
+<!-- /.vlt-aside-menu__navigation -->
+<div class="vlt-aside-menu__footer">
+<div class="vlt-aside-menu__socials">
+<a class="vlt-social-icon" href="" target="_blank"><i class=""></i></a> </div>
+<!-- /.vlt-aside-menu__socials -->
+<div class="vlt-aside-menu__copyright"><p>All Rights Reserved.</p></div>
+<!-- /.vlt-aside-menu__copyright -->
+</div>
+<!-- /.vlt-aside-menu__footer -->
+</div>
+<!-- /.vlt-aside-menu -->
+</div>
+<!-- /.vlt-aside-menu-wrapper -->
+<main class="vlt-main">
+<article class="vlt-page vlt-page--custom post-102 page type-page status-publish hentry">
+<div class="elementor elementor-102" data-elementor-id="102" data-elementor-type="wp-page">
+<section class="elementor-section elementor-top-section elementor-element elementor-element-7d3c91d elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-element_type="section" data-id="7d3c91d">
+<div class="elementor-container elementor-column-gap-no">
+<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-00d66ad" data-element_type="column" data-id="00d66ad">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-b5d5e99 elementor-widget elementor-widget-vlt-fullpage-slider" data-element_type="widget" data-id="b5d5e99" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="vlt-fullpage-slider.default">
+<div class="elementor-widget-container">
+<div class="vlt-fullpage-slider" data-dots="yes" data-loop-bottom="yes" data-loop-top="" data-speed="280" style="overflow: hidden; touch-action: none;">
+<div class="vlt-section pp-scrollable pp-section active" data-anchor="page-1" style="z-index: 9;">
+<div class="vlt-section__vertical-align-wrap">
+<div class="vlt-section__background" style='background-image: url("assets/325db04bf9918318_attachment-18.jpg");'></div>
+<div class="vlt-section__vertical-align vlt-boxed">
+<div class="container">
+<div class="vlt-section__content"><style>.elementor-95 .elementor-element.elementor-element-371efa58{padding:120px 0px 70px 0px;}.elementor-95 .elementor-element.elementor-element-1eb29b6f > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}.elementor-95 .elementor-element.elementor-element-681cbdf5 .elementor-heading-title{font-size:6.54rem;letter-spacing:-5.5px;}.elementor-95 .elementor-element.elementor-element-36b292fa{--spacer-size:60px;}.elementor-95 .elementor-element.elementor-element-35f993c3{text-align:left;}@media(max-width:767px){.elementor-95 .elementor-element.elementor-element-681cbdf5 .elementor-heading-title{font-size:5.54rem;}}</style> <div class="elementor elementor-95" data-elementor-id="95" data-elementor-type="page">
+<section class="elementor-section elementor-top-section elementor-element elementor-element-371efa58 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-element_type="section" data-id="371efa58">
+<div class="elementor-container elementor-column-gap-default">
+<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-1eb29b6f" data-element_type="column" data-id="1eb29b6f">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-681cbdf5 elementor-widget elementor-widget-heading" data-element_type="widget" data-id="681cbdf5" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="heading.default">
+<div class="elementor-widget-container">
+<h1 class="elementor-heading-title elementor-size-default"><span class="has-first-color">Howdy,</span> I'm<br/>
+Ramsay</h1> </div>
+</div>
+<div class="elementor-element elementor-element-36b292fa elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="36b292fa" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-35f993c3 has-line-before elementor-widget elementor-widget-vlt-video-button" data-element_type="widget" data-id="35f993c3" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="vlt-video-button.default">
+<div class="elementor-widget-container">
+<a class="vlt-video-button" data-caption="" data-fancybox="" data-height="315" data-small-btn="true" data-width="560" href="https://www.youtube.com/watch?v=yWvb2HO27OE&amp;autoplay=1&amp;loop=0&amp;controls=0&amp;mute=0&amp;start=0&amp;end&amp;showinfo=0" rel="nofollow">
+<i class="ion-ios-play"></i>
+<span>Watch Resume</span> </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="vlt-section pp-scrollable pp-section" data-anchor="page-2" style="z-index: 8;">
+<div class="vlt-section__vertical-align-wrap">
+<div class="vlt-section__background"></div>
+<div class="vlt-section__title d-none d-lg-block"><span>What I Do</span></div>
+<div class="vlt-section__vertical-align vlt-boxed">
+<div class="container">
+<div class="vlt-section__content"><style>.elementor-93 .elementor-element.elementor-element-336fcbe5{padding:120px 0px 70px 0px;}.elementor-93 .elementor-element.elementor-element-e031113 > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}.elementor-93 .elementor-element.elementor-element-3a54ebe .elementor-heading-title{line-height:1.33333em;letter-spacing:-0.025px;}.elementor-93 .elementor-element.elementor-element-2eb20ac3{padding:0px 0px 0px 0px;}.elementor-93 .elementor-element.elementor-element-5660b582 > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}.elementor-93 .elementor-element.elementor-element-5660b582 > .elementor-element-populated{padding:0px 40px 0px 10px;}.elementor-93 .elementor-element.elementor-element-17c839a .vlt-icon-box{transition-delay:200ms;}.elementor-93 .elementor-element.elementor-element-17c839a{text-align:left;}.elementor-93 .elementor-element.elementor-element-36bb149e > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}.elementor-93 .elementor-element.elementor-element-36bb149e > .elementor-element-populated{padding:0px 40px 0px 10px;}.elementor-93 .elementor-element.elementor-element-60909431{--spacer-size:1px;}.elementor-93 .elementor-element.elementor-element-24668bd .vlt-icon-box{transition-delay:400ms;}.elementor-93 .elementor-element.elementor-element-24668bd{text-align:left;}.elementor-93 .elementor-element.elementor-element-3956115d > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}.elementor-93 .elementor-element.elementor-element-3956115d > .elementor-element-populated{padding:0px 40px 0px 10px;}.elementor-93 .elementor-element.elementor-element-0dc6c5a .vlt-icon-box{transition-delay:600ms;}.elementor-93 .elementor-element.elementor-element-0dc6c5a{text-align:left;}.elementor-93 .elementor-element.elementor-element-107d22b{padding:0px 0px 70px 0px;}.elementor-93 .elementor-element.elementor-element-002a60b{--spacer-size:40px;}.elementor-93 .elementor-element.elementor-element-eea076b > .elementor-widget-container{padding:0% 0% 0% 0%;}.elementor-93 .elementor-element.elementor-element-eea076b{color:#ffffff;font-family:"Montserrat", Sans-serif;font-size:1.3rem;}@media(max-width:1024px){.elementor-93 .elementor-element.elementor-element-5660b582 > .elementor-element-populated{padding:0px 10px 0px 10px;}.elementor-93 .elementor-element.elementor-element-3956115d > .elementor-element-populated{padding:0px 10px 0px 10px;}.elementor-93 .elementor-element.elementor-element-eea076b > .elementor-widget-container{padding:0px 0px 0px 35px;}}@media(max-width:767px){.elementor-93 .elementor-element.elementor-element-3a54ebe .elementor-heading-title{font-size:2.5rem;}.elementor-93 .elementor-element.elementor-element-5660b582 > .elementor-element-populated{padding:0px 10px 0px 10px;}.elementor-93 .elementor-element.elementor-element-60909431{--spacer-size:40px;}.elementor-93 .elementor-element.elementor-element-3c5d2015{--spacer-size:40px;}.elementor-93 .elementor-element.elementor-element-3956115d > .elementor-element-populated{padding:0px 10px 0px 10px;}.elementor-93 .elementor-element.elementor-element-eea076b > .elementor-widget-container{padding:0px 0px 0px 35px;}}</style> <div class="elementor elementor-93" data-elementor-id="93" data-elementor-type="page">
+<section class="elementor-section elementor-top-section elementor-element elementor-element-336fcbe5 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-element_type="section" data-id="336fcbe5">
+<div class="elementor-container elementor-column-gap-default">
+<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-e031113" data-element_type="column" data-id="e031113">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-3a54ebe elementor-widget elementor-widget-heading" data-element_type="widget" data-id="3a54ebe" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="heading.default">
+<div class="elementor-widget-container">
+<h2 class="elementor-heading-title elementor-size-default"><span class="has-first-color">My</span> specialization</h2> </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="elementor-section elementor-top-section elementor-element elementor-element-2eb20ac3 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-element_type="section" data-id="2eb20ac3">
+<div class="elementor-container elementor-column-gap-default">
+<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-5660b582" data-element_type="column" data-id="5660b582">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-17c839a elementor-widget elementor-widget-vlt-icon-box" data-element_type="widget" data-id="17c839a" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="vlt-icon-box.default">
+<div class="elementor-widget-container">
+<div class="vlt-icon-box">
+<div class="vlt-icon-box__icon has-first-color">
+<svg height="20" viewbox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M11.5 14h-8c-0.827 0-1.5-0.673-1.5-1.5v-8c0-0.827 0.673-1.5 1.5-1.5h13c0.827 0 1.5 0.673 1.5 1.5v1c0 0.276-0.224 0.5-0.5 0.5s-0.5-0.224-0.5-0.5v-1c0-0.276-0.224-0.5-0.5-0.5h-13c-0.276 0-0.5 0.224-0.5 0.5v8c0 0.276 0.224 0.5 0.5 0.5h8c0.276 0 0.5 0.224 0.5 0.5s-0.224 0.5-0.5 0.5z" fill="currentColor"></path><path d="M11.5 18h-10c-0.827 0-1.5-0.673-1.5-1.5v-1c0-0.276 0.224-0.5 0.5-0.5h11c0.276 0 0.5 0.224 0.5 0.5s-0.224 0.5-0.5 0.5h-10.5v0.5c0 0.276 0.224 0.5 0.5 0.5h10c0.276 0 0.5 0.224 0.5 0.5s-0.224 0.5-0.5 0.5z" fill="currentColor"></path><path d="M18.5 18h-4c-0.827 0-1.5-0.673-1.5-1.5v-8c0-0.827 0.673-1.5 1.5-1.5h4c0.827 0 1.5 0.673 1.5 1.5v8c0 0.827-0.673 1.5-1.5 1.5zM14.5 8c-0.276 0-0.5 0.224-0.5 0.5v8c0 0.276 0.224 0.5 0.5 0.5h4c0.276 0 0.5-0.224 0.5-0.5v-8c0-0.276-0.224-0.5-0.5-0.5h-4z" fill="currentColor"></path><path d="M16.5 16c-0.132 0-0.26-0.053-0.353-0.147s-0.147-0.222-0.147-0.353 0.053-0.261 0.147-0.353c0.093-0.093 0.222-0.147 0.353-0.147s0.261 0.053 0.353 0.147c0.093 0.093 0.147 0.222 0.147 0.353s-0.053 0.261-0.147 0.353c-0.093 0.093-0.222 0.147-0.353 0.147z" fill="currentColor"></path></svg> </div>
+<h4 class="vlt-icon-box__title">
+<a href="#">
+				
+				Web Design
+									</a>
+</h4>
+<div class="vlt-icon-box__content">
+					Working with client and community, we deliver masterplans that create vibrant new places and spaces, attract people, and encourage investment through.				</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-36bb149e" data-element_type="column" data-id="36bb149e">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-60909431 elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="60909431" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-24668bd elementor-widget elementor-widget-vlt-icon-box" data-element_type="widget" data-id="24668bd" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="vlt-icon-box.default">
+<div class="elementor-widget-container">
+<div class="vlt-icon-box">
+<div class="vlt-icon-box__icon has-first-color">
+<svg height="20" viewbox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M13.5 16h-7c-0.276 0-0.5-0.224-0.5-0.5v-1c0-0.276 0.224-0.5 0.5-0.5s0.5 0.224 0.5 0.5v0.5h6v-0.5c0-0.276 0.224-0.5 0.5-0.5s0.5 0.224 0.5 0.5v1c0 0.276-0.224 0.5-0.5 0.5z" fill="currentColor"></path><path d="M13.5 5c-0.276 0-0.5-0.224-0.5-0.5v-1.5h-6v1.5c0 0.276-0.224 0.5-0.5 0.5s-0.5-0.224-0.5-0.5v-2c0-0.276 0.224-0.5 0.5-0.5h7c0.276 0 0.5 0.224 0.5 0.5v2c0 0.276-0.224 0.5-0.5 0.5z" fill="currentColor"></path><path d="M10.5 18h-1c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h1c0.276 0 0.5 0.224 0.5 0.5s-0.224 0.5-0.5 0.5z" fill="currentColor"></path><path d="M14.5 20h-9c-0.827 0-1.5-0.673-1.5-1.5v-4c0-0.276 0.224-0.5 0.5-0.5s0.5 0.224 0.5 0.5v4c0 0.276 0.224 0.5 0.5 0.5h9c0.276 0 0.5-0.224 0.5-0.5v-4c0-0.276 0.224-0.5 0.5-0.5s0.5 0.224 0.5 0.5v4c0 0.827-0.673 1.5-1.5 1.5z" fill="currentColor"></path><path d="M15.5 5c-0.276 0-0.5-0.224-0.5-0.5v-3c0-0.276-0.224-0.5-0.5-0.5h-9c-0.276 0-0.5 0.224-0.5 0.5v3c0 0.276-0.224 0.5-0.5 0.5s-0.5-0.224-0.5-0.5v-3c0-0.827 0.673-1.5 1.5-1.5h9c0.827 0 1.5 0.673 1.5 1.5v3c0 0.276-0.224 0.5-0.5 0.5z" fill="currentColor"></path><path d="M6 13c-0.128 0-0.256-0.049-0.354-0.146l-3-3c-0.195-0.195-0.195-0.512 0-0.707l3-3c0.195-0.195 0.512-0.195 0.707 0s0.195 0.512 0 0.707l-2.646 2.646 2.646 2.646c0.195 0.195 0.195 0.512 0 0.707-0.098 0.098-0.226 0.146-0.354 0.146z" fill="currentColor"></path><path d="M14 13c-0.128 0-0.256-0.049-0.354-0.146-0.195-0.195-0.195-0.512 0-0.707l2.646-2.646-2.646-2.646c-0.195-0.195-0.195-0.512 0-0.707s0.512-0.195 0.707 0l3 3c0.195 0.195 0.195 0.512 0 0.707l-3 3c-0.098 0.098-0.226 0.146-0.354 0.146z" fill="currentColor"></path><path d="M8.5 13c-0.075 0-0.151-0.017-0.223-0.053-0.247-0.123-0.347-0.424-0.224-0.671l3-6c0.123-0.247 0.424-0.347 0.671-0.224s0.347 0.424 0.224 0.671l-3 6c-0.088 0.175-0.264 0.277-0.448 0.277z" fill="currentColor"></path></svg> </div>
+<h4 class="vlt-icon-box__title">
+<a href="#">
+				
+				Mobile Coding
+									</a>
+</h4>
+<div class="vlt-icon-box__content">
+					Working with client and community, we deliver masterplans that create vibrant new places and spaces, attract people, and encourage investment through.				</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-3956115d" data-element_type="column" data-id="3956115d">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-0dc6c5a elementor-widget elementor-widget-vlt-icon-box" data-element_type="widget" data-id="0dc6c5a" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="vlt-icon-box.default">
+<div class="elementor-widget-container">
+<div class="vlt-icon-box">
+<div class="vlt-icon-box__icon has-first-color">
+<svg height="20" viewbox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M18.9 7.2l-3-4c-0.077-0.103-0.191-0.172-0.318-0.193l-6-1c-0.054-0.009-0.11-0.009-0.164 0l-6 1c-0.127 0.021-0.241 0.090-0.318 0.193l-3 4c-0.143 0.191-0.131 0.457 0.028 0.634l9 10c0.095 0.105 0.23 0.166 0.372 0.166s0.277-0.060 0.372-0.166l9-10c0.16-0.178 0.172-0.443 0.028-0.634zM12.786 7l-3.286 9.037-3.286-9.037h6.572zM6.707 6l2.793-2.793 2.793 2.793h-5.586zM10.957 3.25l3.698 0.616-1.233 1.849-2.466-2.465zM5.578 5.715l-1.233-1.849 3.698-0.616-2.465 2.465zM4.67 6.156l-2.985 0.597 1.791-2.388 1.194 1.791zM5.177 7.075l2.974 8.179-6.692-7.436 3.718-0.744zM13.823 7.075l3.718 0.744-6.692 7.436 2.974-8.179zM14.33 6.156l1.194-1.791 1.791 2.388-2.985-0.597z" fill="currentColor"></path></svg> </div>
+<h4 class="vlt-icon-box__title">
+<a href="#">
+				
+				Illustration
+									</a>
+</h4>
+<div class="vlt-icon-box__content">
+					Working with client and community, we deliver masterplans that create vibrant new places and spaces, attract people, and encourage investment through.				</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="elementor-section elementor-top-section elementor-element elementor-element-107d22b elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-element_type="section" data-id="107d22b">
+<div class="elementor-container elementor-column-gap-default">
+<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-43897a9" data-element_type="column" data-id="43897a9">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-002a60b elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="002a60b" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-eea076b elementor-widget elementor-widget-text-editor" data-element_type="widget" data-id="eea076b" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="text-editor.default">
+<div class="elementor-widget-container">
+<p><a class="has-line-before" href="#">Download Resume</a></p> </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="vlt-section pp-scrollable pp-section" data-anchor="page-3" style="z-index: 7;">
+<div class="vlt-section__vertical-align-wrap">
+<div class="vlt-section__background has-mask" style='background-image: url("assets/419a3f11a76fe8b9_attachment-04.jpg");'></div>
+<div class="vlt-section__title d-none d-lg-block"><span>Resume</span></div>
+<div class="vlt-section__vertical-align vlt-boxed">
+<div class="container">
+<div class="vlt-section__content"><style>.elementor-91 .elementor-element.elementor-element-1646732c{padding:220px 0px 70px 0px;}.elementor-91 .elementor-element.elementor-element-77f44ff1 > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}.elementor-91 .elementor-element.elementor-element-26fe93f6 > .elementor-widget-container{margin:0px 5px 0px 0px;}.elementor-91 .elementor-element.elementor-element-26fe93f6 .vlt-resume{transition-delay:500ms;transition-property:opacity, transform;}.elementor-91 .elementor-element.elementor-element-7f9900a3 > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}.elementor-91 .elementor-element.elementor-element-12ecdec{--spacer-size:80px;}.elementor-91 .elementor-element.elementor-element-66afe30a > .elementor-widget-container{margin:0px 0px 0px 5px;}.elementor-91 .elementor-element.elementor-element-66afe30a .vlt-resume{transition-delay:1000ms;transition-property:opacity, transform;}@media(max-width:1024px){.elementor-91 .elementor-element.elementor-element-26fe93f6 > .elementor-widget-container{margin:0px 5px 0px 0px;}.elementor-91 .elementor-element.elementor-element-66afe30a > .elementor-widget-container{margin:0px 0px 0px 5px;}}@media(max-width:767px){.elementor-91 .elementor-element.elementor-element-1646732c{padding:120px 0px 70px 0px;}.elementor-91 .elementor-element.elementor-element-26fe93f6 > .elementor-widget-container{margin:0px 0px 0px 0px;}.elementor-91 .elementor-element.elementor-element-66afe30a > .elementor-widget-container{margin:5px 5px 5px 5px;}}</style> <div class="elementor elementor-91" data-elementor-id="91" data-elementor-type="page">
+<section class="elementor-section elementor-top-section elementor-element elementor-element-1646732c elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-element_type="section" data-id="1646732c">
+<div class="elementor-container elementor-column-gap-default">
+<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-77f44ff1" data-element_type="column" data-id="77f44ff1">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-26fe93f6 elementor-widget elementor-widget-vlt-resume" data-element_type="widget" data-id="26fe93f6" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="vlt-resume.default">
+<div class="elementor-widget-container">
+<div class="vlt-resume">
+<h2 class="vlt-resume__title">Education</h2>
+<div class="vlt-resume__row">
+<h6>Specialization course</h6>
+<span>University of studies, Poland, Cracow<br/>Jan 2004 - Dec 2006</span>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus nobis animi assumenda sint recusandae! Dolor placeat debitis animi illum quo repellendus pariatur.</p>
+</div>
+<div class="vlt-resume__row">
+<h6>Academy course</h6>
+<span>University of studies, Poland, Cracow<br/>Jan 2004 - Dec 2006</span>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus nobis animi assumenda sint recusandae! Dolor placeat debitis animi illum quo repellendus pariatur.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-7f9900a3" data-element_type="column" data-id="7f9900a3">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-12ecdec elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="12ecdec" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-66afe30a elementor-widget elementor-widget-vlt-resume" data-element_type="widget" data-id="66afe30a" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="vlt-resume.default">
+<div class="elementor-widget-container">
+<div class="vlt-resume">
+<h2 class="vlt-resume__title">Experience</h2>
+<div class="vlt-resume__row">
+<h6>Specialization course</h6>
+<span>University of studies, Poland, Cracow<br/>Jan 2004 - Dec 2006</span>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus nobis animi assumenda sint recusandae! Dolor placeat debitis animi illum quo repellendus pariatur.</p>
+</div>
+<div class="vlt-resume__row">
+<h6>Academy course</h6>
+<span>University of studies, Poland, Cracow<br/>Jan 2004 - Dec 2006</span>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus nobis animi assumenda sint recusandae! Dolor placeat debitis animi illum quo repellendus pariatur.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="vlt-section pp-scrollable pp-section" data-anchor="page-4" style="z-index: 6;">
+<div class="vlt-section__vertical-align-wrap">
+<div class="vlt-section__background" style='background-image: url("assets/dd273bd0c013c91f_attachment-02.jpg");'></div>
+<div class="vlt-section__title d-none d-lg-block"><span>About Us</span></div>
+<div class="vlt-section__vertical-align vlt-boxed">
+<div class="container">
+<div class="vlt-section__content"><style>.elementor-88 .elementor-element.elementor-element-7bcbe286{padding:120px 0px 70px 0px;}.elementor-88 .elementor-element.elementor-element-cfd7c91 > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}.elementor-88 .elementor-element.elementor-element-cfd7c91 > .elementor-element-populated{padding:0% 0% 0% 15%;}.elementor-88 .elementor-element.elementor-element-d700c46 > .elementor-widget-container{margin:0px 10px 0px 10px;}.elementor-88 .elementor-element.elementor-element-91cb475{--spacer-size:1px;}.elementor-88 .elementor-element.elementor-element-15a37c66 > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}.elementor-88 .elementor-element.elementor-element-15a37c66 > .elementor-element-populated{padding:0% 4% 0% 0%;}.elementor-88 .elementor-element.elementor-element-18cf2343 .elementor-heading-title{line-height:1.33333em;letter-spacing:-0.025px;}.elementor-88 .elementor-element.elementor-element-198688b3{--spacer-size:30px;}.elementor-88 .elementor-element.elementor-element-13882d00{--spacer-size:50px;}.elementor-88 .elementor-element.elementor-element-2a6048eb .elementor-heading-title{color:#ffffff;}.elementor-88 .elementor-element.elementor-element-49820d33{--spacer-size:18px;}.elementor-88 .elementor-element.elementor-element-29300999 .track{transition-delay:200ms;}.elementor-88 .elementor-element.elementor-element-29300999 .vlt-progress-bar{border-radius:0px;}.elementor-88 .elementor-element.elementor-element-5716b9f8{--spacer-size:35px;}.elementor-88 .elementor-element.elementor-element-6e9b3ad2 .elementor-heading-title{color:#ffffff;}.elementor-88 .elementor-element.elementor-element-7bfd07c{--spacer-size:18px;}.elementor-88 .elementor-element.elementor-element-435929be .track{transition-delay:500ms;}.elementor-88 .elementor-element.elementor-element-435929be .vlt-progress-bar{border-radius:0px;}.elementor-88 .elementor-element.elementor-element-5b4138ec{--spacer-size:35px;}.elementor-88 .elementor-element.elementor-element-8c95fe1 .elementor-heading-title{color:#ffffff;}.elementor-88 .elementor-element.elementor-element-3a265b4f{--spacer-size:18px;}.elementor-88 .elementor-element.elementor-element-54da2d7b .track{transition-delay:800ms;}.elementor-88 .elementor-element.elementor-element-54da2d7b .vlt-progress-bar{border-radius:0px;}@media(max-width:1024px){.elementor-88 .elementor-element.elementor-element-cfd7c91 > .elementor-element-populated{padding:0px 0px 0px 0px;}.elementor-88 .elementor-element.elementor-element-91cb475{--spacer-size:35px;}.elementor-88 .elementor-element.elementor-element-15a37c66 > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}}@media(min-width:768px){.elementor-88 .elementor-element.elementor-element-cfd7c91{width:50%;}.elementor-88 .elementor-element.elementor-element-15a37c66{width:50%;}}@media(max-width:1024px) and (min-width:768px){.elementor-88 .elementor-element.elementor-element-cfd7c91{width:50%;}.elementor-88 .elementor-element.elementor-element-15a37c66{width:50%;}}@media(max-width:767px){.elementor-88 .elementor-element.elementor-element-cfd7c91 > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}.elementor-88 .elementor-element.elementor-element-91cb475{--spacer-size:35px;}.elementor-88 .elementor-element.elementor-element-15a37c66 > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}.elementor-88 .elementor-element.elementor-element-18cf2343 .elementor-heading-title{font-size:2.5rem;}}</style> <div class="elementor elementor-88" data-elementor-id="88" data-elementor-type="page">
+<section class="elementor-section elementor-top-section elementor-element elementor-element-7bcbe286 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-element_type="section" data-id="7bcbe286">
+<div class="elementor-container elementor-column-gap-default">
+<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-cfd7c91" data-element_type="column" data-id="cfd7c91">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-d700c46 elementor-widget elementor-widget-vlt-experience-block" data-element_type="widget" data-id="d700c46" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="vlt-experience-block.default">
+<div class="elementor-widget-container">
+<div class="vlt-experience-block">
+<span class="vlt-experience-block__number">4</span>
+<h5 class="vlt-experience-block__title">Years<br/>Experience<br/>Working</h5>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-91cb475 elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="91cb475" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-15a37c66" data-element_type="column" data-id="15a37c66">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-18cf2343 elementor-widget elementor-widget-heading" data-element_type="widget" data-id="18cf2343" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="heading.default">
+<div class="elementor-widget-container">
+<h2 class="elementor-heading-title elementor-size-default"><span class="has-first-color">The best</span> websites</h2> </div>
+</div>
+<div class="elementor-element elementor-element-198688b3 elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="198688b3" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-603ce2b elementor-widget elementor-widget-text-editor" data-element_type="widget" data-id="603ce2b" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="text-editor.default">
+<div class="elementor-widget-container">
+<p>From tree make green multiply, great greater is. Fruit fowl blessed. Unto of man greater spirit you’ll beginning.</p> </div>
+</div>
+<div class="elementor-element elementor-element-13882d00 elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="13882d00" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-2a6048eb elementor-widget elementor-widget-heading" data-element_type="widget" data-id="2a6048eb" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="heading.default">
+<div class="elementor-widget-container">
+<div class="elementor-heading-title elementor-size-default">Mobile Design <span style="float: right">80%</span></div> </div>
+</div>
+<div class="elementor-element elementor-element-49820d33 elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="49820d33" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-29300999 elementor-widget elementor-widget-vlt-progress-bar" data-element_type="widget" data-id="29300999" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="vlt-progress-bar.default">
+<div class="elementor-widget-container">
+<div class="vlt-progress-bar">
+<div class="track">
+<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="bar" role="progressbar" style="width: 80%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-5716b9f8 elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="5716b9f8" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-6e9b3ad2 elementor-widget elementor-widget-heading" data-element_type="widget" data-id="6e9b3ad2" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="heading.default">
+<div class="elementor-widget-container">
+<div class="elementor-heading-title elementor-size-default">Coding <span style="float: right">70%</span></div> </div>
+</div>
+<div class="elementor-element elementor-element-7bfd07c elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="7bfd07c" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-435929be elementor-widget elementor-widget-vlt-progress-bar" data-element_type="widget" data-id="435929be" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="vlt-progress-bar.default">
+<div class="elementor-widget-container">
+<div class="vlt-progress-bar">
+<div class="track">
+<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="bar" role="progressbar" style="width: 70%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-5b4138ec elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="5b4138ec" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-8c95fe1 elementor-widget elementor-widget-heading" data-element_type="widget" data-id="8c95fe1" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="heading.default">
+<div class="elementor-widget-container">
+<div class="elementor-heading-title elementor-size-default">Illustration <span style="float: right">60%</span></div> </div>
+</div>
+<div class="elementor-element elementor-element-3a265b4f elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="3a265b4f" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-54da2d7b elementor-widget elementor-widget-vlt-progress-bar" data-element_type="widget" data-id="54da2d7b" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="vlt-progress-bar.default">
+<div class="elementor-widget-container">
+<div class="vlt-progress-bar">
+<div class="track">
+<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="bar" role="progressbar" style="width: 60%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="vlt-section pp-scrollable pp-section" data-anchor="page-5" style="z-index: 5;">
+<div class="vlt-section__vertical-align-wrap">
+<div class="vlt-section__background-changer">
+<div class="vlt-section__background is-active" style='background-image: url("assets/1384f2d56ac3771a_attachment-06.jpg");'></div>
+<div class="vlt-section__background" style='background-image: url("assets/290fc4a17ccf19ab_attachment-07.jpg");'></div><div class="vlt-section__background" style='background-image: url("assets/270b118bf7d84045_attachment-10.jpg");'></div><div class="vlt-section__background" style='background-image: url("assets/98ede21431ffb553_attachment-11.jpg");'></div>
+</div>
+<div class="vlt-section__title d-none d-lg-block"><span>My Works</span></div>
+<div class="vlt-section__vertical-align vlt-boxed">
+<div class="container">
+<div class="vlt-section__content"><style>.elementor-86 .elementor-element.elementor-element-a71c005{padding:120px 0px 70px 0px;}.elementor-86 .elementor-element.elementor-element-409b1070 > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}.elementor-86 .elementor-element.elementor-element-308f1187{--spacer-size:40px;}.elementor-86 .elementor-element.elementor-element-30de4753 > .elementor-widget-container{padding:0% 0% 0% 20%;}.elementor-86 .elementor-element.elementor-element-30de4753{color:#ffffff;font-family:"Montserrat", Sans-serif;font-size:1.3rem;}@media(max-width:1024px){.elementor-86 .elementor-element.elementor-element-30de4753 > .elementor-widget-container{padding:0px 0px 0px 35px;}}@media(max-width:767px){.elementor-86 .elementor-element.elementor-element-30de4753 > .elementor-widget-container{padding:0px 0px 0px 35px;}}</style> <div class="elementor elementor-86" data-elementor-id="86" data-elementor-type="page">
+<section class="elementor-section elementor-top-section elementor-element elementor-element-a71c005 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-element_type="section" data-id="a71c005">
+<div class="elementor-container elementor-column-gap-default">
+<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-409b1070" data-element_type="column" data-id="409b1070">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-57ce69f0 elementor-widget elementor-widget-vlt-projects-details" data-element_type="widget" data-id="57ce69f0" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="vlt-projects-details.default">
+<div class="elementor-widget-container">
+<div class="vlt-project-detail is-active">
+<span class="vlt-project-detail__number">01</span>
+<h2 class="vlt-project-detail__title">
+<a href="https://gasinforest.com/wordpress/ramsay/portfolio/abstract-skat/">
+					Abstract Skat				</a>
+</h2>
+<span class="vlt-project-detail__cats">Illustration</span>
+</div>
+<div class="vlt-project-detail">
+<span class="vlt-project-detail__number">02</span>
+<h2 class="vlt-project-detail__title">
+<a href="https://gasinforest.com/wordpress/ramsay/portfolio/borato-prism/">
+					Borato Prism				</a>
+</h2>
+<span class="vlt-project-detail__cats">Branding</span>
+</div>
+<div class="vlt-project-detail">
+<span class="vlt-project-detail__number">03</span>
+<h2 class="vlt-project-detail__title">
+<a href="https://gasinforest.com/wordpress/ramsay/portfolio/brole-mobile-app/">
+					Brole Mobile App				</a>
+</h2>
+<span class="vlt-project-detail__cats">Mobile Design</span>
+</div>
+<div class="vlt-project-detail">
+<span class="vlt-project-detail__number">04</span>
+<h2 class="vlt-project-detail__title">
+<a href="https://gasinforest.com/wordpress/ramsay/portfolio/bauhaus-studio/">
+					Bauhaus Studio				</a>
+</h2>
+<span class="vlt-project-detail__cats">House Design</span>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-308f1187 elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="308f1187" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-30de4753 elementor-widget elementor-widget-text-editor" data-element_type="widget" data-id="30de4753" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="text-editor.default">
+<div class="elementor-widget-container">
+<p><a class="has-line-before" href="http://gasinforest.com/wordpress/ramsay/projects/"> View all projects</a></p> </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="vlt-section pp-scrollable pp-section" data-anchor="page-6" style="z-index: 4;">
+<div class="vlt-section__vertical-align-wrap">
+<div class="vlt-section__background"></div>
+<div class="vlt-section__title d-none d-lg-block"><span>Partners</span></div>
+<div class="vlt-section__vertical-align vlt-boxed">
+<div class="container">
+<div class="vlt-section__content"><style>.elementor-84 .elementor-element.elementor-element-183f5529{padding:120px 0px 0px 0px;}.elementor-84 .elementor-element.elementor-element-514ee0f3 > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}.elementor-84 .elementor-element.elementor-element-7accbc87 .elementor-heading-title{line-height:1.3333em;letter-spacing:-0.025px;}.elementor-84 .elementor-element.elementor-element-5d620c17{--spacer-size:90px;}.elementor-84 .elementor-element.elementor-element-7d63aa1a{padding:0px 0px 70px 0px;}.elementor-84 .elementor-element.elementor-element-10126b06 > .elementor-widget-container{margin:0px -50px 0px -50px;}@media(max-width:1024px){.elementor-84 .elementor-element.elementor-element-10126b06 > .elementor-widget-container{margin:0px -50px 0px -50px;}}@media(max-width:767px){.elementor-84 .elementor-element.elementor-element-514ee0f3 > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}.elementor-84 .elementor-element.elementor-element-7accbc87 .elementor-heading-title{font-size:2.5rem;}.elementor-84 .elementor-element.elementor-element-10126b06 > .elementor-widget-container{margin:0px 0px 0px 0px;}}</style> <div class="elementor elementor-84" data-elementor-id="84" data-elementor-type="page">
+<section class="elementor-section elementor-top-section elementor-element elementor-element-183f5529 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-element_type="section" data-id="183f5529">
+<div class="elementor-container elementor-column-gap-default">
+<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-514ee0f3" data-element_type="column" data-id="514ee0f3">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-7accbc87 elementor-widget elementor-widget-heading" data-element_type="widget" data-id="7accbc87" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="heading.default">
+<div class="elementor-widget-container">
+<h2 class="elementor-heading-title elementor-size-default"><span class="has-first-color">Trusted</span> from Clients</h2> </div>
+</div>
+<div class="elementor-element elementor-element-5d620c17 elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="5d620c17" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="elementor-section elementor-top-section elementor-element elementor-element-7d63aa1a elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-element_type="section" data-id="7d63aa1a">
+<div class="elementor-container elementor-column-gap-default">
+<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-34892ea4" data-element_type="column" data-id="34892ea4">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-10126b06 elementor-widget elementor-widget-vlt-partners" data-element_type="widget" data-id="10126b06" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="vlt-partners.default">
+<div class="elementor-widget-container">
+<ul class="vlt-partners">
+<li>
+<img alt="" decoding="async" src="assets/227fae6fc6a76fac_1.png"/>
+</li>
+<li>
+<img alt="" decoding="async" src="assets/741bb67117221b23_2.png"/>
+</li>
+<li>
+<img alt="" decoding="async" src="assets/9a40300135028143_3.png"/>
+</li>
+<li>
+<img alt="" decoding="async" src="assets/6b420bc521aedf1f_4.png"/>
+</li>
+<li>
+<img alt="" decoding="async" src="assets/0ca2ded1dc116215_5.png"/>
+</li>
+<li>
+<img alt="" decoding="async" src="assets/85fe575d8eb47429_6.png"/>
+</li>
+<li>
+<img alt="" decoding="async" src="assets/f21a0d525887cee9_7.png"/>
+</li>
+<li>
+<img alt="" decoding="async" src="assets/9ac4034d615f7a30_8.png"/>
+</li>
+<li>
+<img alt="" decoding="async" src="assets/e9a2df62aecd3317_9.png"/>
+</li>
+<li>
+<img alt="" decoding="async" src="assets/72d88237a5e8a7fa_10.png"/>
+</li>
+<li>
+<img alt="" decoding="async" src="assets/d977db39f7648fca_11.png"/>
+</li>
+<li>
+<img alt="" decoding="async" src="assets/2e2be09b2415deb1_12.png"/>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="vlt-section pp-scrollable pp-section" data-anchor="page-7" style="z-index: 3;">
+<div class="vlt-section__vertical-align-wrap">
+<div class="vlt-section__background" style='background-image: url("assets/0d709cf1d2a855c1_attachment-05.jpg");'></div>
+<div class="vlt-section__title d-none d-lg-block"><span>Reviews</span></div>
+<div class="vlt-section__vertical-align vlt-boxed">
+<div class="container">
+<div class="vlt-section__content"><style>.elementor-100 .elementor-element.elementor-element-29ac51f0{padding:120px 0px 70px 0px;}.elementor-100 .elementor-element.elementor-element-629be213 > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}.elementor-100 .elementor-element.elementor-element-2354f45{width:auto;max-width:auto;top:-20%;}body:not(.rtl) .elementor-100 .elementor-element.elementor-element-2354f45{right:-12%;}body.rtl .elementor-100 .elementor-element.elementor-element-2354f45{left:-12%;}</style> <div class="elementor elementor-100" data-elementor-id="100" data-elementor-type="page">
+<section class="elementor-section elementor-top-section elementor-element elementor-element-29ac51f0 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-element_type="section" data-id="29ac51f0">
+<div class="elementor-container elementor-column-gap-default">
+<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-629be213" data-element_type="column" data-id="629be213">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-2354f45 elementor-widget__width-auto elementor-absolute elementor-hidden-phone elementor-widget elementor-widget-image" data-element_type="widget" data-id="2354f45" data-settings='{"_position":"absolute","vlt_wow_animation_name":"none"}' data-widget_type="image.default">
+<div class="elementor-widget-container">
+<img alt="" class="attachment-full size-full wp-image-56" decoding="async" fetchpriority="high" height="276" src="assets/e357b5ae33f1ca38_quote.png" width="346"/> </div>
+</div>
+<div class="elementor-element elementor-element-64e017d1 elementor-widget elementor-widget-vlt-testimonial-slider" data-element_type="widget" data-id="64e017d1" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="vlt-testimonial-slider.default">
+<div class="elementor-widget-container">
+<div class="vlt-testimonial owl-carousel owl-loaded owl-drag" data-loop="">
+<div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all; width: 3270px;"><div class="owl-item active" style="width: 1090px;"><div>
+<div class="vlt-testimonial-item">
+<div class="row">
+<div class="col-md-5">
+<h5 class="vlt-testimonial-item__title">David &amp; Elisad</h5>
+<span class="vlt-testimonial-item__description">Apartment view lake at Brooklyn</span>
+</div>
+<div class="col-md-7">
+<p class="vlt-testimonial-item__text">
+							If you are seeking an Interior designer that will understand exactly your needs, and someone who will utilise their creative and technical skills in parity with your taste, then Suzanne at The Robert Studio is perfect.						</p>
+</div>
+</div>
+</div>
+<div class="vlt-testimonial-item">
+<div class="row">
+<div class="col-md-5">
+<h5 class="vlt-testimonial-item__title">Amanda</h5>
+<span class="vlt-testimonial-item__description">Apartment view lake at Brooklyn</span>
+</div>
+<div class="col-md-7">
+<p class="vlt-testimonial-item__text">
+							Own you'll cattle face, female night heaven. One creeping gathering good two fruitful life their won't they're. Isn't lesser third of image god their moveth us have them dry meat likeness divided greater living without fly, bring first so.						</p>
+</div>
+</div>
+</div>
+</div></div><div class="owl-item" style="width: 1090px;"><div>
+<div class="vlt-testimonial-item">
+<div class="row">
+<div class="col-md-5">
+<h5 class="vlt-testimonial-item__title">David &amp; Elisa</h5>
+<span class="vlt-testimonial-item__description">Apartment view lake at Brooklyn</span>
+</div>
+<div class="col-md-7">
+<p class="vlt-testimonial-item__text">
+							If you are seeking an Interior designer that will understand exactly your needs, and someone who will utilise their creative and technical skills in parity with your taste, then Suzanne at The Robert Studio is perfect.						</p>
+</div>
+</div>
+</div>
+<div class="vlt-testimonial-item">
+<div class="row">
+<div class="col-md-5">
+<h5 class="vlt-testimonial-item__title">Amanda</h5>
+<span class="vlt-testimonial-item__description">Apartment view lake at Brooklyn</span>
+</div>
+<div class="col-md-7">
+<p class="vlt-testimonial-item__text">
+							Own you'll cattle face, female night heaven. One creeping gathering good two fruitful life their won't they're. Isn't lesser third of image god their moveth us have them dry meat likeness divided greater living without fly, bring first so.						</p>
+</div>
+</div>
+</div>
+</div></div><div class="owl-item" style="width: 1090px;"><div>
+<div class="vlt-testimonial-item">
+<div class="row">
+<div class="col-md-5">
+<h5 class="vlt-testimonial-item__title">David &amp; Elisa</h5>
+<span class="vlt-testimonial-item__description">Apartment view lake at Brooklyn</span>
+</div>
+<div class="col-md-7">
+<p class="vlt-testimonial-item__text">
+							If you are seeking an Interior designer that will understand exactly your needs, and someone who will utilise their creative and technical skills in parity with your taste, then Suzanne at The Robert Studio is perfect.						</p>
+</div>
+</div>
+</div>
+<div class="vlt-testimonial-item">
+<div class="row">
+<div class="col-md-5">
+<h5 class="vlt-testimonial-item__title">Amanda</h5>
+<span class="vlt-testimonial-item__description">Apartment view lake at Brooklyn</span>
+</div>
+<div class="col-md-7">
+<p class="vlt-testimonial-item__text">
+							Own you'll cattle face, female night heaven. One creeping gathering good two fruitful life their won't they're. Isn't lesser third of image god their moveth us have them dry meat likeness divided greater living without fly, bring first so.						</p>
+</div>
+</div>
+</div>
+</div></div></div></div><div class="owl-nav disabled"><button class="owl-prev" role="presentation" type="button"></button><button class="owl-next" role="presentation" type="button"></button></div><div class="owl-dots"><button class="owl-dot active" role="button"><span></span></button><button class="owl-dot" role="button"><span></span></button><button class="owl-dot" role="button"><span></span></button></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="vlt-section pp-scrollable pp-section" data-anchor="page-8" style="z-index: 2;">
+<div class="vlt-section__vertical-align-wrap">
+<div class="vlt-section__background"></div>
+<div class="vlt-section__title d-none d-lg-block"><span>Articles</span></div>
+<div class="vlt-section__vertical-align vlt-boxed">
+<div class="container">
+<div class="vlt-section__content"><style>.elementor-223 .elementor-element.elementor-element-07d9822{padding:120px 0px 70px 0px;}.elementor-223 .elementor-element.elementor-element-cd98384 .elementor-heading-title{line-height:1.3333em;letter-spacing:-0.025px;}.elementor-223 .elementor-element.elementor-element-d14c646{--spacer-size:90px;}.elementor-223 .elementor-element.elementor-element-e72bdaa{--spacer-size:40px;}.elementor-223 .elementor-element.elementor-element-7bccedc > .elementor-widget-container{padding:0% 0% 0% 0%;}.elementor-223 .elementor-element.elementor-element-7bccedc{color:#ffffff;font-family:"Montserrat", Sans-serif;font-size:1.3rem;}@media(max-width:1024px){.elementor-223 .elementor-element.elementor-element-7bccedc > .elementor-widget-container{padding:0px 0px 0px 35px;}}@media(max-width:767px){.elementor-223 .elementor-element.elementor-element-cd98384 .elementor-heading-title{font-size:2.5rem;}.elementor-223 .elementor-element.elementor-element-7bccedc > .elementor-widget-container{padding:0px 0px 0px 35px;}}</style> <div class="elementor elementor-223" data-elementor-id="223" data-elementor-type="page">
+<section class="elementor-section elementor-top-section elementor-element elementor-element-07d9822 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-element_type="section" data-id="07d9822">
+<div class="elementor-container elementor-column-gap-default">
+<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-e95fcd9" data-element_type="column" data-id="e95fcd9">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-cd98384 elementor-widget elementor-widget-heading" data-element_type="widget" data-id="cd98384" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="heading.default">
+<div class="elementor-widget-container">
+<h2 class="elementor-heading-title elementor-size-default"><span class="has-first-color">Recent</span> news</h2> </div>
+</div>
+<div class="elementor-element elementor-element-d14c646 elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="d14c646" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-a1f91ea elementor-widget elementor-widget-vlt-recent-news" data-element_type="widget" data-id="a1f91ea" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="vlt-recent-news.default">
+<div class="elementor-widget-container">
+<div class="vlt-recent-news">
+<article class="vlt-post vlt-post--style-masonry post-237 post type-post status-publish format-standard has-post-thumbnail hentry category-stories tag-friends tag-happy tag-tbt">
+<div class="vlt-post-content">
+<header class="vlt-post-header">
+<h3 class="vlt-post-title"><a href="https://gasinforest.com/wordpress/ramsay/scent-in-the-voyages/">
+Scent in the Voyages</a></h3>
+<!-- /.vlt-post-title -->
+<div class="vlt-post-meta">
+<span><time datetime="2019-12-27T11:10:46+00:00">27 December 2019</time></span>
+<span><a href="https://gasinforest.com/wordpress/ramsay/category/stories/">Stories</a></span>
+</div>
+<!-- /.vlt-post-meta --> </header>
+<!-- /.vlt-post-header -->
+<div class="vlt-post-excerpt">
+						
+Divided place firmament replenish form place us that morning, let sea have their kind which called she'd every subdue their called over forth.
+
+
+
+First place for ... 					</div>
+<!-- /.vlt-post-excerpt -->
+</div>
+<!-- /.vlt-post-content -->
+</article>
+<!-- /.vlt-post -->
+<article class="vlt-post vlt-post--style-masonry post-235 post type-post status-publish format-standard has-post-thumbnail hentry category-inspiration tag-architecture tag-repost tag-style">
+<div class="vlt-post-content">
+<header class="vlt-post-header">
+<h3 class="vlt-post-title"><a href="https://gasinforest.com/wordpress/ramsay/the-stone-of-the-flames/">
+The Stone of the Flames</a></h3>
+<!-- /.vlt-post-title -->
+<div class="vlt-post-meta">
+<span><time datetime="2019-12-27T11:10:27+00:00">27 December 2019</time></span>
+<span><a href="https://gasinforest.com/wordpress/ramsay/category/inspiration/">Inspiration</a></span>
+</div>
+<!-- /.vlt-post-meta --> </header>
+<!-- /.vlt-post-header -->
+<div class="vlt-post-excerpt">
+						
+Divided place firmament replenish form place us that morning, let sea have their kind which called she'd every subdue their called over forth.
+
+
+
+First place for ... 					</div>
+<!-- /.vlt-post-excerpt -->
+</div>
+<!-- /.vlt-post-content -->
+</article>
+<!-- /.vlt-post -->
+<article class="vlt-post vlt-post--style-masonry post-233 post type-post status-publish format-standard has-post-thumbnail hentry category-giveaway tag-art tag-instagood tag-love tag-summer">
+<div class="vlt-post-content">
+<header class="vlt-post-header">
+<h3 class="vlt-post-title"><a href="https://gasinforest.com/wordpress/ramsay/secrets-of-the-serpents/">
+Secrets of the Serpents</a></h3>
+<!-- /.vlt-post-title -->
+<div class="vlt-post-meta">
+<span><time datetime="2019-12-27T11:10:12+00:00">27 December 2019</time></span>
+<span><a href="https://gasinforest.com/wordpress/ramsay/category/giveaway/">Giveaway</a></span>
+</div>
+<!-- /.vlt-post-meta --> </header>
+<!-- /.vlt-post-header -->
+<div class="vlt-post-excerpt">
+						
+Divided place firmament replenish form place us that morning, let sea have their kind which called she'd every subdue their called over forth.
+
+
+
+First place for ... 					</div>
+<!-- /.vlt-post-excerpt -->
+</div>
+<!-- /.vlt-post-content -->
+</article>
+<!-- /.vlt-post -->
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-e72bdaa elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="e72bdaa" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-7bccedc elementor-widget elementor-widget-text-editor" data-element_type="widget" data-id="7bccedc" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="text-editor.default">
+<div class="elementor-widget-container">
+<a class="has-line-before" href="#">View all posts</a> </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="vlt-section pp-scrollable pp-section" data-anchor="page-9" style="z-index: 1;">
+<div class="vlt-section__vertical-align-wrap">
+<div class="vlt-section__background" style='background-image: url("assets/a66d2bfa96467aff_attachment-03.jpg");'></div>
+<div class="vlt-section__title d-none d-lg-block"><span>Contact</span></div>
+<div class="vlt-section__vertical-align vlt-boxed">
+<div class="container">
+<div class="vlt-section__content"><style>.elementor-98 .elementor-element.elementor-element-56d72313{padding:120px 0px 70px 0px;}.elementor-98 .elementor-element.elementor-element-549ab423 > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}.elementor-98 .elementor-element.elementor-element-6427b23b .elementor-heading-title{line-height:1.3333em;letter-spacing:-0.025px;}.elementor-98 .elementor-element.elementor-element-7f20f199{--spacer-size:30px;}.elementor-98 .elementor-element.elementor-element-3a163af6{color:#999999;font-family:"Montserrat", Sans-serif;font-size:1.57rem;font-weight:400;line-height:1.1em;}.elementor-98 .elementor-element.elementor-element-3f09e474{--spacer-size:60px;}.elementor-98 .elementor-element.elementor-element-26432639{color:#ffffff;font-family:"Montserrat", Sans-serif;font-size:1.4rem;font-weight:400;line-height:2.2em;letter-spacing:-0.05px;}.elementor-98 .elementor-element.elementor-element-511f87f0{--spacer-size:1px;}.elementor-98 .elementor-element.elementor-element-1854692f > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:0px;}@media(max-width:767px){.elementor-98 .elementor-element.elementor-element-6427b23b .elementor-heading-title{font-size:2.5rem;}.elementor-98 .elementor-element.elementor-element-511f87f0{--spacer-size:35px;}}</style> <div class="elementor elementor-98" data-elementor-id="98" data-elementor-type="page">
+<section class="elementor-section elementor-top-section elementor-element elementor-element-56d72313 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-element_type="section" data-id="56d72313">
+<div class="elementor-container elementor-column-gap-default">
+<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-549ab423" data-element_type="column" data-id="549ab423">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-6427b23b elementor-widget elementor-widget-heading" data-element_type="widget" data-id="6427b23b" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="heading.default">
+<div class="elementor-widget-container">
+<h2 class="elementor-heading-title elementor-size-default"><span class="has-first-color">New York</span>, USA</h2> </div>
+</div>
+<div class="elementor-element elementor-element-7f20f199 elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="7f20f199" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-3a163af6 elementor-widget elementor-widget-text-editor" data-element_type="widget" data-id="3a163af6" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="text-editor.default">
+<div class="elementor-widget-container">
+<p>166 Main Street, Beverly Hills, CA 90210</p> </div>
+</div>
+<div class="elementor-element elementor-element-3f09e474 elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="3f09e474" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-26432639 elementor-widget elementor-widget-text-editor" data-element_type="widget" data-id="26432639" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="text-editor.default">
+<div class="elementor-widget-container">
+<p><a href="mailto:contact@robert.com">contact@robert.com</a><br/><a href="#">+96 56-85-1379</a></p> </div>
+</div>
+<div class="elementor-element elementor-element-511f87f0 elementor-widget elementor-widget-spacer" data-element_type="widget" data-id="511f87f0" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="spacer.default">
+<div class="elementor-widget-container">
+<div class="elementor-spacer">
+<div class="elementor-spacer-inner"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-1854692f" data-element_type="column" data-id="1854692f">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-14e27aab elementor-widget elementor-widget-vlt-contact-form-7" data-element_type="widget" data-id="14e27aab" data-settings='{"vlt_wow_animation_name":"none"}' data-widget_type="vlt-contact-form-7.default">
+<div class="elementor-widget-container">
+<div class="vlt-contact-form-7">
+<div class="wpcf7 js" data-wpcf7-id="6" dir="ltr" id="wpcf7-f6-p102-o1" lang="en-US">
+<div class="screen-reader-response"><p aria-atomic="true" aria-live="polite" role="status"></p> <ul></ul></div>
+<form action="/wordpress/ramsay/#wpcf7-f6-p102-o1" aria-label="Contact form" class="wpcf7-form init demo" data-status="init" method="post" novalidate="novalidate">
+<div style="display: none;">
+<input name="_wpcf7" type="hidden" value="6"/>
+<input name="_wpcf7_version" type="hidden" value="6.0.2"/>
+<input name="_wpcf7_locale" type="hidden" value="en_US"/>
+<input name="_wpcf7_unit_tag" type="hidden" value="wpcf7-f6-p102-o1"/>
+<input name="_wpcf7_container_post" type="hidden" value="102"/>
+<input name="_wpcf7_posted_data_hash" type="hidden" value=""/>
+</div>
+<div class="vlt-form-row two-col">
+<div class="vlt-form-group">
+<span class="wpcf7-form-control-wrap" data-name="your-name"><input aria-invalid="false" aria-required="true" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" maxlength="400" name="your-name" placeholder="Name" size="40" type="text" value=""/></span>
+</div>
+<div class="vlt-form-group">
+<span class="wpcf7-form-control-wrap" data-name="your-email"><input aria-invalid="false" aria-required="true" class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email" maxlength="400" name="your-email" placeholder="Email" size="40" type="email" value=""/></span>
+</div>
+</div>
+<div class="vlt-form-row">
+<div class="vlt-form-group">
+<span class="wpcf7-form-control-wrap" data-name="your-message"><textarea aria-invalid="false" class="wpcf7-form-control wpcf7-textarea" cols="40" maxlength="2000" name="your-message" placeholder="Your message" rows="10"></textarea></span>
+</div>
+</div>
+<button class="wpcf7-form-control wpcf7-submit vlt-btn vlt-btn--primary">Contact Me</button>
+<div aria-hidden="true" class="wpcf7-response-output"></div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="right vlt-right-boxed hidden-xs" id="pp-nav" style="color: rgb(0, 0, 0); margin-top: -192.453px;"><ul><li data-tooltip=""><a class="active" href="#page-1"><span style="border-color: rgb(0, 0, 0);"></span></a></li><li data-tooltip=""><a href="#page-2"><span style="border-color: rgb(0, 0, 0);"></span></a></li><li data-tooltip=""><a href="#page-3"><span style="border-color: rgb(0, 0, 0);"></span></a></li><li data-tooltip=""><a href="#page-4"><span style="border-color: rgb(0, 0, 0);"></span></a></li><li data-tooltip=""><a href="#page-5"><span style="border-color: rgb(0, 0, 0);"></span></a></li><li data-tooltip=""><a href="#page-6"><span style="border-color: rgb(0, 0, 0);"></span></a></li><li data-tooltip=""><a href="#page-7"><span style="border-color: rgb(0, 0, 0);"></span></a></li><li data-tooltip=""><a href="#page-8"><span style="border-color: rgb(0, 0, 0);"></span></a></li><li data-tooltip=""><a href="#page-9"><span style="border-color: rgb(0, 0, 0);"></span></a></li></ul></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="clearfix"></div>
+</article>
+<!-- /.vlt-page -->
+</main>
+<!-- /.vlt-main -->
+<footer class="vlt-footer vlt-boxed vlt-footer--fixed">
+<div class="vlt-footer-copyright"><p>© Ramsay 2020.</p></div>
+<!-- /.vlt-footer-copyright -->
+<ul class="vlt-footer-socials">
+<li><a href="#" target="_blank"><i class="ion-social-twitter"></i></a></li><li><a href="#" target="_blank"><i class="ion-social-facebook"></i></a></li><li><a href="#" target="_blank"><i class="ion-social-linkedin"></i></a></li> </ul>
+<!-- /.vlt-footer-socials -->
+</footer>
+<!-- /.vlt-footer --></div>
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/wordpress/ramsay/*"},{"not":{"href_matches":["/wordpress/ramsay/wp-*.php","/wordpress/ramsay/wp-admin/*","/wordpress/ramsay/wp-content/uploads/*","/wordpress/ramsay/wp-content/*","/wordpress/ramsay/wp-content/plugins/*","/wordpress/ramsay/wp-content/themes/ramsay/*","/wordpress/ramsay/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript">
+				const lazyloadRunObserver = () => {
+					const lazyloadBackgrounds = document.querySelectorAll( `.e-con.e-parent:not(.e-lazyloaded)` );
+					const lazyloadBackgroundObserver = new IntersectionObserver( ( entries ) => {
+						entries.forEach( ( entry ) => {
+							if ( entry.isIntersecting ) {
+								let lazyloadBackground = entry.target;
+								if( lazyloadBackground ) {
+									lazyloadBackground.classList.add( 'e-lazyloaded' );
+								}
+								lazyloadBackgroundObserver.unobserve( entry.target );
+							}
+						});
+					}, { rootMargin: '200px 0px 200px 0px' } );
+					lazyloadBackgrounds.forEach( ( lazyloadBackground ) => {
+						lazyloadBackgroundObserver.observe( lazyloadBackground );
+					} );
+				};
+				const events = [
+					'DOMContentLoaded',
+					'elementor/lazyload/observe',
+				];
+				events.forEach( ( event ) => {
+					document.addEventListener( event, lazyloadRunObserver );
+				} );
+			</script>
+<script id="wp-hooks-js" src="assets/1d231f080d1df633_hooks.min.js"></script>
+<script id="wp-i18n-js" src="assets/46668f561bd01aaa_i18n.min.js"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+//# sourceURL=wp-i18n-js-after
+</script>
+<script id="swv-js" src="assets/6d60e3b25e56d351_index.js"></script>
+<script id="contact-form-7-js-before">
+var wpcf7 = {
+    "api": {
+        "root": "https:\/\/gasinforest.com\/wordpress\/ramsay\/wp-json\/",
+        "namespace": "contact-form-7\/v1"
+    }
+};
+//# sourceURL=contact-form-7-js-before
+</script>
+<script id="contact-form-7-js" src="assets/ddcce687729cb358_index.js"></script>
+<script id="imagesloaded-js" src="assets/b65b3de1bc923b93_imagesloaded.min.js"></script>
+<script id="masonry-js" src="assets/e00add38134eac2f_masonry.min.js"></script>
+<script id="jquery-masonry-js" src="assets/c2e606e1fc82ea3a_jquery.masonry.min.js"></script>
+<script id="animsition-js" src="assets/f32da6bf81134c66_animsition.min.js"></script>
+<script id="superclick-js" src="assets/8a7857541407edc8_superclick.min.js"></script>
+<script id="jquery-fitvids-js" src="assets/233cb2b905dec5df_jquery.fitvids.js"></script>
+<script id="fastclick-js" src="assets/4becda5b7693c039_fastclick.js"></script>
+<script id="owl-carousel-js" src="assets/a53c43f834b32309_owl.carousel.min.js"></script>
+<script id="css-vars-ponyfill-js" src="assets/c38a205d7ae32f3b_css-vars-ponyfill.min.js"></script>
+<script id="wow-js" src="assets/7852a22b72ead62c_wow.min.js"></script>
+<script id="anime-js" src="assets/a43f4a6446508a64_anime.min.js"></script>
+<script id="vlt-helpers-js" src="assets/72ad99fd14a2d160_vlt-helpers.js"></script>
+<script id="vlt-controllers-js" src="assets/6ecfa0d1d1a3eb4c_vlt-controllers.min.js"></script>
+<script id="jquery-pagepiling-js" src="assets/d758baf77831dceb_jquery.pagepiling.min.js"></script>
+<script id="jquery-fancybox-js" src="assets/cadda460ccb4c3c0_jquery.fancybox.min.js"></script>
+<script id="elementor-webpack-runtime-js" src="assets/17864c688a766f27_webpack.runtime.min.js"></script>
+<script id="elementor-frontend-modules-js" src="assets/d85d2f98cb9907fb_frontend-modules.min.js"></script>
+<script id="jquery-ui-core-js" src="assets/699210a5ed06e497_core.min.js"></script>
+<script id="elementor-frontend-js-before">
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"3.26.3","is_static":false,"experimentalFeatures":{"e_swiper_latest":true,"e_nested_atomic_repeaters":true,"e_onboarding":true,"e_css_smooth_scroll":true,"home_screen":true,"link-in-bio":true,"floating-buttons":true,"launchpad-checklist":true},"urls":{"assets":"https:\/\/gasinforest.com\/wordpress\/ramsay\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/gasinforest.com\/wordpress\/ramsay\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/gasinforest.com\/wordpress\/ramsay\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"64b916ba85"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":102,"title":"Ramsay%20%E2%80%93%20Personal%20CV%2FResume%20WordPress%20Theme","excerpt":"","featuredImage":false}};
+//# sourceURL=elementor-frontend-js-before
+</script>
+<script id="elementor-frontend-js" src="assets/f19646abb920a343_frontend.min.js"></script><span class="elementor-screen-only" id="elementor-device-mode"></span>
+<script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://gasinforest.com/wordpress/ramsay/wp-includes/js/wp-emoji-release.min.js?ver=7.0"}}
+</script>
+<script type="module">
+/*! This file is auto-generated */
+const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(window._wpemojiSettings=a,"wpEmojiSettingsSupports"),s=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const a=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===a[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,a){let r;const o=(r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),s=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(e=>{s[e]=t(o,e,n,a)}),s}function r(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}a.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),c.toString(),p.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"});const r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=e=>{i(n=e.data),r.terminate(),t(n)})}catch(e){}i(n=f(s,u,c,p))}t(n)}).then(e=>{for(const n in e)a.supports[n]=e[n],a.supports.everything=a.supports.everything&&a.supports[n],"flag"!==n&&(a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&a.supports[n]);var t;a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&!a.supports.flag,a.supports.everything||((t=a.source||{}).concatemoji?r(t.concatemoji):t.wpemoji&&t.twemoji&&(r(t.twemoji),r(t.wpemoji)))});
+//# sourceURL=https://gasinforest.com/wordpress/ramsay/wp-includes/js/wp-emoji-loader.min.js
+</script>
+<script data-offline-fix="1">(function(){
+var IS_CSR = false;
+var resolveLocal = window.__resolveLocal || function(){return null;};
+var rewriteSrcset = window.__rewriteSrcset || function(s){return s;};
+function fixImg(el){
+  if (!el || el.tagName !== 'IMG') return;
+  var src = el.getAttribute('src');
+  var loc = resolveLocal(src);
+  if (loc && src !== loc) el.setAttribute('src', loc);
+  var ss = el.getAttribute('srcset');
+  if (ss) {
+    var nss = rewriteSrcset(ss);
+    if (nss !== ss) el.setAttribute('srcset', nss);
+  }
+}
+function fixAll(){ document.querySelectorAll('img').forEach(fixImg); }
+function hasSlideOffset(t){
+  // True if a transform indicates a 'parked off-screen' starting
+  // state: translation in px (>= 30) or % (>= 5), or a matrix
+  // with non-zero translation. Returns false for crossfade-only
+  // companions like scale(0.9) or pure centering translateX(-50%).
+  if (!t || t === 'none') return false;
+  // matrix(a,b,c,d,tx,ty) — parse tx/ty; matrix3d & friends → assume slide.
+  var matMatch = t.match(/matrix\(([^)]+)\)/);
+  if (matMatch) {
+    var parts = matMatch[1].split(',').map(function(x){return parseFloat(x.trim());});
+    if (parts.length === 6) {
+      if (Math.abs(parts[4]) >= 30 || Math.abs(parts[5]) >= 30) return true;
+    } else { return true; }
+  }
+  if (/matrix3d/i.test(t)) return true;
+  var px = t.match(/(-?\d+\.?\d*)px/g) || [];
+  for (var i = 0; i < px.length; i++) {
+    if (Math.abs(parseFloat(px[i])) >= 30) return true;
+  }
+  var pct = t.match(/(-?\d+\.?\d*)%/g) || [];
+  for (var j = 0; j < pct.length; j++) {
+    if (Math.abs(parseFloat(pct[j])) >= 5) return true;
+  }
+  return false;
+}
+function isHiddenStart(s){
+  // True if the element's inline style is parked at a 'before'
+  // animation state. opacity:0 alone is ambiguous (could be a
+  // crossfade companion); pair it with a slide transform OR an
+  // explicit visibility:hidden (GSAP/SplitType signature) to be
+  // confident it's a scroll-reveal waiting to fire.
+  if (s.opacity !== '0' && s.visibility !== 'hidden') return false;
+  if (s.visibility === 'hidden') return true;
+  return hasSlideOffset(s.transform) || hasSlideOffset(s.translate);
+}
+function revealEl(el){
+  var s = el.style;
+  s.opacity = '1';
+  if (s.visibility === 'hidden') s.visibility = 'visible';
+  if (s.transform) s.transform = 'none';
+  if (s.translate) s.translate = 'none';
+  if (s.rotate)    s.rotate = 'none';
+  if (s.scale)     s.scale = 'none';
+  if (s.pointerEvents === 'none') s.pointerEvents = '';
+}
+function snapReveal(){
+  // Safety net: any 'before-state' element still hidden gets
+  // forced visible. Used as a deadline pass for non-CSR mode
+  // (after GSAP/etc had a chance to play) and as a final guard.
+  // Skip pinned-chain elements — same reason as findScrollAnchor.
+  var n = 0;
+  document.querySelectorAll('[style]').forEach(function(el){
+    if (!isHiddenStart(el.style)) return;
+    if (isInsideFixed(el)) return;
+    revealEl(el); n++;
+  });
+  if (window.console && n) console.log('[offline-fix] snap-revealed', n);
+}
+function isInsideFixed(el){
+  var p = el;
+  while (p && p !== document.documentElement) {
+    if (getComputedStyle(p).position === 'fixed') return true;
+    p = p.parentElement;
+  }
+  return false;
+}
+function findScrollAnchor(el){
+  // Pinned-narrative sections (one position:fixed ancestor wrapping
+  // many sequenced headings the live JS reveals one-by-one across
+  // scroll progress) can't be orchestrated offline — revealing all
+  // of them at once produces an overlapping mess. Skip them: leave
+  // the parked state intact, matching the live site at scroll=0.
+  // For sticky chains, observe the sticky container itself (fires
+  // when the user has scrolled past its stuck threshold).
+  if (isInsideFixed(el)) return null;
+  var p = el;
+  while (p && p !== document.documentElement) {
+    if (getComputedStyle(p).position === 'sticky') return p;
+    p = p.parentElement;
+  }
+  return el;
+}
+function progressiveReveal(){
+  // CSR mode: scripts stripped → no GSAP/IO is going to fire.
+  // Mimic a scroll-driven reveal: each parked element gets a
+  // CSS transition + IntersectionObserver. As it enters viewport
+  // we transition to the 'after' state, with a small stagger by
+  // document order so SplitType chars still feel letter-by-letter.
+  var targets = [];
+  document.querySelectorAll('[style]').forEach(function(el){
+    if (isHiddenStart(el.style)) targets.push(el);
+  });
+  if (!targets.length) return;
+  var EASE = 'cubic-bezier(.16,1,.3,1)';
+  targets.forEach(function(el){
+    el.style.transition =
+      'opacity .6s ' + EASE + ', transform .6s ' + EASE + ', ' +
+      'translate .6s ' + EASE + ', scale .6s ' + EASE + ', ' +
+      'visibility 0s linear';
+  });
+  if (typeof IntersectionObserver === 'undefined') {
+    targets.forEach(revealEl);
+    return;
+  }
+  // Group targets by their scroll anchor. Anchors in sticky
+  // sections share one observation point — when that anchor
+  // intersects, we reveal all its parked descendants.
+  // Targets with null anchor (inside position:fixed) are skipped.
+  var groups = new Map();
+  targets.forEach(function(el){
+    var anchor = findScrollAnchor(el);
+    if (!anchor) return;
+    if (!groups.has(anchor)) groups.set(anchor, []);
+    groups.get(anchor).push(el);
+  });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (!entry.isIntersecting) return;
+      var children = groups.get(entry.target) || [entry.target];
+      children.sort(function(a, b){
+        var pos = a.compareDocumentPosition(b);
+        return (pos & Node.DOCUMENT_POSITION_FOLLOWING) ? -1 : 1;
+      });
+      children.forEach(function(child, i){
+        var delay = Math.min(i * 18, 700);
+        setTimeout(function(){ revealEl(child); }, delay);
+      });
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -8% 0px' });
+  groups.forEach(function(_, anchor){ io.observe(anchor); });
+  // Deadline guard: anything that never intersects still gets revealed.
+  setTimeout(snapReveal, 8000);
+}
+function initUnicornStudio(){
+  // Captured page already has the loaded UMD script + the inline
+  // loader that says `if(!window.UnicornStudio)…`. The loader bails
+  // because UnicornStudio is already defined, so init() never runs.
+  if (window.UnicornStudio && typeof window.UnicornStudio.init === 'function'
+      && !window.UnicornStudio.isInitialized) {
+    try { window.UnicornStudio.init(); window.UnicornStudio.isInitialized = true; }
+    catch(e){ if(window.console) console.warn('[offline-fix] UnicornStudio init failed:', e); }
+  }
+}
+// Initial img sweep + observer for hydration-time updates
+fixAll();
+var obs = new MutationObserver(function(muts){
+  for (var i = 0; i < muts.length; i++) {
+    var m = muts[i];
+    if (m.type === 'attributes' && m.target.tagName === 'IMG') fixImg(m.target);
+    for (var j = 0; j < m.addedNodes.length; j++) {
+      var n = m.addedNodes[j];
+      if (n && n.nodeType === 1) {
+        if (n.tagName === 'IMG') fixImg(n);
+        if (n.querySelectorAll) n.querySelectorAll('img').forEach(fixImg);
+      }
+    }
+  }
+});
+obs.observe(document, {childList:true, subtree:true,
+  attributes:true, attributeFilter:['src','srcset']});
+setTimeout(fixAll, 1000);
+setTimeout(fixAll, 3000);
+var go = function(){
+  // CSR: scripts stripped, so 'before-state' elements stay parked
+  // forever unless we do something. Use IntersectionObserver to
+  // reveal them progressively as the user scrolls — preserves the
+  // scroll-triggered animation feel for SplitType chars, etc.
+  // Non-CSR: GSAP/Framer may still play; let them, then catch any
+  // leftovers with a snap pass at 5 s.
+  if (IS_CSR) progressiveReveal();
+  else setTimeout(snapReveal, 5000);
+  initUnicornStudio();
+  setTimeout(initUnicornStudio, 500);
+  setTimeout(initUnicornStudio, 2000);
+};
+if (document.readyState === 'complete') go();
+else window.addEventListener('load', go);
+})();</script></body></html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashley x Gemini Design System 4.0</title>
+
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <style>
+        /* ==========================================================================
+           1. CORE TOKENS (Ashley Editorial x Gemini DS4)
+           ========================================================================== */
+        :root {
+            /* Colors: Ashley Agency Dark */
+            --bg-main: #FFFFFF;
+            --bg-secondary: #F5F5F0;
+            --bg-dark: #121212;
+            --bg-dark-soft: #1A1A1A;
+            
+            --text-primary: #1C1C1C;
+            --text-secondary: #6B6B6B;
+            --text-light: #FFFFFF;
+            --text-light-soft: rgba(255, 255, 255, 0.6);
+            
+            --border-color: #E0E0E0;
+            --border-dark: #333333;
+            
+            --accent: #1C1C1C;
+            --accent-light: #FFFFFF;
+
+            /* Typography */
+            --font-main: 'Inter', sans-serif;
+
+            /* Easing */
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ==========================================================================
+           2. BASE STYLES & RESETS
+           ========================================================================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* ==========================================================================
+           3. BACKGROUNDS & ANIMATIONS
+           ========================================================================== */
+        /* Ashley Dark Background */
+        .mil-dark-bg { background-color: var(--bg-dark); color: var(--text-light); }
+        .mil-soft-bg { background-color: var(--bg-secondary); }
+        
+        /* Grid Background from Gemini DS4 */
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Text Reveal Animation (Gemini DS4) */
+        .text-reveal-wrapper { overflow: hidden; display: inline-block; vertical-align: bottom; }
+        .text-reveal-content {
+            transform: translateY(110%);
+            opacity: 0;
+            transition: transform 1.2s var(--ease-out), opacity 1.2s ease;
+            display: block;
+        }
+        .reveal-active .text-reveal-content { transform: translateY(0); opacity: 1; }
+
+        /* Scroll Reveal (Ashley .mil-up equivalent + Gemini .reveal) */
+        .mil-up, .reveal {
+            opacity: 0; transform: translateY(40px);
+            transition: all 1s var(--ease-out);
+        }
+        .mil-up.active, .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-500 { transition-delay: 0.5s; }
+
+        /* Beam Button Animation (Gemini DS4) */
+        .beam-button { position: relative; overflow: hidden; border: none; }
+        .beam-button::before {
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        .beam-button:hover::before { left: 100%; }
+
+        /* Glow Effects */
+        .glow-on-hover { transition: all 0.3s ease; }
+        .glow-on-hover:hover { box-shadow: 0 0 30px rgba(28, 28, 28, 0.15); transform: translateY(-2px); }
+        .glow-on-hover-dark:hover { box-shadow: 0 0 40px rgba(255, 255, 255, 0.05); transform: translateY(-2px); }
+
+        /* Marquee Animation */
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .marquee-container { display: flex; overflow: hidden; user-select: none; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 1.5rem 0; background: var(--bg-secondary); }
+        .marquee-content { flex-shrink: 0; display: flex; justify-content: space-around; min-width: 100%; animation: marquee 40s linear infinite; }
+
+        /* Flashlight Effect */
+        .flashlight-card { position: relative; background: var(--bg-dark-soft); border: 1px solid var(--border-dark); overflow: hidden; }
+        .flashlight-card::before {
+            content: ""; position: absolute; inset: 0px;
+            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%);
+            opacity: 0; transition: opacity 0.5s; pointer-events: none; z-index: 2;
+        }
+        .flashlight-card:hover::before { opacity: 1; }
+
+        /* Gradient Text */
+        .gradient-text-light {
+            background: linear-gradient(135deg, #FFFFFF 0%, #6B6B6B 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        /* Circular Text (Ashley style) */
+        .mil-circle-text { position: relative; display: flex; align-items: center; justify-content: center; width: 140px; height: 140px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.4s; }
+        .mil-circle-text:hover { transform: scale(1.05); border-color: rgba(255,255,255,0.3); }
+        .mil-ct-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; animation: spin 10s linear infinite; }
+        .mil-ct-svg text { fill: #fff; font-family: var(--font-main); font-size: 13px; text-transform: uppercase; letter-spacing: 4px; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* ==========================================================================
+           4. LAYOUT & TYPOGRAPHY
+           ========================================================================== */
+        section { padding: 8rem 0; position: relative; }
+        .section-header { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-secondary); margin-bottom: 1rem; display: block; }
+        
+        /* Heading Scale (Ashley Editorial Inspiration) */
+        h1, h2, h3, h4, h5, h6 { font-weight: 700; tracking: tighter; line-height: 1.1; }
+        .h1 { font-size: clamp(4rem, 8vw, 8rem); letter-spacing: -0.04em; }
+        .h2 { font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: -0.02em; }
+        .h3 { font-size: 2.5rem; letter-spacing: -0.01em; }
+        
+        .mil-thin { font-weight: 300; }
+        .text-body-lg { font-size: 1.25rem; line-height: 1.6; color: var(--text-secondary); }
+        
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+        
+        @media(max-width: 1024px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+        @media(max-width: 768px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+
+        /* ==========================================================================
+           5. UI COMPONENTS
+           ========================================================================== */
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+            padding: 18px 36px; border-radius: 100px; cursor: pointer; transition: all 0.3s var(--ease-out);
+            text-decoration: none; gap: 10px;
+        }
+        .btn-light { background: #fff; color: #000; border: 1px solid #fff; }
+        .btn-light:hover { background: rgba(255,255,255,0.9); transform: translateY(-2px); }
+        .btn-outline-dark { background: transparent; color: #000; border: 1px solid #000; }
+        .btn-outline-dark:hover { background: #000; color: #fff; }
+        
+        /* Cards */
+        .card { padding: 3rem; border-radius: 12px; }
+        .card-light { background: #fff; border: 1px solid var(--border-color); }
+        .card-dark { background: var(--bg-dark-soft); border: 1px solid var(--border-dark); color: #fff; }
+        
+        /* Inputs */
+        .input-elegant {
+            width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border-color);
+            padding: 15px 0; font-size: 1rem; color: var(--text-primary); transition: border-color 0.3s;
+            outline: none; font-family: var(--font-main);
+        }
+        .input-elegant:focus { border-color: var(--accent); }
+        
+        /* Navigation Load Animation */
+        .nav-load { opacity: 0; transform: translateY(-20px); transition: all 1s var(--ease-out); }
+        .nav-load.loaded { opacity: 1; transform: translateY(0); }
+
+        /* Navbar */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+            padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center;
+            mix-blend-mode: difference; color: #fff;
+        }
+        .nav-logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.05em; }
+        .nav-links a { margin-left: 2rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; color: #fff; transition: opacity 0.3s; }
+        .nav-links a:hover { opacity: 0.6; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar nav-load">
+        <div class="nav-logo">A. / DS4</div>
+        <div class="nav-links hidden md:block">
+            <a href="#typography">Typography</a>
+            <a href="#colors">Colors</a>
+            <a href="#components">Components</a>
+            <a href="#icons">Icons</a>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         SECTION 1: HERO SHOWCASE (Ashley x Gemini)
+    =========================================== -->
+    <section class="mil-dark-bg grid-bg" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative;">
+        
+        <div class="container text-center" style="position: relative; z-index: 10;">
+            <div class="mb-8" id="hero-title" style="margin-bottom: 2rem;">
+                <h1 class="h1">
+                    <span class="text-reveal-wrapper"><span class="text-reveal-content delay-100 gradient-text-light">Premium</span></span>
+                </h1>
+                <h1 class="h1">
+                    <span class="text-reveal-wrapper">
+                        <span class="text-reveal-content delay-200">
+                            <span class="mil-thin text-light-soft">Design</span> System
+                        </span>
+                    </span>
+                </h1>
+            </div>
+
+            <p class="text-body-lg mil-up delay-300" style="max-width: 600px; margin: 0 auto 4rem auto; color: var(--text-light-soft);">
+                A comprehensive architectural foundation fusing Ashley's editorial elegance with Gemini's kinetic precision.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mil-up delay-500" style="display: flex; gap: 1rem; justify-content: center;">
+                <button class="btn btn-light beam-button">
+                    Explore Components
+                    <iconify-icon icon="solar:arrow-right-linear" style="font-size: 1.2rem;"></iconify-icon>
+                </button>
+            </div>
+        </div>
+
+        <!-- Ashley Circular Scroll Text -->
+        <div class="mil-up delay-500" style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 10;">
+            <a href="#typography" style="text-decoration: none; color: inherit;">
+                <div class="mil-circle-text">
+                    <svg viewBox="0 0 300 300" class="mil-ct-svg">
+                        <defs><path id="circlePath" d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0 "/></defs>
+                        <use href="#circlePath" fill="none" />
+                        <text><textPath href="#circlePath">Scroll down • Explore • Scroll down • Explore • </textPath></text>
+                    </svg>
+                    <iconify-icon icon="solar:arrow-down-linear" style="font-size: 1.5rem; color: #fff;"></iconify-icon>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Marquee Divider -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <span class="section-header" style="margin:0 2rem;">Ashley Agency Aesthetic</span><span class="section-header" style="margin:0 2rem;">•</span>
+            <span class="section-header" style="margin:0 2rem;">Gemini Kinetic UI</span><span class="section-header" style="margin:0 2rem;">•</span>
+            <span class="section-header" style="margin:0 2rem;">Premium Components</span><span class="section-header" style="margin:0 2rem;">•</span>
+        </div>
+        <div class="marquee-content" aria-hidden="true">
+            <span class="section-header" style="margin:0 2rem;">Ashley Agency Aesthetic</span><span class="section-header" style="margin:0 2rem;">•</span>
+            <span class="section-header" style="margin:0 2rem;">Gemini Kinetic UI</span><span class="section-header" style="margin:0 2rem;">•</span>
+            <span class="section-header" style="margin:0 2rem;">Premium Components</span><span class="section-header" style="margin:0 2rem;">•</span>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         SECTION 2: TYPOGRAPHY
+    =========================================== -->
+    <section id="typography">
+        <div class="container">
+            <span class="section-header mil-up">01 / Foundations</span>
+            <h2 class="h2 mil-up" style="margin-bottom: 4rem;">Typography</h2>
+
+            <div style="display: flex; flex-direction: column; gap: 3rem;">
+                <div class="grid-2 mil-up" style="border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; align-items: baseline;">
+                    <div><span class="section-header">Display H1</span></div>
+                    <div>
+                        <h1 class="h1">Digital Excellence</h1>
+                        <p class="section-header" style="margin-top: 1rem; text-transform:none;">Inter / clamp(4rem, 8vw, 8rem) / Wght 700 / LS -0.04em</p>
+                    </div>
+                </div>
+
+                <div class="grid-2 mil-up delay-100" style="border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; align-items: baseline;">
+                    <div><span class="section-header">Heading H2</span></div>
+                    <div>
+                        <h2 class="h2">Design & Strategy</h2>
+                        <p class="section-header" style="margin-top: 1rem; text-transform:none;">Inter / clamp(2.5rem, 5vw, 4.5rem) / Wght 700 / LS -0.02em</p>
+                    </div>
+                </div>
+
+                <div class="grid-2 mil-up delay-200" style="border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; align-items: baseline;">
+                    <div><span class="section-header">Heading H3</span></div>
+                    <div>
+                        <h3 class="h3">Case Studies</h3>
+                        <p class="section-header" style="margin-top: 1rem; text-transform:none;">Inter / 2.5rem / Wght 700 / LS -0.01em</p>
+                    </div>
+                </div>
+
+                <div class="grid-2 mil-up delay-300" style="border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; align-items: baseline;">
+                    <div><span class="section-header">Body Large</span></div>
+                    <div>
+                        <p class="text-body-lg">Thoughts on the intersection of design, technology, and human psychology. Exploring how we can build better tools for thought.</p>
+                        <p class="section-header" style="margin-top: 1rem; text-transform:none;">Inter / 1.25rem / Wght 400 / LH 1.6</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 3: COLOR SYSTEM
+    =========================================== -->
+    <section id="colors" class="mil-soft-bg">
+        <div class="container">
+            <span class="section-header mil-up">02 / Foundations</span>
+            <h2 class="h2 mil-up" style="margin-bottom: 4rem;">Color System</h2>
+
+            <div class="grid-4">
+                <div class="card card-light glow-on-hover mil-up">
+                    <div style="width: 100%; height: 100px; background: #FFFFFF; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 1.5rem;"></div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.5rem;">White Base</h4>
+                    <p class="section-header" style="margin-bottom:0;">#FFFFFF</p>
+                </div>
+                
+                <div class="card card-light glow-on-hover mil-up delay-100">
+                    <div style="width: 100%; height: 100px; background: #F5F5F0; border-radius: 8px; margin-bottom: 1.5rem;"></div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.5rem;">Gray 100</h4>
+                    <p class="section-header" style="margin-bottom:0;">#F5F5F0</p>
+                </div>
+
+                <div class="card card-dark glow-on-hover-dark mil-up delay-200" style="background: #1C1C1C;">
+                    <div style="width: 100%; height: 100px; background: #1C1C1C; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; margin-bottom: 1.5rem;"></div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.5rem;">Black Solid</h4>
+                    <p class="section-header" style="margin-bottom:0;">#1C1C1C</p>
+                </div>
+
+                <div class="card card-dark glow-on-hover-dark mil-up delay-300" style="background: #121212;">
+                    <div style="width: 100%; height: 100px; background: #121212; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; margin-bottom: 1.5rem;"></div>
+                    <h4 style="font-weight: 700; margin-bottom: 0.5rem;">Deep Agency</h4>
+                    <p class="section-header" style="margin-bottom:0;">#121212</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 4: UI COMPONENTS
+    =========================================== -->
+    <section id="components">
+        <div class="container">
+            <span class="section-header mil-up">03 / UI Elements</span>
+            <h2 class="h2 mil-up" style="margin-bottom: 4rem;">Components</h2>
+
+            <div class="grid-2">
+                <!-- Interactive Cards -->
+                <div class="mil-up">
+                    <h4 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 2rem;">Interactive Cards</h4>
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        
+                        <!-- Flashlight Card -->
+                        <div class="card flashlight-card" onmousemove="const rect = this.getBoundingClientRect(); this.style.setProperty('--mouse-x', `${event.clientX - rect.left}px`); this.style.setProperty('--mouse-y', `${event.clientY - rect.top}px`);">
+                            <div style="position: relative; z-index: 10;">
+                                <iconify-icon icon="solar:layers-minimalistic-bold-duotone" style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;"></iconify-icon>
+                                <h4 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: #fff;">Flashlight Card</h4>
+                                <p style="color: var(--text-light-soft);">Move your cursor over this deep dark card to reveal the flashlight tracking effect powered by CSS variables.</p>
+                            </div>
+                        </div>
+
+                        <!-- Glow Card -->
+                        <div class="card card-light glow-on-hover">
+                            <iconify-icon icon="solar:star-bold-duotone" style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--accent);"></iconify-icon>
+                            <h4 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Glow Surface</h4>
+                            <p style="color: var(--text-secondary);">A clean white surface that elevates and casts a luxurious shadow when hovered.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Forms & Buttons -->
+                <div class="mil-up delay-200">
+                    <h4 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 2rem;">Buttons & Forms</h4>
+                    
+                    <div class="card card-light" style="display: flex; flex-direction: column; gap: 2rem;">
+                        <div>
+                            <button class="btn btn-outline-dark beam-button" style="width: 100%; margin-bottom: 1rem;">
+                                Primary Action
+                                <iconify-icon icon="solar:arrow-right-linear" style="font-size: 1.2rem;"></iconify-icon>
+                            </button>
+                            <span class="section-header" style="text-align: center;">Beam Button / Outline Dark</span>
+                        </div>
+
+                        <div>
+                            <input type="text" class="input-elegant" placeholder="Enter your email address">
+                            <span class="section-header" style="margin-top: 0.5rem;">Elegant Input Field</span>
+                        </div>
+
+                        <div style="padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                            <a href="#" style="font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px;">
+                                Text Link Minimal
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 5: ICONS
+    =========================================== -->
+    <section id="icons" class="mil-soft-bg">
+        <div class="container">
+            <span class="section-header mil-up">04 / Assets</span>
+            <h2 class="h2 mil-up" style="margin-bottom: 4rem;">Iconography</h2>
+
+            <div class="grid-4" style="text-align: center;">
+                <div class="card card-light glow-on-hover mil-up">
+                    <iconify-icon icon="solar:atom-bold-duotone" style="font-size: 3rem; margin-bottom: 1rem; color: var(--accent);"></iconify-icon>
+                    <span class="section-header" style="margin:0;">Atom</span>
+                </div>
+                <div class="card card-light glow-on-hover mil-up delay-100">
+                    <iconify-icon icon="solar:layers-minimalistic-bold-duotone" style="font-size: 3rem; margin-bottom: 1rem; color: var(--accent);"></iconify-icon>
+                    <span class="section-header" style="margin:0;">Layers</span>
+                </div>
+                <div class="card card-light glow-on-hover mil-up delay-200">
+                    <iconify-icon icon="solar:star-bold-duotone" style="font-size: 3rem; margin-bottom: 1rem; color: var(--accent);"></iconify-icon>
+                    <span class="section-header" style="margin:0;">Star</span>
+                </div>
+                <div class="card card-light glow-on-hover mil-up delay-300">
+                    <iconify-icon icon="solar:check-circle-bold-duotone" style="font-size: 3rem; margin-bottom: 1rem; color: var(--accent);"></iconify-icon>
+                    <span class="section-header" style="margin:0;">Success</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JS Interaction Engine -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial Navigation Load
+            setTimeout(() => {
+                document.querySelector('header').classList.add('loaded');
+            }, 100);
+
+            // Hero Text Reveal
+            setTimeout(() => {
+                const heroTitle = document.getElementById('hero-title');
+                if (heroTitle) heroTitle.classList.add('reveal-active');
+            }, 300);
+
+            // Scroll Reveal Observer (Ashley .mil-up + Gemini .reveal logic)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Trigger inner text reveals if present
+                        const textWrappers = entry.target.querySelectorAll('.text-reveal-wrapper');
+                        if (textWrappers.length > 0) {
+                            entry.target.classList.add('reveal-active');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with .mil-up or .reveal
+            document.querySelectorAll('.mil-up, .reveal').forEach(el => observer.observe(el));
+            
+            // Observe Headings with internal reveals
+            document.querySelectorAll('h1, h2, h3').forEach(el => {
+                if (el.querySelector('.text-reveal-content')) observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

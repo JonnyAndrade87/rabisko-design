@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System 8.0 - The Chimera</title>
+
+    <!-- Google Fonts: Inter (DS4 Base) & Poppins (Ramsay Body) -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <style>
+        /* ==========================================================================
+           1. CORE TOKENS (Ashley x Ramsay x Gemini)
+           ========================================================================== */
+        :root {
+            /* Colors: Ashley Agency Dark x Ramsay */
+            --bg-main: #111111;
+            --bg-secondary: #1a1a1a;
+            --bg-boxed: #222222;
+            
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --text-muted: #555555;
+            
+            --border-color: rgba(255, 255, 255, 0.1);
+            
+            /* Accent: Clean White / Glow */
+            --accent: #ffffff;
+
+            /* Typography */
+            --font-display: 'Inter', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+
+            /* Easing */
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ==========================================================================
+           2. BASE STYLES & RESETS
+           ========================================================================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-main);
+            color: var(--text-secondary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* ==========================================================================
+           3. BACKGROUNDS & MASKS
+           ========================================================================== */
+        /* Ashley Dark Background */
+        .mil-dark-bg { background-color: var(--bg-main); color: var(--text-primary); }
+        
+        /* Gemini DS4 Grid Overlay */
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Ramsay Vertical Title */
+        .vertical-title {
+            position: absolute; left: 3rem; top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+            transform-origin: left center;
+            font-family: var(--font-display);
+            font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.4em;
+            color: rgba(255,255,255,0.15); z-index: 10;
+            white-space: nowrap;
+        }
+        .vertical-title span { color: var(--text-primary); }
+
+        /* ==========================================================================
+           4. ANIMATIONS (Gemini Text Reveal + Ashley/Ramsay Fade)
+           ========================================================================== */
+        /* Text Reveal Animation (Gemini DS4) */
+        .text-reveal-wrapper { overflow: hidden; display: inline-block; vertical-align: bottom; }
+        .text-reveal-content {
+            transform: translateY(110%);
+            opacity: 0;
+            transition: transform 1.2s var(--ease-out), opacity 1.2s ease;
+            display: block;
+        }
+        .reveal-active .text-reveal-content { transform: translateY(0); opacity: 1; }
+
+        /* Scroll Reveal (Ashley .mil-up + Ramsay .fadeY) */
+        .mil-up { opacity: 0; transform: translateY(40px); transition: all 1s var(--ease-out); }
+        .mil-up.active { opacity: 1; transform: translateY(0); }
+        
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-500 { transition-delay: 0.5s; }
+
+        /* Beam Button Animation (Gemini DS4) */
+        .beam-button { position: relative; overflow: hidden; border: none; }
+        .beam-button::before {
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        .beam-button:hover::before { left: 100%; }
+
+        /* Flashlight Effect */
+        .flashlight-card { position: relative; background: var(--bg-boxed); border: 1px solid var(--border-color); overflow: hidden; border-radius: 8px; }
+        .flashlight-card::before {
+            content: ""; position: absolute; inset: 0px;
+            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.08), transparent 40%);
+            opacity: 0; transition: opacity 0.5s; pointer-events: none; z-index: 2;
+        }
+        .flashlight-card:hover::before { opacity: 1; }
+
+        /* Marquee Animation */
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .marquee-container { display: flex; overflow: hidden; user-select: none; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 1.5rem 0; background: var(--bg-secondary); }
+        .marquee-content { flex-shrink: 0; display: flex; justify-content: space-around; min-width: 100%; animation: marquee 40s linear infinite; }
+        .marquee-text { font-family: var(--font-display); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); margin: 0 3rem; }
+
+        /* Gradient Text */
+        .gradient-text-light {
+            background: linear-gradient(135deg, #FFFFFF 0%, #6B6B6B 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        /* Circular Text (Ashley style) */
+        .mil-circle-text { position: relative; display: flex; align-items: center; justify-content: center; width: 140px; height: 140px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.4s; }
+        .mil-circle-text:hover { transform: scale(1.05); border-color: rgba(255,255,255,0.3); }
+        .mil-ct-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; animation: spin 10s linear infinite; }
+        .mil-ct-svg text { fill: #fff; font-family: var(--font-display); font-size: 13px; text-transform: uppercase; letter-spacing: 4px; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* ==========================================================================
+           5. LAYOUT & TYPOGRAPHY
+           ========================================================================== */
+        section { padding: 120px 0 120px 100px; position: relative; min-height: 100vh; display: flex; align-items: center; border-bottom: 1px solid var(--border-color); }
+        @media(max-width: 991px) { section { padding: 80px 0; } .vertical-title { display: none; } }
+        
+        /* Heading Scale (DS4 Base) */
+        h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 700; color: var(--text-primary); line-height: 1.1; }
+        .display-h1 { font-size: clamp(4rem, 8vw, 8rem); letter-spacing: -0.04em; }
+        .title-h2 { font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: -0.02em; margin-bottom: 3rem; }
+        .title-h3 { font-size: 2.5rem; letter-spacing: -0.01em; }
+        
+        .text-body-lg { font-size: 1.125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.8; }
+        
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+        @media(max-width: 1024px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+        @media(max-width: 768px) { .grid-2, .grid-4 { grid-template-columns: 1fr; } }
+
+        /* ==========================================================================
+           6. UI COMPONENTS (Ramsay Resume Rows x Gemini Buttons)
+           ========================================================================== */
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            font-family: var(--font-display); font-size: 0.85rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            padding: 18px 36px; border-radius: 100px; cursor: pointer; transition: all 0.3s var(--ease-out);
+            text-decoration: none; gap: 10px;
+        }
+        .btn-light { background: #fff; color: #000; border: 1px solid #fff; }
+        .btn-light:hover { background: rgba(255,255,255,0.9); transform: translateY(-2px); }
+        .btn-outline-light { background: transparent; color: #fff; border: 1px solid #fff; }
+        .btn-outline-light:hover { background: #fff; color: #000; }
+
+        /* Ramsay Resume Rows */
+        .resume-row { border-left: 2px solid var(--border-color); padding-left: 30px; position: relative; margin-bottom: 40px; }
+        .resume-row::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+        .resume-type { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-primary); margin-bottom: 5px; }
+        .resume-study { font-family: var(--font-body); font-size: 0.85rem; font-style: italic; color: var(--text-muted); display: block; margin-bottom: 15px; }
+
+        /* Ramsay Progress Bars */
+        .progress-block { margin-bottom: 25px; position: relative; z-index: 10; }
+        .progress-header { display: flex; justify-content: space-between; font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--text-primary); margin-bottom: 10px; }
+        .progress { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+        .progress-bar { height: 100%; background: var(--accent); width: 0; transition: width 1.5s var(--ease-out); }
+        
+        /* Inputs */
+        .input-elegant {
+            width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border-color);
+            padding: 15px 0; font-family: var(--font-body); font-size: 1rem; color: var(--text-primary);
+            transition: border-color 0.3s; outline: none;
+        }
+        .input-elegant:focus { border-color: var(--accent); }
+
+        /* Navbar */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+            padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center;
+            mix-blend-mode: difference; color: #fff;
+        }
+        .nav-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; letter-spacing: -0.05em; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar mil-up active">
+        <div class="nav-logo">CHIMERA.</div>
+        <div class="hidden md:block" style="font-family: var(--font-display); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.6);">
+            DESIGN SYSTEM / V 8.0
+        </div>
+    </header>
+
+    <!-- ==========================================
+         SECTION 1: HERO SHOWCASE
+    =========================================== -->
+    <section class="mil-dark-bg grid-bg" style="padding:0; justify-content: center; border-bottom: none;">
+        
+        <div class="vertical-title mil-up delay-300"><span>Intro</span>duction</div>
+
+        <div class="container text-center" style="position: relative; z-index: 10;">
+            <div class="mb-8" id="hero-title" style="margin-bottom: 2rem;">
+                <h1 class="display-h1">
+                    <span class="text-reveal-wrapper"><span class="text-reveal-content delay-100 gradient-text-light">Premium</span></span>
+                </h1>
+                <h1 class="display-h1">
+                    <span class="text-reveal-wrapper">
+                        <span class="text-reveal-content delay-200">
+                            <span style="font-weight: 300; color: rgba(255,255,255,0.6);">Design</span> System
+                        </span>
+                    </span>
+                </h1>
+            </div>
+
+            <p class="text-body-lg mil-up delay-300" style="max-width: 600px; margin: 0 auto 4rem auto;">
+                The ultimate chimera. Merging the imposing typography of DS4, the kinetic Flashlights of Gemini, and the majestic Vertical Titles & Fade arrays of Ramsay.
+            </p>
+
+            <div class="mil-up delay-500" style="display: flex; gap: 1rem; justify-content: center;">
+                <button class="btn btn-light beam-button">
+                    Explore Components
+                    <iconify-icon icon="solar:arrow-right-linear" style="font-size: 1.2rem;"></iconify-icon>
+                </button>
+            </div>
+        </div>
+
+        <!-- Ashley Circular Scroll Text -->
+        <div class="mil-up delay-500" style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 10;">
+            <a href="#typography" style="text-decoration: none; color: inherit;">
+                <div class="mil-circle-text">
+                    <svg viewBox="0 0 300 300" class="mil-ct-svg">
+                        <defs><path id="circlePath" d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0 "/></defs>
+                        <use href="#circlePath" fill="none" />
+                        <text><textPath href="#circlePath">Scroll down • Explore • Scroll down • Explore • </textPath></text>
+                    </svg>
+                    <iconify-icon icon="solar:arrow-down-linear" style="font-size: 1.5rem; color: #fff;"></iconify-icon>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Marquee Divider -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <span class="marquee-text">DS4 Typography</span><span class="marquee-text">•</span>
+            <span class="marquee-text">Gemini Flashlights</span><span class="marquee-text">•</span>
+            <span class="marquee-text">Ramsay Vertical Titles</span><span class="marquee-text">•</span>
+        </div>
+        <div class="marquee-content" aria-hidden="true">
+            <span class="marquee-text">DS4 Typography</span><span class="marquee-text">•</span>
+            <span class="marquee-text">Gemini Flashlights</span><span class="marquee-text">•</span>
+            <span class="marquee-text">Ramsay Vertical Titles</span><span class="marquee-text">•</span>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         SECTION 2: TYPOGRAPHY
+    =========================================== -->
+    <section id="typography">
+        <div class="vertical-title mil-up"><span>Typo</span>graphy</div>
+        <div class="container">
+            <h2 class="title-h2 mil-up">Typography <span style="font-weight: 300; color: rgba(255,255,255,0.6);">Scale</span></h2>
+
+            <div class="grid-2">
+                <!-- DS4 Display Scale -->
+                <div class="mil-up delay-100">
+                    <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; margin-bottom: 2rem;">
+                        <span style="font-family: var(--font-display); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); margin-bottom: 1rem; display: block;">Display H1</span>
+                        <h1 class="display-h1" style="font-size: clamp(3rem, 6vw, 6rem);">Digital<br>Excellence</h1>
+                        <p style="font-family: var(--font-display); font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem;">Inter / clamp(4rem, 8vw, 8rem) / Wght 700 / LS -0.04em</p>
+                    </div>
+
+                    <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 2rem;">
+                        <span style="font-family: var(--font-display); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); margin-bottom: 1rem; display: block;">Heading H2</span>
+                        <h2 class="title-h2" style="margin-bottom:0;">Design & Strategy</h2>
+                        <p style="font-family: var(--font-display); font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem;">Inter / clamp(2.5rem, 5vw, 4.5rem) / Wght 700 / LS -0.02em</p>
+                    </div>
+                </div>
+
+                <!-- Ramsay Resume Documentation -->
+                <div class="mil-up delay-200" style="padding-top: 2rem;">
+                    <div class="resume-row">
+                        <h6 class="resume-type">Body Large / body-lg</h6>
+                        <i class="resume-study">Poppins / 1.125rem / Wght 300 / LH 1.8</i>
+                        <p class="text-body-lg" style="margin:0;">The secondary body face (Poppins). Brings a geometric, readable, and elegant contrast when used in light weights for descriptions.</p>
+                    </div>
+                    <div class="resume-row">
+                        <h6 class="resume-type">Label / Mono</h6>
+                        <i class="resume-study">Inter / 0.75rem / Wght 700 / LS 0.2em / Uppercase</i>
+                        <span style="font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #fff;">Currently Available</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 3: COLOR SYSTEM
+    =========================================== -->
+    <section id="colors" style="background: var(--bg-secondary);">
+        <div class="vertical-title mil-up"><span>Col</span>ors</div>
+        <div class="container">
+            <h2 class="title-h2 mil-up">Color <span style="font-weight: 300; color: rgba(255,255,255,0.6);">System</span></h2>
+
+            <div class="grid-4 mil-up delay-100">
+                <div class="flashlight-card" style="padding: 2rem;" onmousemove="updateFlashlight(event, this)">
+                    <div style="height: 100px; background: #111111; border: 1px solid var(--border-color); border-radius: 4px; margin-bottom: 1.5rem; position: relative; z-index: 10;"></div>
+                    <h6 class="resume-type" style="position: relative; z-index: 10;">Main Base</h6>
+                    <i class="resume-study" style="margin:0; position: relative; z-index: 10;">HEX #111111</i>
+                </div>
+                
+                <div class="flashlight-card" style="padding: 2rem;" onmousemove="updateFlashlight(event, this)">
+                    <div style="height: 100px; background: #1a1a1a; border: 1px solid var(--border-color); border-radius: 4px; margin-bottom: 1.5rem; position: relative; z-index: 10;"></div>
+                    <h6 class="resume-type" style="position: relative; z-index: 10;">Secondary</h6>
+                    <i class="resume-study" style="margin:0; position: relative; z-index: 10;">HEX #1A1A1A</i>
+                </div>
+
+                <div class="flashlight-card" style="padding: 2rem;" onmousemove="updateFlashlight(event, this)">
+                    <div style="height: 100px; background: #222222; border: 1px solid var(--border-color); border-radius: 4px; margin-bottom: 1.5rem; position: relative; z-index: 10;"></div>
+                    <h6 class="resume-type" style="position: relative; z-index: 10;">Boxed Panel</h6>
+                    <i class="resume-study" style="margin:0; position: relative; z-index: 10;">HEX #222222</i>
+                </div>
+
+                <div class="flashlight-card" style="padding: 2rem;" onmousemove="updateFlashlight(event, this)">
+                    <div style="height: 100px; background: #ffffff; border-radius: 4px; margin-bottom: 1.5rem; position: relative; z-index: 10; box-shadow: 0 0 30px rgba(255,255,255,0.1);"></div>
+                    <h6 class="resume-type" style="position: relative; z-index: 10; color: #fff;">White Accent</h6>
+                    <i class="resume-study" style="margin:0; position: relative; z-index: 10;">HEX #FFFFFF</i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 4: UI COMPONENTS (Chimera Blend)
+    =========================================== -->
+    <section id="components">
+        <div class="grid-bg"></div>
+        <div class="vertical-title mil-up"><span>Comp</span>onents</div>
+        <div class="container" style="position: relative; z-index: 10;">
+            <h2 class="title-h2 mil-up">UI <span style="font-weight: 300; color: rgba(255,255,255,0.6);">Elements</span></h2>
+
+            <div class="grid-2">
+                <!-- Ramsay Progress mapped into Flashlight -->
+                <div class="mil-up delay-100">
+                    <h3 class="title-h3" style="font-size: 1.5rem; margin-bottom: 2rem;">Progress Analytics</h3>
+                    <div class="flashlight-card" style="padding: 3rem;" onmousemove="updateFlashlight(event, this)">
+                        
+                        <div class="progress-block">
+                            <div class="progress-header"><span>System Architecture</span> <span>95%</span></div>
+                            <div class="progress"><div class="progress-bar" data-width="95"></div></div>
+                        </div>
+                        <div class="progress-block">
+                            <div class="progress-header"><span>Kinetic Rendering</span> <span>80%</span></div>
+                            <div class="progress"><div class="progress-bar" data-width="80"></div></div>
+                        </div>
+                        <div class="progress-block" style="margin-bottom:0;">
+                            <div class="progress-header"><span>Editorial Layout</span> <span>100%</span></div>
+                            <div class="progress"><div class="progress-bar" data-width="100"></div></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Forms & Beam Buttons -->
+                <div class="mil-up delay-200">
+                    <h3 class="title-h3" style="font-size: 1.5rem; margin-bottom: 2rem;">Interactive Forms</h3>
+                    
+                    <div class="flashlight-card" style="padding: 3rem; background: var(--bg-main);" onmousemove="updateFlashlight(event, this)">
+                        <div style="position: relative; z-index: 10;">
+                            <div style="margin-bottom: 1.5rem;">
+                                <input type="email" class="input-elegant" placeholder="Enter your email address">
+                            </div>
+
+                            <button class="btn btn-outline-light beam-button" style="width: 100%; margin-top: 1rem;">
+                                Subscribe
+                                <iconify-icon icon="solar:letter-bold-duotone" style="font-size: 1.2rem;"></iconify-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 5: ICONOGRAPHY
+    =========================================== -->
+    <section id="icons" style="background: var(--bg-secondary); padding-bottom: 120px;">
+        <div class="vertical-title mil-up"><span>Icon</span>ography</div>
+        <div class="container">
+            <h2 class="title-h2 mil-up text-center">Solar <span style="font-weight: 300; color: rgba(255,255,255,0.6);">Iconify</span></h2>
+
+            <div class="grid-4 text-center mil-up delay-200">
+                <div class="flashlight-card" style="padding: 3rem 2rem;" onmousemove="updateFlashlight(event, this)">
+                    <iconify-icon icon="solar:atom-bold-duotone" style="font-size: 3rem; color: #fff; margin-bottom: 1rem; position: relative; z-index: 10;"></iconify-icon>
+                    <h6 class="resume-type" style="margin:0; position: relative; z-index: 10;">Core Engine</h6>
+                </div>
+                <div class="flashlight-card" style="padding: 3rem 2rem;" onmousemove="updateFlashlight(event, this)">
+                    <iconify-icon icon="solar:layers-minimalistic-bold-duotone" style="font-size: 3rem; color: #fff; margin-bottom: 1rem; position: relative; z-index: 10;"></iconify-icon>
+                    <h6 class="resume-type" style="margin:0; position: relative; z-index: 10;">Components</h6>
+                </div>
+                <div class="flashlight-card" style="padding: 3rem 2rem;" onmousemove="updateFlashlight(event, this)">
+                    <iconify-icon icon="solar:star-bold-duotone" style="font-size: 3rem; color: #fff; margin-bottom: 1rem; position: relative; z-index: 10;"></iconify-icon>
+                    <h6 class="resume-type" style="margin:0; position: relative; z-index: 10;">Aesthetics</h6>
+                </div>
+                <div class="flashlight-card" style="padding: 3rem 2rem;" onmousemove="updateFlashlight(event, this)">
+                    <iconify-icon icon="solar:check-circle-bold-duotone" style="font-size: 3rem; color: #fff; margin-bottom: 1rem; position: relative; z-index: 10;"></iconify-icon>
+                    <h6 class="resume-type" style="margin:0; position: relative; z-index: 10;">Validation</h6>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JS Interaction Engine -->
+    <script>
+        // Flashlight Logic (Gemini DS4)
+        function updateFlashlight(e, element) {
+            const rect = element.getBoundingClientRect();
+            element.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+            element.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hero Text Reveal
+            setTimeout(() => {
+                const heroTitle = document.getElementById('hero-title');
+                if (heroTitle) heroTitle.classList.add('reveal-active');
+            }, 300);
+
+            // Scroll Reveal Observer (.mil-up)
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        
+                        // Trigger Ramsay Progress Bars inside Flashlight Cards
+                        const progressBars = entry.target.querySelectorAll('.progress-bar');
+                        progressBars.forEach(bar => {
+                            const width = bar.getAttribute('data-width');
+                            if(width) bar.style.width = width + '%';
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.mil-up').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
