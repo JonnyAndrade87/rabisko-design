@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rabisko — Grandes Formatos. Presença Gigante.</title>
-  <meta name="description" content="Fachadas, lonas, ACM, adesivos e projetos visuais sob medida para marcas que precisam ser vistas." />
+  <title>Rabisko Laser — Produtos Personalizados com Corte a Laser</title>
+  <meta name="description" content="Produtos personalizados com corte e gravação a laser: MDF, acrílico, enfeites e muito mais. Encontre na Shopee, TikTok Shop e Mercado Livre." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,6 +14,10 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <!-- Elephill Tracking — Windsor.ai Data Layer -->
+  <!-- Fase 1: Instagram Insights | Fase 2: Meta Ads + GA4 -->
+  <script src="tracking.js" defer></script>
 
   <style>
     /* ==========================================================================
@@ -179,6 +183,11 @@
     .v-poster {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; object-position: center; z-index: 1;
+      display: block;
+    }
+    .v-poster img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
     }
 
     /* vídeo — começa em opacity 0, vira 1 ao carregar */
@@ -1281,12 +1290,12 @@
   <nav class="full-menu" id="full-menu" aria-hidden="true">
     <div class="menu-nav">
       <a href="#hero" class="menu-link is-active" style="transition-delay: 0.1s">Início</a>
-      <a href="#projetos" class="menu-link" style="transition-delay: 0.15s">Projetos</a>
-      <a href="#experiencia" class="menu-link" style="transition-delay: 0.20s">Experiência</a>
-      <a href="#aplicacoes" class="menu-link" style="transition-delay: 0.25s">Aplicações</a>
-      <a href="#nosso-time" class="menu-link" style="transition-delay: 0.30s">Nosso Time</a>
+      <a href="#projetos" class="menu-link" style="transition-delay: 0.15s">Marketplaces</a>
+      <a href="#experiencia" class="menu-link" style="transition-delay: 0.20s">Materiais</a>
+      <a href="#aplicacoes" class="menu-link" style="transition-delay: 0.25s">Produtos</a>
+      <a href="#nosso-time" class="menu-link" style="transition-delay: 0.30s">Por que a gente?</a>
       <a href="#faq" class="menu-link" style="transition-delay: 0.35s">FAQ</a>
-      <a href="#orcamento" class="menu-link" style="transition-delay: 0.40s">Orçamento</a>
+      <a href="#orcamento" class="menu-link" style="transition-delay: 0.40s">Comprar</a>
     </div>
     <div class="menu-footer">
       <a href="tel:+5541984998106">+55 (41) 98499-8106</a>
@@ -1307,7 +1316,7 @@
         <div class="sdot" data-dot="4"></div>
         <div class="sdot" data-dot="5"></div>
         <div class="sdot" data-dot="6"></div>
-        <span class="side-lbl">Visual Impact</span>
+        <span class="side-lbl">Rabisko Laser</span>
       </div>
 
       <!-- BARRA PROGRESSO (Persistent over all folds) -->
@@ -1320,9 +1329,12 @@
 
         <!-- VÍDEO FULL-BLEED -->
         <div class="v-wrap" aria-hidden="true" data-hero-media>
-          <img class="v-poster" id="poster" src="./IMGS/image.jpg" alt="" role="presentation" />
-          <video id="vid" src="./IMGS/video2.mp4"
-                 preload="auto" muted playsinline poster="./IMGS/image.jpg"
+          <picture class="v-poster" id="poster">
+            <source srcset="./IMGS/frame2.jpg" media="(max-width: 768px)">
+            <img src="./IMGS/frame1.jpg" alt="" role="presentation" />
+          </picture>
+          <video id="vid" src="./IMGS/video.mp4"
+                 preload="auto" muted playsinline poster="./IMGS/frame1.jpg"
                  aria-hidden="true"></video>
         </div>
 
@@ -1337,26 +1349,25 @@
           <div class="hero-col" data-scroll-title data-hero-title>
 
             <div class="scroll-out">
-              <p class="eyebrow" aria-hidden="true">FACHADAS EM ACM • LETRA CAIXA • COMUNICAÇÃO VISUAL</p>
+              <p class="eyebrow" aria-hidden="true">SHOPEE • TIKTOK SHOP • MERCADO LIVRE</p>
             </div>
 
             <h1 class="headline">
-              <span class="hl-line scroll-out"><span class="hl-in" id="h1">Fachadas que fazem</span></span>
-              <span class="hl-line scroll-out"><span class="hl-in" id="h2">sua marca</span></span>
-              <span class="hl-line scroll-out"><span class="hl-in" id="h3"><span class="accent-word">ser vista,</span></span></span>
-              <span class="hl-line scroll-out"><span class="hl-in" id="h4">lembrada e escolhida.</span></span>
+              <span class="hl-line scroll-out"><span class="hl-in" id="h1">Feito com</span></span>
+              <span class="hl-line scroll-out"><span class="hl-in" id="h2">laser. Feito</span></span>
+              <span class="hl-line scroll-out"><span class="hl-in" id="h3"><span class="accent-word">pra você.</span></span></span>
             </h1>
 
             <div class="scroll-out">
               <p class="tagline">
-                Projetos em ACM, letra caixa, lonas, adesivos e comunicação visual sob medida para empresas que querem transmitir mais presença, confiança e profissionalismo desde o primeiro olhar.
+                Produtos personalizados em MDF, acrílico e muito mais — gravados e cortados a laser com precisão milimétrica. Presenteie, decore e marque presença.
               </p>
             </div>
 
             <div class="scroll-out">
               <div class="hero-cta-left">
-                <a href="#orcamento" class="btn btn-p">
-                  Receber estudo gratuito da minha fachada
+                <a href="https://wa.me/5541984998106?text=Ol%C3%A1%2C+vim+pelo+site+da+Rabisko+Laser!" target="_blank" class="btn btn-p">
+                  Pedir pelo WhatsApp
                   <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                     <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
@@ -1366,9 +1377,8 @@
 
             <div class="scroll-out" style="margin-top: auto; display: flex; width: 100%;">
               <div class="hero-foot-l" style="margin-top: 0; width: 100%;" aria-hidden="true">
-                <span class="foot-lbl">01 / Início</span>
+                <span class="foot-lbl">01 / Rabisko Laser</span>
                 <span class="foot-rule"></span>
-                <span class="foot-lbl">A primeira impressão da sua empresa não pode parecer improvisada.</span>
               </div>
             </div>
 
@@ -1379,78 +1389,77 @@
         <div class="base-line" aria-hidden="true"></div>
 
       </section>
-
       <!-- ============ TERCEIRA DOBRA (PROJETOS) ============ -->
       <section class="third-fold" id="projetos" data-third-fold aria-label="Portfólio de projetos Rabisko">
         
         <!-- Palavra decorativa de fundo -->
-        <span class="sf-bg-word" aria-hidden="true">WORK</span>
+        <span class="sf-bg-word" aria-hidden="true">LASER</span>
 
         <div class="pj-inner">
 
           <!-- Kicker -->
-          <span class="sf-kicker" data-third-kicker>Portfólio</span>
+          <span class="sf-kicker" data-third-kicker>Onde Comprar</span>
 
           <!-- Título -->
           <h2 class="sf-title" data-third-title>
-            Grandes marcas, presença <span class="accent-word">gigante.</span>
+            Encontre a Rabisko nos principais <span class="accent-word">marketplaces.</span>
           </h2>
 
           <!-- Texto de apoio -->
           <p class="sf-body" data-third-text>
-            Estruturas monumentais que traduzem a força da sua marca no mundo físico. Projetos sob medida desenvolvidos com precisão cirúrgica e acabamento de altíssimo padrão para marcas que lideram.
+            Compre com segurança e praticidade nas plataformas que você já usa. Avaliações reais, entrega rápida e suporte direto da nossa equipe.
           </p>
 
-          <!-- Grid de Projetos -->
+          <!-- Grid de Marketplaces -->
           <div class="pj-grid" data-third-grid>
 
-            <div class="pj-card" data-third-card>
-              <div class="pj-card-img-wrap">
-                <img src="./IMGS/fachada_winners.jpg" alt="Fachada ACM Matte" />
+            <a class="pj-card" data-third-card href="https://shopee.com.br/rabiskodesign" target="_blank" rel="noopener">
+              <div class="pj-card-img-wrap" style="background: linear-gradient(135deg, #ee4d2d 0%, #ff7337 100%); display:flex; align-items:center; justify-content:center;">
+                <svg viewBox="0 0 80 80" fill="none" style="width:56px;height:56px;" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.12)"/><path d="M20 52c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v2H20v-2z" fill="white"/><path d="M26 32c0-7.7 6.3-14 14-14s14 6.3 14 14" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/><rect x="20" y="34" width="40" height="18" rx="3" fill="white" fill-opacity="0.9"/><path d="M33 43c0-3.9 3.1-7 7-7s7 3.1 7 7-3.1 7-7 7-7-3.1-7-7z" fill="#ee4d2d"/></svg>
                 <div class="pj-card-overlay"></div>
               </div>
               <div class="pj-card-body">
-                <span class="pj-card-cat">ACM & Revestimentos</span>
-                <h3 class="pj-card-title">Fachada ACM Matte — Winners</h3>
-                <p class="pj-card-text">Design minimalista e acabamento impecável em ACM preto fosco com iluminação de LED projetada.</p>
+                <span class="pj-card-cat">Shopee</span>
+                <h3 class="pj-card-title">Rabisko Laser na Shopee</h3>
+                <p class="pj-card-text">Frete grátis, cupons exclusivos e entrega rápida. Nossa loja mais completa com centenas de avaliações positivas.</p>
               </div>
-            </div>
+            </a>
 
-            <div class="pj-card" data-third-card>
-              <div class="pj-card-img-wrap">
-                <img src="./IMGS/frota_morada.png" alt="Envelopamento de Frota ME. Morada" />
+            <a class="pj-card" data-third-card href="https://www.mercadolivre.com.br/perfil/RABISKO+LASER" target="_blank" rel="noopener">
+              <div class="pj-card-img-wrap" style="background: linear-gradient(135deg, #ffe600 0%, #f5c400 100%); display:flex; align-items:center; justify-content:center;">
+                <svg viewBox="0 0 80 80" fill="none" style="width:56px;height:56px;" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="rgba(0,0,0,0.08)"/><path d="M18 40c0-12.2 9.8-22 22-22s22 9.8 22 22-9.8 22-22 22S18 52.2 18 40z" fill="#2d3277"/><path d="M28 36l12 8 12-8" stroke="#ffe600" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 40l12 8 12-8" stroke="#ffe600" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/></svg>
                 <div class="pj-card-overlay"></div>
               </div>
               <div class="pj-card-body">
-                <span class="pj-card-cat">Adesivagem Premium</span>
-                <h3 class="pj-card-title">Frota Corporativa ME. Morada</h3>
-                <p class="pj-card-text">Envelopamento completo de frota com adesivos de alta performance e proteção UV para máxima durabilidade.</p>
+                <span class="pj-card-cat">Mercado Livre</span>
+                <h3 class="pj-card-title">Rabisko Laser no ML</h3>
+                <p class="pj-card-text">Reputação MercadoLíder, proteção total na compra e parcelamento sem juros no cartão.</p>
               </div>
-            </div>
+            </a>
 
-            <div class="pj-card" data-third-card>
-              <div class="pj-card-img-wrap">
-                <img src="./IMGS/lona_evento.jpg" alt="Mega Lona Sunset Festival" />
+            <a class="pj-card" data-third-card href="https://www.tiktok.com/@rabiskolaser" target="_blank" rel="noopener">
+              <div class="pj-card-img-wrap" style="background: linear-gradient(135deg, #010101 0%, #1a1a2e 100%); display:flex; align-items:center; justify-content:center;">
+                <svg viewBox="0 0 80 80" fill="none" style="width:56px;height:56px;" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.06)"/><path d="M50 28c2.4 2.5 5.8 4 9.5 4v8c-3.5 0-6.7-1.1-9.3-3v14c0 7.7-6.3 14-14 14S22 58.7 22 51s6.3-14 14-14c.9 0 1.7.1 2.5.2v8.3c-.8-.3-1.6-.5-2.5-.5-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6V20h8v8z" fill="white"/></svg>
                 <div class="pj-card-overlay"></div>
               </div>
               <div class="pj-card-body">
-                <span class="pj-card-cat">Lonas & Estruturas</span>
-                <h3 class="pj-card-title">Sunset Festival 150m²</h3>
-                <p class="pj-card-text">Impressão e estruturação tensionada de grandes dimensões com cores vivas e alta resistência mecânica.</p>
+                <span class="pj-card-cat">TikTok Shop</span>
+                <h3 class="pj-card-title">Rabisko Laser no TikTok</h3>
+                <p class="pj-card-text">Assista aos produtos sendo feitos ao vivo e compre direto pelo TikTok. Promoções exclusivas da live.</p>
               </div>
-            </div>
+            </a>
 
           </div><!-- /.pj-grid -->
 
-          <!-- Rodapé de Projetos -->
+          <!-- Rodapé de Marketplaces -->
           <div class="sf-footer" style="margin-top: clamp(2rem, 4vh, 3rem); display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 2rem;">
-            <a href="#orcamento" class="btn btn-p beam-button" data-third-cta style="padding: 1.1rem 2.5rem; font-size: 0.76rem;">
-              Solicitar projeto sob medida
+            <a href="https://wa.me/5541984998106?text=Ol%C3%A1%2C+vim+pelo+site+e+quero+um+produto+personalizado!" target="_blank" class="btn btn-p beam-button" data-third-cta style="padding: 1.1rem 2.5rem; font-size: 0.76rem;">
+              Pedido personalizado via WhatsApp
               <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="width: 14px; height: 14px; transition: transform .3s var(--ease);">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </a>
-            <p class="sf-microcopy" data-third-microcopy aria-hidden="true">Portfólio Premium • Fidelidade de Cores • Engenharia de Estruturas</p>
+            <p class="sf-microcopy" data-third-microcopy aria-hidden="true">Shopee • Mercado Livre • TikTok Shop • WhatsApp</p>
           </div>
 
         </div><!-- /.pj-inner -->
@@ -1460,54 +1469,54 @@
       <section class="new-fold" id="experiencia" data-new-fold aria-label="Tecnologia e Engenharia Visual">
         
         <!-- Palavra decorativa de fundo -->
-        <span class="resume-bg-word" aria-hidden="true">resume</span>
+        <span class="resume-bg-word" aria-hidden="true">laser</span>
 
         <div class="resume-inner">
           <div class="resume-grid">
             
-            <!-- Coluna 1: Tecnologia & Precisão -->
+            <!-- Coluna 1: MDF & Madeira -->
             <div class="resume-card" data-new-card>
-              <h2 class="resume-title" data-new-title-1>Tecnologia & Precisão</h2>
+              <h2 class="resume-title" data-new-title-1>MDF & Madeira</h2>
               <div class="resume-blocks">
                 
                 <div class="resume-block">
-                  <span class="resume-cat">Acabamento High-End</span>
-                  <span class="resume-sub">Fidelidade absoluta de cores e texturas</span>
-                  <span class="resume-date">Padrão Industrial Rabisko</span>
-                  <p class="resume-desc">Utilizamos tintas com proteção UV e substratos selecionados para garantir que sua comunicação externa resista ao sol, à chuva e ao tempo sem perder a vivacidade e o brilho original.</p>
+                  <span class="resume-cat">Corte e Gravação a Laser</span>
+                  <span class="resume-sub">Precisão milimétrica em cada peça</span>
+                  <span class="resume-date">Padrão Rabisko Laser</span>
+                  <p class="resume-desc">Trabalhamos com MDF de alta qualidade, realizando cortes precisos e gravações detalhadas que transformam sua ideia em produto. Porta-retratos, letras 3D, painéis decorativos, caixas e muito mais.</p>
                 </div>
 
                 <hr class="resume-divider" />
 
                 <div class="resume-block">
-                  <span class="resume-cat">Engenharia Visual</span>
-                  <span class="resume-sub">Projetos estruturais calculados sob medida</span>
-                  <span class="resume-date">Segurança & Durabilidade</span>
-                  <p class="resume-desc">De painéis gigantes em ACM a mega lonas tensionadas: calculamos a resistência mecânica e de ventos de cada estrutura, garantindo instalações físicas 100% seguras e duráveis.</p>
+                  <span class="resume-cat">Decoração & Presentes</span>
+                  <span class="resume-sub">Produtos únicos para cada momento especial</span>
+                  <span class="resume-date">Personalização Total</span>
+                  <p class="resume-desc">Seja para presentear, decorar a casa ou marcar um evento especial, cada peça é produzida com cuidado e personalizada com seu nome, foto ou mensagem.</p>
                 </div>
 
               </div>
             </div>
 
-            <!-- Coluna 2: Impacto & Presença -->
+            <!-- Coluna 2: Acrílico & Outros Materiais -->
             <div class="resume-card" data-new-card>
-              <h2 class="resume-title" data-new-title-2>Impacto & Presença</h2>
+              <h2 class="resume-title" data-new-title-2>Acrílico & Mais</h2>
               <div class="resume-blocks">
                 
                 <div class="resume-block">
-                  <span class="resume-cat">Fachadas & Revestimentos</span>
-                  <span class="resume-sub">Sua marca com autoridade imediata na rua</span>
-                  <span class="resume-date">ACM, Letra Caixa & LED</span>
-                  <p class="resume-desc">Transformamos a fachada de lojas, concessionárias e indústrias em pontos de referência urbana, unindo ACM matte, recortes computadorizados e projetos luminotécnicos de alto padrão.</p>
+                  <span class="resume-cat">Acrílico Cristal & Colorido</span>
+                  <span class="resume-sub">Brilho e modernidade para qualquer ambiente</span>
+                  <span class="resume-date">Alta Durabilidade</span>
+                  <p class="resume-desc">Placas, letreiros, porta-nomes, espelhos decorativos e acessórios em acrílico com corte a laser de alta precisão. Material leve, resistente e com acabamento premium.</p>
                 </div>
 
                 <hr class="resume-divider" />
 
                 <div class="resume-block">
-                  <span class="resume-cat">Adesivagem & Frotas</span>
-                  <span class="resume-sub">Presença móvel e vitrines de alta conversão</span>
-                  <span class="resume-date">Envelopamento Premium</span>
-                  <p class="resume-desc">Adesivagem corporativa de veículos, frotas e vitrines de lojas com acabamento cirúrgico e película protetora premium. Menos bolhas, mais durabilidade e máximo retorno visual.</p>
+                  <span class="resume-cat">Brindes & Corporativo</span>
+                  <span class="resume-sub">Sua marca em cada detalhe</span>
+                  <span class="resume-date">Pedidos por Atacado</span>
+                  <p class="resume-desc">Produção de brindes personalizados para empresas, eventos, casamentos e datas comemorativas. Solicite cotação para pedidos em quantidade diretamente pelo WhatsApp.</p>
                 </div>
 
               </div>
@@ -1515,16 +1524,16 @@
 
           </div><!-- /.resume-grid -->
 
-          <!-- Rodapé de Experiência / CTA -->
+          <!-- Rodapé de Materiais / CTA -->
           <div class="resume-footer" data-new-footer style="margin-top: clamp(2rem, 4vh, 3rem); display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 2rem; flex-wrap: wrap;">
-            <a href="#orcamento" class="btn btn-p beam-button" style="padding: 1.1rem 2.5rem; font-size: 0.76rem; color: #fff;">
-              Iniciar meu projeto visual
+            <a href="https://wa.me/5541984998106?text=Ol%C3%A1%2C+quero+um+or%C3%A7amento+para+produto+personalizado!" target="_blank" class="btn btn-p beam-button" style="padding: 1.1rem 2.5rem; font-size: 0.76rem; color: #fff;">
+              Pedir orçamento pelo WhatsApp
               <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="width: 14px; height: 14px; transition: transform .3s var(--ease);">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </a>
             <p class="resume-microcopy" aria-hidden="true" style="font-size: .6rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(28, 28, 28, 0.4); transition: color 0.4s var(--ease);">
-              Grandes Formatos • Impacto Urbano • Instalação Segura
+              MDF • Acrílico • Personalizado • Corte a Laser
             </p>
           </div>
 
@@ -1535,7 +1544,7 @@
       <section class="second-fold" id="aplicacoes" data-second-fold aria-label="Aplicações em grande formato">
 
         <!-- Palavra decorativa de fundo -->
-        <span class="sf-bg-word" aria-hidden="true">VISUAL</span>
+        <span class="sf-bg-word" aria-hidden="true">CUSTOM</span>
 
         <div class="sf-inner">
 
@@ -1633,89 +1642,89 @@
 
         <div class="team-inner">
           <div class="team-header-container">
-            <span class="team-breadcrumb">Início / Nosso Time</span>
-            <h2 class="team-title">Conheça <span class="mil-thin">Nosso</span> Time Criativo</h2>
+            <span class="team-breadcrumb">Início / Nossa Equipe</span>
+            <h2 class="team-title">Feito com <span class="mil-thin">amor</span> e precisão laser</h2>
           </div>
 
           <div class="team-grid">
             
             <div class="team-card">
-              <div class="team-img-wrap">
-                <img src="./IMGS/team_1.png" alt="Ana Silva" loading="lazy" />
+              <div class="team-img-wrap" style="background: linear-gradient(135deg,#1a1a1a,#2d0a1a); display:flex; align-items:center; justify-content:center;">
+                <svg viewBox="0 0 80 80" fill="none" style="width:44px;height:44px" aria-hidden="true"><rect x="10" y="30" width="60" height="35" rx="4" fill="#c81d56" opacity="0.15"/><path d="M25 48c0-8.3 6.7-15 15-15s15 6.7 15 15" stroke="#c81d56" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="40" cy="28" r="8" stroke="#c81d56" stroke-width="2.5" fill="none"/></svg>
               </div>
               <div class="team-info">
-                <h3 class="team-name">Ana Silva</h3>
-                <span class="team-role">Diretora de Arte</span>
+                <h3 class="team-name">+3.000 clientes</h3>
+                <span class="team-role">em todo o Brasil</span>
               </div>
             </div>
 
             <div class="team-card">
-              <div class="team-img-wrap">
-                <img src="./IMGS/team_2.png" alt="Carlos Souza" loading="lazy" />
+              <div class="team-img-wrap" style="background: linear-gradient(135deg,#1a1a1a,#0a1a2d); display:flex; align-items:center; justify-content:center;">
+                <svg viewBox="0 0 80 80" fill="none" style="width:44px;height:44px" aria-hidden="true"><polygon points="40,10 50,30 72,33 56,49 60,71 40,60 20,71 24,49 8,33 30,30" stroke="#c81d56" stroke-width="2.5" fill="none"/></svg>
               </div>
               <div class="team-info">
-                <h3 class="team-name">Carlos Souza</h3>
-                <span class="team-role">Engenheiro Visual</span>
+                <h3 class="team-name">4.9★ de avaliação</h3>
+                <span class="team-role">média nos marketplaces</span>
               </div>
             </div>
 
             <div class="team-card">
-              <div class="team-img-wrap">
-                <img src="./IMGS/team_3.png" alt="Mariana Costa" loading="lazy" />
+              <div class="team-img-wrap" style="background: linear-gradient(135deg,#1a1a1a,#1a2d0a); display:flex; align-items:center; justify-content:center;">
+                <svg viewBox="0 0 80 80" fill="none" style="width:44px;height:44px" aria-hidden="true"><rect x="15" y="20" width="50" height="40" rx="5" stroke="#c81d56" stroke-width="2.5" fill="none"/><path d="M25 35h30M25 45h20" stroke="#c81d56" stroke-width="2" stroke-linecap="round"/></svg>
               </div>
               <div class="team-info">
-                <h3 class="team-name">Mariana Costa</h3>
-                <span class="team-role">Design Especialista</span>
+                <h3 class="team-name">100% personalizado</h3>
+                <span class="team-role">cada peça é única</span>
               </div>
             </div>
 
             <div class="team-card">
-              <div class="team-img-wrap">
-                <img src="./IMGS/team_4.png" alt="Juliana Lins" loading="lazy" />
+              <div class="team-img-wrap" style="background: linear-gradient(135deg,#1a1a1a,#2d1a0a); display:flex; align-items:center; justify-content:center;">
+                <svg viewBox="0 0 80 80" fill="none" style="width:44px;height:44px" aria-hidden="true"><path d="M40 15 L55 50 L25 50 Z" stroke="#c81d56" stroke-width="2.5" fill="none"/><circle cx="40" cy="60" r="6" stroke="#c81d56" stroke-width="2.5" fill="none"/><path d="M34 58 L28 52" stroke="#c81d56" stroke-width="2" stroke-linecap="round"/><path d="M46 58 L52 52" stroke="#c81d56" stroke-width="2" stroke-linecap="round"/></svg>
               </div>
               <div class="team-info">
-                <h3 class="team-name">Juliana Lins</h3>
-                <span class="team-role">Atendimento</span>
+                <h3 class="team-name">Corte a laser</h3>
+                <span class="team-role">precisão milimétrica</span>
               </div>
             </div>
 
             <div class="team-card">
-              <div class="team-img-wrap">
-                <img src="./IMGS/team_5.png" alt="Ricardo Santos" loading="lazy" />
+              <div class="team-img-wrap" style="background: linear-gradient(135deg,#1a1a1a,#0a2d2d); display:flex; align-items:center; justify-content:center;">
+                <svg viewBox="0 0 80 80" fill="none" style="width:44px;height:44px" aria-hidden="true"><path d="M20 60 L40 20 L60 60" stroke="#c81d56" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 48 h24" stroke="#c81d56" stroke-width="2" stroke-linecap="round"/></svg>
               </div>
               <div class="team-info">
-                <h3 class="team-name">Ricardo Santos</h3>
-                <span class="team-role">Diretor de Operações</span>
+                <h3 class="team-name">Entrega rápida</h3>
+                <span class="team-role">para todo o Brasil</span>
               </div>
             </div>
 
             <div class="team-card">
-              <div class="team-img-wrap">
-                <img src="./IMGS/team_6.png" alt="Lucas Oliveira" loading="lazy" />
+              <div class="team-img-wrap" style="background: linear-gradient(135deg,#1a1a1a,#2d0a2d); display:flex; align-items:center; justify-content:center;">
+                <svg viewBox="0 0 80 80" fill="none" style="width:44px;height:44px" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" transform="translate(18,16) scale(1.6)" stroke="#c81d56" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
               <div class="team-info">
-                <h3 class="team-name">Lucas Oliveira</h3>
-                <span class="team-role">Especialista em ACM</span>
+                <h3 class="team-name">Suporte pelo WhatsApp</h3>
+                <span class="team-role">atendimento humanizado</span>
               </div>
             </div>
 
             <div class="team-card">
-              <div class="team-img-wrap">
-                <img src="./IMGS/team_7.png" alt="Beatriz Ramos" loading="lazy" />
+              <div class="team-img-wrap" style="background: linear-gradient(135deg,#1a1a1a,#2d2d0a); display:flex; align-items:center; justify-content:center;">
+                <svg viewBox="0 0 80 80" fill="none" style="width:44px;height:44px" aria-hidden="true"><rect x="12" y="18" width="56" height="44" rx="4" stroke="#c81d56" stroke-width="2.5" fill="none"/><path d="M12 30 L40 48 L68 30" stroke="#c81d56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
               <div class="team-info">
-                <h3 class="team-name">Beatriz Ramos</h3>
-                <span class="team-role">Planejamento</span>
+                <h3 class="team-name">Envio de arte grátis</h3>
+                <span class="team-role">te ajudamos na personalização</span>
               </div>
             </div>
 
             <div class="team-card">
-              <div class="team-img-wrap">
-                <img src="./IMGS/team_dog.png" alt="Pipoca" loading="lazy" />
+              <div class="team-img-wrap" style="background: linear-gradient(135deg,#1a1a1a,#0a1a0a); display:flex; align-items:center; justify-content:center;">
+                <svg viewBox="0 0 80 80" fill="none" style="width:44px;height:44px" aria-hidden="true"><path d="M40 12 C20 12 10 30 10 40 C10 55 24 68 40 68 C56 68 70 55 70 40 C70 30 60 12 40 12Z" stroke="#c81d56" stroke-width="2.5" fill="none"/><path d="M28 40 L37 49 L52 33" stroke="#c81d56" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
               <div class="team-info">
-                <h3 class="team-name">Pipoca</h3>
-                <span class="team-role">Diretor de Felicidade</span>
+                <h3 class="team-name">Compra garantida</h3>
+                <span class="team-role">proteção total nos marketplaces</span>
               </div>
             </div>
 
@@ -1736,11 +1745,11 @@
               <span class="faq-breadcrumb">Dúvidas</span>
               <h2 class="faq-title">Perguntas <br><span class="mil-thin">Frequentes</span></h2>
               <p class="faq-text">
-                Encontre respostas rápidas para as principais dúvidas sobre prazos de entrega, processos de montagem, materiais e garantias estruturais.
+                Tire suas dúvidas sobre personalização, prazos, envio de arte, formas de pagamento e muito mais.
               </p>
               <div class="faq-cta-box">
-                <a href="#orcamento" class="btn btn-p beam-button">
-                  Falar com especialista
+                <a href="https://wa.me/5541984998106?text=Ol%C3%A1%2C+tenho+d%C3%BAvidas+sobre+os+produtos!" target="_blank" class="btn btn-p beam-button">
+                  Tirar dúvida pelo WhatsApp
                   <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                     <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
@@ -1753,51 +1762,51 @@
               
               <details class="faq-item">
                 <summary class="faq-question">
-                  Qual é o prazo médio de produção dos projetos?
+                  Como funciona a personalização dos produtos?
                   <span class="faq-icon"></span>
                 </summary>
                 <div class="faq-answer">
-                  <p>O prazo médio de produção varia entre 5 a 10 dias úteis após a aprovação final do layout e especificação técnica, dependendo da complexidade estrutural e dimensões do projeto.</p>
+                  <p>Após a compra, você nos envia o nome, foto ou texto desejado via WhatsApp ou pelo chat da plataforma. Nossa equipe cria a arte e envia para sua aprovação antes de produzir. Simples assim!</p>
                 </div>
               </details>
 
               <details class="faq-item">
                 <summary class="faq-question">
-                  Vocês realizam a instalação física no local?
+                  Qual o prazo de produção e entrega?
                   <span class="faq-icon"></span>
                 </summary>
                 <div class="faq-answer">
-                  <p>Sim, dispomos de uma equipe própria de engenharia e instalação altamente qualificada para realizar a montagem física de fachadas, painéis de ACM e mega lonas com total segurança e conformidade técnica.</p>
+                  <p>O prazo de produção é de 3 a 5 dias úteis após a aprovação da arte. O prazo de entrega varia conforme sua região, mas geralmente entre 5 e 15 dias úteis via transportadora ou Correios.</p>
                 </div>
               </details>
 
               <details class="faq-item">
                 <summary class="faq-question">
-                  Quais materiais são utilizados para garantir a durabilidade externa?
+                  Posso pedir em quantidade (atacado/brindes)?
                   <span class="faq-icon"></span>
                 </summary>
                 <div class="faq-answer">
-                  <p>Trabalhamos com ACM (Alumínio Composto) de alta densidade, chapas galvanizadas, lonas tensionadas de alta resistência mecânica e tintas com aditivos de proteção UV para garantir resistência máxima ao sol e à chuva.</p>
+                  <p>Sim! Atendemos pedidos corporativos, kits para eventos, casamentos e brindes em quantidade. Entre em contato pelo WhatsApp para receber uma proposta personalizada com descontos por volume.</p>
                 </div>
               </details>
 
               <details class="faq-item">
                 <summary class="faq-question">
-                  É possível solicitar um projeto com dimensões personalizadas?
+                  Os produtos têm garantia?
                   <span class="faq-icon"></span>
                 </summary>
                 <div class="faq-answer">
-                  <p>Com certeza. Todos os nossos projetos são desenvolvidos sob medida (tailor-made) de acordo com a arquitetura física da sua empresa e os objetivos de impacto visual da sua marca.</p>
+                  <p>Sim, todos os nossos produtos têm garantia contra defeitos de fabricação. Em caso de danos no transporte ou produto com problema, realizamos a reposição ou reembolso conforme a política da plataforma.</p>
                 </div>
               </details>
 
               <details class="faq-item">
                 <summary class="faq-question">
-                  Vocês dão garantia técnica para fachadas e ACM?
+                  Vocês aceitam encomendas com arte própria do cliente?
                   <span class="faq-icon"></span>
                 </summary>
                 <div class="faq-answer">
-                  <p>Sim, oferecemos garantia estrutural de até 2 anos para fachadas em ACM e acabamentos metálicos, assegurando a integridade e fixação contra fatores climáticos normais.</p>
+                  <p>Com certeza! Você pode enviar sua própria arte em formato vetorial (AI, CDR, PDF) ou imagem em alta resolução. Nossa equipe avalia e, se necessário, ajusta para o corte a laser sem custo adicional.</p>
                 </div>
               </details>
 
@@ -1819,89 +1828,86 @@
             <!-- Coluna da Esquerda: Info -->
             <div class="contact-info" data-fourth-info>
               <!-- Kicker -->
-              <span class="sf-kicker" data-fourth-kicker>Orçamento</span>
+              <span class="sf-kicker" data-fourth-kicker>Fale com a gente</span>
 
               <!-- Título -->
               <h2 class="sf-title" data-fourth-title>
-                Inicie seu projeto <span class="accent-word">gigante.</span>
+                Sua ideia vira <span class="accent-word">realidade.</span>
               </h2>
 
               <p class="sf-body" style="border-left: 2px solid var(--accent); padding-left: 1rem; color: var(--text-sub); margin-bottom: 2rem;">
-                Fale com nossos especialistas em grandes formatos e receba um atendimento consultivo completo, desde a especificação técnica até o planejamento da instalação física.
+                Quer um produto personalizado, tem dúvidas sobre a compra ou quer fazer um pedido especial? Nossa equipe está pronta para te atender pelo WhatsApp, e-mail ou em uma das nossas plataformas.
               </p>
 
               <div class="contact-details">
                 
-                <a href="https://wa.me/5541984998106" target="_blank" class="contact-item">
+                <a href="https://wa.me/5541984998106?text=Ol%C3%A1%2C+vim+pelo+site+e+quero+fazer+um+pedido!" target="_blank" class="contact-item">
                   <div class="contact-item-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                     </svg>
                   </div>
                   <div class="contact-item-text">
-                    <span>WhatsApp Comercial</span>
+                    <span>WhatsApp — Atendimento</span>
                     +55 (41) 98499-8106
                   </div>
                 </a>
 
-                <a href="mailto:orcamento@rabisko.com.br" class="contact-item">
+                <a href="https://shopee.com.br/rabiskodesign" target="_blank" class="contact-item">
                   <div class="contact-item-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                      <polyline points="22,6 12,13 2,6"/>
+                      <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
                     </svg>
                   </div>
                   <div class="contact-item-text">
-                    <span>E-mail para Projetos</span>
-                    orcamento@rabisko.com.br
+                    <span>Loja na Shopee</span>
+                    shopee.com.br/rabiskodesign
                   </div>
                 </a>
 
-                <a href="https://www.google.com/maps/search/?api=1&query=R.+Gilberto+Nascimento%2C+680+-+Planta+Ara%C3%A7atuba%2C+Piraquara+-+PR%2C+83301-480" target="_blank" class="contact-item">
+                <a href="https://www.mercadolivre.com.br/perfil/RABISKO+LASER" target="_blank" class="contact-item">
                   <div class="contact-item-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                      <circle cx="12" cy="10" r="3"/>
+                      <circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/>
                     </svg>
                   </div>
                   <div class="contact-item-text">
-                    <span>Onde Estamos</span>
-                    R. Gilberto Nascimento, 680 - Planta Araçatuba, Piraquara - PR, 83301-480
+                    <span>Mercado Livre</span>
+                    Rabisko Laser no ML
                   </div>
                 </a>
 
               </div>
             </div>
 
-            <!-- Coluna da Direita: Form -->
-            <form class="contact-form" data-fourth-form action="#" method="POST" onsubmit="event.preventDefault(); alert('Solicitação enviada com sucesso!');">
-              <div class="input-group">
-                <input type="text" id="form-name" class="input-elegant" placeholder=" " required />
-                <label for="form-name">Nome Completo</label>
-              </div>
+            <!-- Coluna da Direita: Acesso Rápido Marketplaces -->
+            <div class="contact-form" data-fourth-form style="display:flex; flex-direction:column; gap:1.2rem;">
 
-              <div class="input-group">
-                <input type="email" id="form-email" class="input-elegant" placeholder=" " required />
-                <label for="form-email">E-mail Corporativo</label>
-              </div>
+              <a href="https://shopee.com.br/rabiskodesign" target="_blank" rel="noopener" class="btn" style="background:linear-gradient(90deg,#ee4d2d,#ff7337); color:#fff; width:100%; justify-content:center; font-size:0.78rem; padding:1.1rem 2rem; border-radius:8px; text-decoration:none; display:flex; align-items:center; gap:.75rem;">
+                <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2"/><path d="M16 10a4 4 0 01-8 0" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                Comprar na Shopee — Rabisko Laser
+                <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" style="width:13px;height:13px;margin-left:auto;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
 
-              <div class="input-group">
-                <input type="tel" id="form-phone" class="input-elegant" placeholder=" " required />
-                <label for="form-phone">WhatsApp / Telefone</label>
-              </div>
+              <a href="https://www.mercadolivre.com.br/perfil/RABISKO+LASER" target="_blank" rel="noopener" class="btn" style="background:linear-gradient(90deg,#ffe600,#f5c400); color:#1a1a1a; width:100%; justify-content:center; font-size:0.78rem; padding:1.1rem 2rem; border-radius:8px; text-decoration:none; display:flex; align-items:center; gap:.75rem;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Comprar no Mercado Livre
+                <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" style="width:13px;height:13px;margin-left:auto;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
 
-              <div class="input-group">
-                <input type="text" id="form-message" class="input-elegant" placeholder=" " required />
-                <label for="form-message">Breve descrição do projeto</label>
-              </div>
+              <a href="https://www.tiktok.com/@rabiskolaser" target="_blank" rel="noopener" class="btn" style="background:linear-gradient(90deg,#010101,#2d2d2d); color:#fff; width:100%; justify-content:center; font-size:0.78rem; padding:1.1rem 2rem; border-radius:8px; border:1px solid rgba(255,255,255,0.1); text-decoration:none; display:flex; align-items:center; gap:.75rem;">
+                <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.77 1.52V6.79a4.85 4.85 0 01-1-.1z"/></svg>
+                Comprar no TikTok Shop
+                <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" style="width:13px;height:13px;margin-left:auto;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
 
-              <button type="submit" class="btn btn-p beam-button" style="width: 100%; border: none; margin-top: .5rem; display: flex; justify-content: center; align-items: center; gap: .5rem;">
-                Enviar Solicitação
-                <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="width: 14px; height: 14px;">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-            </form>
+              <a href="https://wa.me/5541984998106?text=Ol%C3%A1%2C+quero+um+produto+personalizado!" target="_blank" rel="noopener" class="btn btn-s" style="width:100%; justify-content:center; font-size:0.78rem; padding:1.1rem 2rem; border-radius:8px; text-decoration:none; display:flex; align-items:center; gap:.75rem;">
+                <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Pedido Especial pelo WhatsApp
+                <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" style="width:13px;height:13px;margin-left:auto;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+
+            </div>
 
           </div>
         </div><!-- /.sf-inner -->
@@ -1961,17 +1967,31 @@ const dots   = document.querySelectorAll('.sdot');
 let videoReady = false;
 let lastProgress = -1;
 
-/* Quando metadados carregarem, vídeo está pronto */
+/* Força preload imediato */
+vid.load();
+
+/* Marcar vídeo como pronto — mostra-o e esconde poster */
 function markVideoReady() {
   if (videoReady) return;
   videoReady = true;
   vid.currentTime = 0;
-  vid.classList.add('rdy');          // opacity 0 → 1
+  vid.classList.add('rdy');
   if (poster) poster.style.opacity = '0';
 }
 
 vid.addEventListener('loadedmetadata', markVideoReady);
-vid.addEventListener('canplay', markVideoReady);
+vid.addEventListener('canplay',        markVideoReady);
+vid.addEventListener('canplaythrough', markVideoReady);
+
+/* Fallback: se em 3s ainda não disparou, força o ready */
+setTimeout(function() {
+  if (!videoReady && vid.readyState >= 1) markVideoReady();
+}, 3000);
+
+/* Log de erro para diagnóstico */
+vid.addEventListener('error', function(e) {
+  console.warn('[Hero Video] Erro ao carregar vídeo:', e, vid.error);
+});
 
 /* Atualiza currentTime do vídeo conforme progresso do scroll */
 function scrubVideo(progress) {
@@ -1981,13 +2001,23 @@ function scrubVideo(progress) {
 
   // Vídeo avança de 0.00 a 0.15 (conforme critérios de sucesso)
   const videoProgress = Math.min(progress / 0.15, 1.0);
-  vid.currentTime = videoProgress * vid.duration;
+  const targetTime = videoProgress * vid.duration;
+
+  /* Verifica se o ponto está bufferizado antes de saltar */
+  let canSeek = false;
+  for (let i = 0; i < vid.buffered.length; i++) {
+    if (vid.buffered.start(i) <= targetTime && targetTime <= vid.buffered.end(i)) {
+      canSeek = true;
+      break;
+    }
+  }
+  if (canSeek) vid.currentTime = targetTime;
 
   // Barra de progresso decorativa
   if (progFill) progFill.style.height = (progress * 100) + '%';
 
-
 }
+
 
 /* updateTitleByScroll — controlado pelo mesmo self.progress do vídeo */
 const titleScroll = document.querySelector('[data-scroll-title]');
