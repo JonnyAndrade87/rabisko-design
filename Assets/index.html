@@ -1366,15 +1366,12 @@
       <!-- ============ HERO SECTION ============ -->
       <section class="hero-section" id="hero" aria-label="Hero — Rabisko grandes formatos">
 
-        <!-- VÍDEO FULL-BLEED -->
+        <!-- IMAGEM HERO FULL-BLEED -->
         <div class="v-wrap" aria-hidden="true" data-hero-media>
           <picture class="v-poster" id="poster">
-            <source srcset="./IMGS/frame2.jpg" media="(max-width: 768px)">
-            <img src="./IMGS/frame1.jpg" alt="" role="presentation" />
+            <source srcset="./IMGS/hero_bg.png" media="(max-width: 768px)">
+            <img src="./IMGS/hero_bg.png" alt="Rabisko Laser — Cantinho do Café em Acrílico" role="presentation" />
           </picture>
-          <video id="vid" src="./IMGS/video.mp4"
-                 preload="auto" muted playsinline poster="./IMGS/frame1.jpg"
-                 aria-hidden="true"></video>
         </div>
 
         <!-- OVERLAYS -->
@@ -1999,65 +1996,62 @@ try {
 }
 
 /* ============================================================
-   VÍDEO — setup e scrubbing
+   HERO MEDIA & PROGRESS — setup e scrubbing
 ============================================================ */
-const vid    = document.getElementById('vid');
-const poster = document.getElementById('poster');
+const vid      = document.getElementById('vid');
+const poster   = document.getElementById('poster');
 const progFill = document.getElementById('prog-fill');
-const dots   = document.querySelectorAll('.sdot');
+const dots     = document.querySelectorAll('.sdot');
 
 let videoReady = false;
 let lastProgress = -1;
 
-/* Força preload imediato */
-vid.load();
+if (vid) {
+  /* Força preload imediato se houver vídeo */
+  vid.load();
 
-/* Marcar vídeo como pronto — mostra-o e esconde poster */
-function markVideoReady() {
-  if (videoReady) return;
-  videoReady = true;
-  vid.currentTime = 0;
-  vid.classList.add('rdy');
-  if (poster) poster.style.opacity = '0';
+  function markVideoReady() {
+    if (videoReady) return;
+    videoReady = true;
+    vid.currentTime = 0;
+    vid.classList.add('rdy');
+    if (poster) poster.style.opacity = '0';
+  }
+
+  vid.addEventListener('loadedmetadata', markVideoReady);
+  vid.addEventListener('canplay',        markVideoReady);
+  vid.addEventListener('canplaythrough', markVideoReady);
+
+  setTimeout(function() {
+    if (!videoReady && vid.readyState >= 1) markVideoReady();
+  }, 3000);
+
+  vid.addEventListener('error', function(e) {
+    console.warn('[Hero Video] Erro ao carregar vídeo:', e, vid.error);
+  });
 }
 
-vid.addEventListener('loadedmetadata', markVideoReady);
-vid.addEventListener('canplay',        markVideoReady);
-vid.addEventListener('canplaythrough', markVideoReady);
-
-/* Fallback: se em 3s ainda não disparou, força o ready */
-setTimeout(function() {
-  if (!videoReady && vid.readyState >= 1) markVideoReady();
-}, 3000);
-
-/* Log de erro para diagnóstico */
-vid.addEventListener('error', function(e) {
-  console.warn('[Hero Video] Erro ao carregar vídeo:', e, vid.error);
-});
-
-/* Atualiza currentTime do vídeo conforme progresso do scroll */
+/* Atualiza scrubbing e barra de progresso no scroll */
 function scrubVideo(progress) {
-  if (!videoReady || !vid.duration) return;
-  if (Math.abs(progress - lastProgress) < 0.0003) return;
-  lastProgress = progress;
+  if (vid && videoReady && vid.duration) {
+    if (Math.abs(progress - lastProgress) >= 0.0003) {
+      lastProgress = progress;
+      const videoProgress = Math.min(progress / 0.15, 1.0);
+      const targetTime = videoProgress * vid.duration;
 
-  // Vídeo avança de 0.00 a 0.15 (conforme critérios de sucesso)
-  const videoProgress = Math.min(progress / 0.15, 1.0);
-  const targetTime = videoProgress * vid.duration;
-
-  /* Verifica se o ponto está bufferizado antes de saltar */
-  let canSeek = false;
-  for (let i = 0; i < vid.buffered.length; i++) {
-    if (vid.buffered.start(i) <= targetTime && targetTime <= vid.buffered.end(i)) {
-      canSeek = true;
-      break;
+      let canSeek = false;
+      for (let i = 0; i < vid.buffered.length; i++) {
+        if (vid.buffered.start(i) <= targetTime && targetTime <= vid.buffered.end(i)) {
+          canSeek = true;
+          break;
+        }
+      }
+      if (canSeek) vid.currentTime = targetTime;
     }
   }
-  if (canSeek) vid.currentTime = targetTime;
 
   // Barra de progresso decorativa
   if (progFill) progFill.style.height = (progress * 100) + '%';
-
 }
 
 
