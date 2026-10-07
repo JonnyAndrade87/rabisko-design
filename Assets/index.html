@@ -1324,6 +1324,83 @@
       .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     }
 
+    /* ==========================================================================
+       MOBILE / TABLET (≤ 900px) — fluxo vertical nativo
+       O "palco fixo" com dobras empilhadas roda só no desktop. No celular cada
+       seção vira uma página normal: todo o conteúdo fica visível (nada cortado),
+       a rolagem é a nativa do aparelho e a barra do navegador não causa pulos.
+       ========================================================================== */
+    @media (max-width: 900px) {
+      /* Cabeçalho com fundo: o conteúdo não passa mais por baixo do logo */
+      .hdr {
+        background: rgba(13, 13, 13, .9);
+        -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, .06);
+        padding-top: .8rem; padding-bottom: .8rem;
+      }
+      .hdr-logo { height: 28px; }
+      .hdr-burger { width: 42px; height: 42px; }
+      /* Cabeçalho é sempre escuro no mobile: desliga a inversão das dobras claras */
+      body.light-hud .hdr-brand img { filter: none; }
+      body.light-hud .hdr-burger { background: rgba(255,255,255,.06); border-color: var(--border-mid); }
+      body.light-hud .hdr-burger span { background: #fff; }
+
+      /* Palco: sem altura gigante nem pin */
+      .scroll-experience { height: auto; }
+      .pinned-stage { height: auto; overflow: visible; }
+
+      .hero-section,
+      .second-fold,
+      .third-fold,
+      .new-fold,
+      .team-fold,
+      .faq-fold,
+      .fourth-fold {
+        position: relative;
+        inset: auto;
+        height: auto;
+        transform: none !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+      /* Hero ocupa a tela visível real (svh desconta a barra do navegador) */
+      .hero-section { height: 100vh; height: 100svh; min-height: 540px; }
+
+      /* Demais seções crescem conforme o conteúdo */
+      .second-fold,
+      .third-fold,
+      .new-fold,
+      .team-fold,
+      .faq-fold,
+      .fourth-fold {
+        min-height: 0;
+        overflow: hidden; /* só corta as palavras gigantes decorativas */
+        padding-top: 5.5rem;
+        padding-bottom: 4rem;
+      }
+      .faq-fold { padding-left: var(--pad-x); padding-right: var(--pad-x); }
+
+      /* Efeitos contínuos pesados desligados no celular (economia de bateria/GPU) */
+      .team-grain { display: none; }
+      .team-bg-geometry svg { animation: none; }
+
+      /* Avaliações: 2 colunas na largura toda + fotos coloridas (não existe hover no toque) */
+      .team-grid { grid-template-columns: repeat(2, 1fr); gap: .75rem; }
+      .team-card { max-width: none; }
+      .team-img-wrap img { filter: none; }
+
+      /* Botões de compra: quebram linha em vez de cortar o texto e o ícone */
+      .btn { white-space: normal; line-height: 1.35; }
+      .contact-form .btn {
+        justify-content: flex-start !important;
+        text-align: left;
+        padding: 1rem 1.15rem !important;
+        font-size: .72rem !important;
+        letter-spacing: .08em;
+      }
+      .contact-form .btn > svg { flex-shrink: 0; }
+    }
+
     /* reduced motion — remove transições */
     @media(prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
@@ -2061,11 +2138,17 @@
    CONFIGURAÇÃO — prefers-reduced-motion
 ============================================================ */
 const NO_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* ≤ 900px = celular/tablet: layout em fluxo vertical nativo (ver CSS "MOBILE / TABLET") */
+const MOBILE_MQ = '(max-width: 900px)';
+const isMobileView = () => window.matchMedia(MOBILE_MQ).matches;
 
 /* ============================================================
    GSAP — registra plugin
 ============================================================ */
 gsap.registerPlugin(ScrollTrigger);
+/* Ignora o resize causado pela barra do navegador mobile aparecendo/sumindo
+   (era isso que fazia a página "pular" e piscar no celular) */
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 /* ============================================================
    LENIS — smooth scroll
@@ -2074,6 +2157,9 @@ gsap.registerPlugin(ScrollTrigger);
 let lenis;
 
 try {
+  /* No celular a rolagem nativa é mais fluida que qualquer smooth scroll: Lenis só no desktop */
+  if (isMobileView()) throw new Error('mobile: rolagem nativa');
+
   lenis = new Lenis({
     duration: 0.9,
     easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -2090,8 +2176,8 @@ try {
   gsap.ticker.lagSmoothing(0);
 
 } catch (e) {
-  // Se Lenis falhar (CDN), continua sem smooth scroll
-  console.warn('Lenis não disponível, continuando sem smooth scroll.');
+  // Mobile ou Lenis indisponível (CDN): segue com a rolagem nativa
+  lenis = null;
 }
 
 /* ============================================================
@@ -2178,7 +2264,11 @@ const cachedMenuLinks = document.querySelectorAll('.menu-link');
 let lastActiveDot = -1;
 let lastLightHUD = null;
 
-if (!NO_MOTION) {
+/* Palco fixo com dobras empilhadas: só no desktop. O gsap.matchMedia desfaz
+   automaticamente todos os sets/tweens/pins se a tela cair para ≤ 900px. */
+const mm = gsap.matchMedia();
+
+mm.add('(min-width: 901px) and (prefers-reduced-motion: no-preference)', () => {
 
   /* 1. Estados iniciais garantidos via gsap.set() ANTES da timeline */
   gsap.set('[data-third-fold]', { yPercent: 100, autoAlpha: 1 });
@@ -2523,7 +2613,41 @@ if (!NO_MOTION) {
      garantindo sincronia direta de 1:1 entre scroll progress (0 a 1) e tempo da timeline (0 a 1). */
   scrollTl.to({}, { duration: 0.03 }, 0.97);
 
-}
+  /* Limpeza ao sair do desktop */
+  return () => {
+    document.body.classList.remove('light-hud');
+    lastActiveDot = -1;
+    lastLightHUD = null;
+  };
+});
+
+/* ============================================================
+   MOBILE — entradas leves por seção (rolagem nativa, sem pin)
+   Cada bloco aparece uma única vez quando entra na tela.
+============================================================ */
+mm.add('(max-width: 900px) and (prefers-reduced-motion: no-preference)', () => {
+  const revealTargets = gsap.utils.toArray([
+    '[data-third-kicker]', '[data-third-title]', '[data-third-text]', '[data-third-card]', '[data-third-cta]',
+    '[data-new-card]', '[data-new-footer]',
+    '[data-second-kicker]', '[data-second-title]', '[data-second-text]', '[data-second-card]', '[data-second-cta]',
+    '.team-breadcrumb', '.team-title', '.team-card',
+    '.faq-breadcrumb', '.faq-title', '.faq-text', '.faq-cta-box', '.faq-item',
+    '[data-fourth-kicker]', '[data-fourth-title]', '[data-fourth-info]', '[data-fourth-form]'
+  ].join(','));
+
+  gsap.set(revealTargets, { autoAlpha: 0, y: 24 });
+
+  ScrollTrigger.batch(revealTargets, {
+    start: 'top 92%',
+    once: true,
+    onEnter: batch => gsap.to(batch, {
+      autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.06, ease: 'power2.out', overwrite: true
+    })
+  });
+
+  /* Segurança: o que já estiver na tela ao carregar aparece imediatamente */
+  ScrollTrigger.refresh();
+});
 
 /* ============================================================
    ANIMAÇÕES DE ENTRADA
@@ -2620,6 +2744,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     const href = anchor.getAttribute('href');
+
+    /* Celular: as seções são páginas normais — rola direto até a seção real */
+    if (isMobileView()) {
+      const target = href.length > 1 ? document.querySelector(href) : null;
+      if (target || href === '#') {
+        e.preventDefault();
+        const top = target ? target.getBoundingClientRect().top + window.scrollY : 0;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+      return;
+    }
     if (href === '#hero' || href === '#') {
       e.preventDefault();
       scrollToProgress(0.0);
@@ -2685,6 +2820,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lenis) {
       if (menuOpen) lenis.stop();
       else lenis.start();
+    } else {
+      /* Celular (rolagem nativa): trava o fundo enquanto o menu está aberto */
+      document.documentElement.style.overflow = menuOpen ? 'hidden' : '';
     }
   }
 
@@ -2694,7 +2832,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // (Tratado pelo Event Delegation global acima)
 });
 
-window.addEventListener('resize', () => ScrollTrigger.refresh(), { passive: true });
+/* Resize: o ScrollTrigger já recalcula sozinho (e ignora a barra do navegador mobile).
+   O refresh manual que existia aqui disparava a cada rolagem no celular e causava pulos. */
 </script>
 
 </body>
