@@ -290,7 +290,7 @@
 
     /* coluna de texto — metade esquerda contida para dar respiro ao produto */
     .hero-col {
-      max-width: clamp(320px, 44%, 550px);
+      max-width: clamp(320px, 50%, 760px);
       display: flex; flex-direction: column;
     }
 
@@ -306,12 +306,13 @@
 
     /* headline */
     .headline {
-      font-size: clamp(2.2rem, 4.5vw, 4.8rem);
+      font-size: clamp(2.55rem, 5.4vw, 5.76rem);
       font-weight: 800; line-height: 1.05; letter-spacing: -.04em; color: #fff;
       margin-bottom: clamp(1.2rem,2.5vh,2rem);
     }
     /* linha com máscara para reveal */
-    .hl-line { display: block; overflow: hidden; line-height: 0.92; }
+    /* padding + margem negativa: a máscara cobre acentos e descendentes (y, g, ç) sem mudar o espaçamento */
+    .hl-line { display: block; overflow: hidden; line-height: 0.92; padding: .1em 0 .2em; margin: -.1em 0 -.2em; }
     .hl-in   { display: block; } /* GSAP anima a partir de translateY(110%) */
 
     .accent-word {
@@ -1527,7 +1528,7 @@
 
             <div class="scroll-out" style="margin-top: auto; display: flex; width: 100%;">
               <div class="hero-foot-l" style="margin-top: 0; width: 100%;" aria-hidden="true">
-                <span class="foot-lbl">01 / Rabisko Laser — Loja Oficial</span>
+                <span class="foot-lbl">01 / Rabisko Group — Loja Oficial</span>
                 <span class="foot-rule"></span>
               </div>
             </div>
