@@ -62,7 +62,8 @@
   <link rel="shortcut icon" href="./favicon.ico" />
 
   <!-- Performance: imagem do hero com prioridade máxima + conexões antecipadas -->
-  <link rel="preload" as="image" href="./IMGS/hero_bg.webp" type="image/webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="./IMGS/hero_bg_mobile.webp" type="image/webp" media="(max-width: 600px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="./IMGS/hero_bg.webp" type="image/webp" media="(min-width: 601px)" fetchpriority="high" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -70,7 +71,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" /></noscript>
 
-  <!-- GSAP + ScrollTrigger + Lenis + Tracking: carregados no fim do <body> -->
+  <!-- GSAP + ScrollTrigger + Lenis: carregados dinamicamente sob demanda para desktop -->
 
   <style>
     /* ==========================================================================
@@ -85,7 +86,7 @@
       --accent-rgb:  200, 29, 86;
       --border:      rgba(255,255,255,0.1);
       --border-mid:  rgba(255,255,255,0.18);
-      --font:        'Inter', -apple-system, sans-serif;
+      --font:        'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --ease:        cubic-bezier(0.16, 1, 0.3, 1);
       --pad-x:       clamp(2rem, 5vw, 5rem);
     }
@@ -449,6 +450,16 @@
       height: 100vh;
     }
     .hero-section { z-index: 10; }
+    @media (min-width: 901px) {
+      .second-fold,
+      .third-fold,
+      .new-fold,
+      .team-fold,
+      .faq-fold,
+      .fourth-fold {
+        transform: translateY(100%);
+      }
+    }
 
     /* ==========================================================================
        SEGUNDA DOBRA
@@ -1501,7 +1512,7 @@
   <!-- HEADER -->
   <header class="hdr" id="hdr" role="banner">
     <a href="/" class="hdr-brand" aria-label="Rabisko Group — Início">
-      <img src="./LOGOS/logo_group_branco.png" alt="Rabisko Group" class="hdr-logo" width="109" height="36" />
+      <img src="./LOGOS/logo_group_branco.webp" alt="Rabisko Group" class="hdr-logo" width="109" height="36" />
     </a>
     <button class="hdr-burger" id="btn-menu" aria-label="Alternar menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -1574,6 +1585,7 @@
         <!-- IMAGEM HERO FULL-BLEED -->
         <div class="v-wrap" aria-hidden="true" data-hero-media>
           <picture class="v-poster" id="poster">
+            <source media="(max-width: 600px)" srcset="./IMGS/hero_bg_mobile.webp" type="image/webp" width="480" height="271" />
             <img src="./IMGS/hero_bg.webp" width="1672" height="941" alt="Rabisko Laser — Cantinho do Café em Acrílico" role="presentation" fetchpriority="high" decoding="async" />
           </picture>
         </div>
@@ -2204,504 +2216,101 @@
   </section>
 
 
-<!-- GSAP + ScrollTrigger + Lenis (movidos do <head> para não bloquear o primeiro paint) -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-
+<!-- GSAP + ScrollTrigger + Lenis: carregamento dinâmico sob demanda para Desktop -->
 <script>
 /* ============================================================
-   CONFIGURAÇÃO — prefers-reduced-motion
+   CONFIGURAÇÃO & CONTROLE UNIVERSAL
 ============================================================ */
 const NO_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-/* ≤ 900px = celular/tablet: layout em fluxo vertical nativo (ver CSS "MOBILE / TABLET") */
-const MOBILE_MQ = '(max-width: 900px)';
-const isMobileView = () => window.matchMedia(MOBILE_MQ).matches;
-
-/* ============================================================
-   GSAP — registra plugin
-============================================================ */
-gsap.registerPlugin(ScrollTrigger);
-/* Ignora o resize causado pela barra do navegador mobile aparecendo/sumindo
-   (era isso que fazia a página "pular" e piscar no celular) */
-ScrollTrigger.config({ ignoreMobileResize: true });
-
-/* ============================================================
-   LENIS — smooth scroll
-   Integração correta com GSAP/ScrollTrigger
-============================================================ */
-let lenis;
-
-try {
-  /* No celular a rolagem nativa é mais fluida que qualquer smooth scroll: Lenis só no desktop */
-  if (isMobileView()) throw new Error('mobile: rolagem nativa');
-
-  lenis = new Lenis({
-    duration: 0.9,
-    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smooth: true,
-    smoothTouch: false,
-  });
-
-  // RAF loop principal
-  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
-
-  // Lenis informa ScrollTrigger sobre posição real do scroll
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.lagSmoothing(0);
-
-} catch (e) {
-  // Mobile ou Lenis indisponível (CDN): segue com a rolagem nativa
-  lenis = null;
-}
-
-/* ============================================================
-   HERO MEDIA & PROGRESS — setup e scrubbing
-============================================================ */
-const vid      = document.getElementById('vid');
-const poster   = document.getElementById('poster');
-const progFill = document.getElementById('prog-fill');
-const dots     = document.querySelectorAll('.sdot');
-
-let videoReady = false;
-let lastProgress = -1;
-
-if (vid) {
-  /* Força preload imediato se houver vídeo */
-  vid.load();
-
-  function markVideoReady() {
-    if (videoReady) return;
-    videoReady = true;
-    vid.currentTime = 0;
-    vid.classList.add('rdy');
-    if (poster) poster.style.opacity = '0';
-  }
-
-  vid.addEventListener('loadedmetadata', markVideoReady);
-  vid.addEventListener('canplay',        markVideoReady);
-  vid.addEventListener('canplaythrough', markVideoReady);
-
-  setTimeout(function() {
-    if (!videoReady && vid.readyState >= 1) markVideoReady();
-  }, 3000);
-
-  vid.addEventListener('error', function(e) {
-    console.warn('[Hero Video] Erro ao carregar vídeo:', e, vid.error);
-  });
-}
-
-/* Atualiza scrubbing e barra de progresso no scroll */
-function scrubVideo(progress) {
-  if (vid && videoReady && vid.duration) {
-    if (Math.abs(progress - lastProgress) >= 0.0003) {
-      lastProgress = progress;
-      const videoProgress = Math.min(progress / 0.15, 1.0);
-      const targetTime = videoProgress * vid.duration;
-
-      let canSeek = false;
-      for (let i = 0; i < vid.buffered.length; i++) {
-        if (vid.buffered.start(i) <= targetTime && targetTime <= vid.buffered.end(i)) {
-          canSeek = true;
-          break;
-        }
-      }
-      if (canSeek) vid.currentTime = targetTime;
-    }
-  }
-
-  // Barra de progresso decorativa
-  if (progFill) progFill.style.height = (progress * 100) + '%';
-}
-
-
-/* updateTitleByScroll — controlado pelo mesmo self.progress do vídeo */
-const titleScroll = document.querySelector('[data-scroll-title]');
-
-function updateTitleByScroll(progress) {
-  if (!titleScroll) return;
-  const exitProgress = gsap.utils.clamp(0, 1, gsap.utils.mapRange(0.45, 0.75, 0, 1, progress));
-  gsap.set(titleScroll, {
-    autoAlpha: 1 - exitProgress,
-    y: -70 * exitProgress,
-    scale: 1 - 0.04 * exitProgress,
-    pointerEvents: exitProgress >= 0.95 ? 'none' : 'auto'
-  });
-}
-
-/* ==========================================================================
-   SCROLL EXPERIENCE — Arquitetura definitiva
-   pin: ".pinned-stage" (GSAP) + gsap.set() para estados iniciais + apenas .to()
-   Sem CSS sticky, sem .from(), sem race condition.
-   ========================================================================== */
-const allDots = document.querySelectorAll('[data-dot]');
-const cachedMenuLinks = document.querySelectorAll('.menu-link');
+const isMobileView = () => window.innerWidth <= 900;
+let lenis = null;
 let lastActiveDot = -1;
-let lastLightHUD = null;
 
-/* Palco fixo com dobras empilhadas: só no desktop. O gsap.matchMedia desfaz
-   automaticamente todos os sets/tweens/pins se a tela cair para ≤ 900px. */
-const mm = gsap.matchMedia();
+/* ============================================================
+   MENU MOBILE / DRAWER
+============================================================ */
+const btnMenu = document.getElementById('btn-menu');
+const fullMenu = document.getElementById('full-menu');
+const menuOverlay = document.getElementById('menu-overlay');
+let menuOpen = false;
 
-mm.add('(min-width: 901px) and (prefers-reduced-motion: no-preference)', () => {
-
-  /* 1. Estados iniciais garantidos via gsap.set() ANTES da timeline */
-  gsap.set('[data-third-fold]', { yPercent: 100, autoAlpha: 1 });
-  gsap.set('[data-new-fold]', { yPercent: 100, autoAlpha: 1 });
-  gsap.set('[data-second-fold]', { yPercent: 100, autoAlpha: 1 });
-  gsap.set('[data-team-fold]', { yPercent: 100, autoAlpha: 1 });
-  gsap.set('[data-faq-fold]', { yPercent: 100, autoAlpha: 1 });
-  gsap.set('[data-fourth-fold]', { yPercent: 100, autoAlpha: 1 });
+function toggleMenu(state) {
+  menuOpen = typeof state === 'boolean' ? state : !menuOpen;
+  btnMenu.classList.toggle('is-active', menuOpen);
+  fullMenu.classList.toggle('is-open', menuOpen);
+  if (menuOverlay) menuOverlay.classList.toggle('is-open', menuOpen);
+  btnMenu.setAttribute('aria-expanded', menuOpen);
+  fullMenu.setAttribute('aria-hidden', !menuOpen);
   
-  gsap.set([
-    '[data-third-kicker]',
-    '[data-third-title]',
-    '[data-third-text]',
-    '[data-third-card]',
-    '[data-third-cta]',
-    '[data-third-microcopy]'
-  ], { autoAlpha: 0, y: 40 });
+  if (lenis) {
+    if (menuOpen) lenis.stop();
+    else lenis.start();
+  } else {
+    document.documentElement.style.overflow = menuOpen ? 'hidden' : '';
+  }
+}
 
-  gsap.set([
-    '[data-new-card]',
-    '[data-new-footer]'
-  ], { autoAlpha: 0, y: 40 });
+if (btnMenu) btnMenu.addEventListener('click', () => toggleMenu());
+if (menuOverlay) menuOverlay.addEventListener('click', () => toggleMenu(false));
 
-  gsap.set([
-    '[data-second-kicker]',
-    '[data-second-title]',
-    '[data-second-text]',
-    '[data-second-card]',
-    '[data-second-cta]',
-    '[data-second-microcopy]'
-  ], { autoAlpha: 0, y: 40 });
+/* ============================================================
+   EVENT DELEGATION — ÂNCORAS E NAVEGAÇÃO
+============================================================ */
+document.addEventListener('click', e => {
+  const anchor = e.target.closest('a[href^="#"]');
+  if (!anchor) return;
+  
+  if (anchor.classList.contains('menu-link')) toggleMenu(false);
+  const href = anchor.getAttribute('href');
 
-  gsap.set([
-    '.team-breadcrumb',
-    '.team-title',
-    '.team-card'
-  ], { autoAlpha: 0, y: 40 });
-
-  gsap.set([
-    '.faq-breadcrumb',
-    '.faq-title',
-    '.faq-text',
-    '.faq-cta-box',
-    '.faq-item'
-  ], { autoAlpha: 0, y: 40 });
-
-  gsap.set([
-    '[data-fourth-kicker]',
-    '[data-fourth-title]',
-    '[data-fourth-info]',
-    '[data-fourth-form]'
-  ], { autoAlpha: 0, y: 40 });
-
-  /* 2. Timeline principal com pin GSAP (não CSS sticky) */
-  const scrollTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.scroll-experience',
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: 0.4,
-      pin: '.pinned-stage',
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-      onUpdate(self) {
-        /* Vídeo: scrub 1:1 com o scroll */
-        scrubVideo(self.progress);
-
-        /* Dots: hero=0, projetos=1, experiencia=2, aplicacoes=3, time=4, faq=5, orçamento=6 */
-        let activeDot = 0;
-        if (self.progress < 0.10) {
-          activeDot = 0;
-        } else if (self.progress < 0.25) {
-          activeDot = 1;
-        } else if (self.progress < 0.40) {
-          activeDot = 2;
-        } else if (self.progress < 0.56) {
-          activeDot = 3;
-        } else if (self.progress < 0.74) {
-          activeDot = 4;
-        } else if (self.progress < 0.91) {
-          activeDot = 5;
-        } else {
-          activeDot = 6;
-        }
-        /* Só mexe no DOM quando a dobra ativa realmente muda (evita trabalho a cada frame) */
-        if (activeDot !== lastActiveDot) {
-          lastActiveDot = activeDot;
-          allDots.forEach(d => {
-            const idx = parseInt(d.dataset.dot);
-            d.classList.toggle('on', idx === activeDot);
-          });
-
-          /* Sincroniza classe is-active nos links do menu */
-          cachedMenuLinks.forEach((link, idx) => {
-            link.classList.toggle('is-active', idx === activeDot);
-          });
-        }
-
-        /* Ativa HUD adaptado para dobras claras (Experiência = 0.33 a 0.44, Nosso Time + FAQ = 0.62 a 0.94) */
-        const isLightHUD = (self.progress >= 0.33 && self.progress < 0.44) || 
-                           (self.progress >= 0.62 && self.progress < 0.94);
-        if (isLightHUD !== lastLightHUD) {
-          lastLightHUD = isLightHUD;
-          document.body.classList.toggle('light-hud', isLightHUD);
-        }
-      }
+  /* Celular ou antes do carregamento desktop: rolagem nativa suave até a seção */
+  if (isMobileView() || !window.__desktopReady) {
+    const target = href && href.length > 1 ? document.querySelector(href) : null;
+    if (target || href === '#') {
+      e.preventDefault();
+      const top = target ? target.getBoundingClientRect().top + window.scrollY : 0;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
-  });
+    return;
+  }
 
-  /* KEYPOINTS DA TIMELINE (7 DOBRAS — Alinhadas exatamente com os novos critérios de rolagem) */
-
-  /* --- TRANSIÇÃO 1: HERO -> PROJETOS (Fold 2) --- */
-  /* Projetos sobe — de 10% a 18% (duração: 0.08) */
-  scrollTl.to('[data-third-fold]', {
-    yPercent: 0, ease: 'none', duration: 0.08
-  }, 0.10);
-  /* Hero title sai — de 10% a 17% (duração: 0.07) */
-  scrollTl.to('[data-hero-title]', {
-    autoAlpha: 0, y: -80, ease: 'none', duration: 0.07
-  }, 0.10);
-
-  /* Vídeo recua — de 10% a 18% (duração: 0.08) */
-  scrollTl.to('[data-hero-media]', {
-    yPercent: -18, scale: 0.96, autoAlpha: 0.20, ease: 'none', duration: 0.08
-  }, 0.10);
-
-  /* Conteúdo de Projetos entra em cascata — de 13% a 18% */
-  scrollTl.to('[data-third-kicker]', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04
-  }, 0.13);
-
-  scrollTl.to('[data-third-title]', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04
-  }, 0.14);
-
-  scrollTl.to('[data-third-text]', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04
-  }, 0.15);
-
-  scrollTl.to('[data-third-card]', {
-    autoAlpha: 1, y: 0,
-    stagger: 0.015, ease: 'power3.out', duration: 0.04
-  }, 0.15);
-
-  scrollTl.to('[data-third-cta]', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04
-  }, 0.16);
-
-  scrollTl.to('[data-third-microcopy]', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04
-  }, 0.17);
-
-
-  /* --- TRANSIÇÃO 2: PROJETOS -> SOBRE/EXPERIÊNCIA (Fold 3) --- */
-  /* Conteúdo de Projetos sai — de 25% a 30% (duração: 0.05) */
-  scrollTl.to([
-    '[data-third-kicker]',
-    '[data-third-title]',
-    '[data-third-text]',
-    '[data-third-card]',
-    '[data-third-cta]',
-    '[data-third-microcopy]'
-  ], {
-    autoAlpha: 0, y: -40, stagger: 0.01, ease: 'none', duration: 0.05
-  }, 0.25);
-
-  /* Experiência sobe — de 25% a 33% (duração: 0.08) */
-  scrollTl.to('[data-new-fold]', {
-    yPercent: 0, ease: 'none', duration: 0.08
-  }, 0.25);
-
-  /* Parallax na palavra de fundo "resume" — de 25% a 37% */
-  scrollTl.fromTo('.resume-bg-word', 
-    { y: 80 }, 
-    { y: -80, ease: 'none', duration: 0.12 }, 
-    0.25
-  );
-
-  /* Conteúdo de Experiência entra em cascata — de 29% a 33% */
-  scrollTl.to([
-    '[data-new-card]',
-    '[data-new-footer]'
-  ], {
-    autoAlpha: 1, y: 0, stagger: 0.03, ease: 'power3.out', duration: 0.04
-  }, 0.29);
-
-
-  /* --- TRANSIÇÃO 3: SOBRE/EXPERIÊNCIA -> APLICAÇÕES (Fold 4) --- */
-  /* Conteúdo de Experiência sai — de 40% a 45% (duração: 0.05) */
-  scrollTl.to([
-    '[data-new-card]',
-    '[data-new-footer]'
-  ], {
-    autoAlpha: 0, y: -40, stagger: 0.02, ease: 'none', duration: 0.05
-  }, 0.40);
-
-  /* Aplicações sobe — de 40% a 48% (duração: 0.08) */
-  scrollTl.to('[data-second-fold]', {
-    yPercent: 0, ease: 'none', duration: 0.08
-  }, 0.40);
-
-  /* Conteúdo de Aplicações entra em cascata — de 43% a 48% */
-  scrollTl.to('[data-second-kicker]', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04
-  }, 0.43);
-
-  scrollTl.to('[data-second-title]', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04
-  }, 0.44);
-
-  scrollTl.to('[data-second-text]', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04
-  }, 0.45);
-
-  scrollTl.to('[data-second-card]', {
-    autoAlpha: 1, y: 0,
-    stagger: 0.015, ease: 'power3.out', duration: 0.04
-  }, 0.45);
-
-  scrollTl.to('[data-second-cta]', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04
-  }, 0.46);
-
-  scrollTl.to('[data-second-microcopy]', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04
-  }, 0.47);
-
-
-  /* --- TRANSIÇÃO 4: APLICAÇÕES -> NOSSO TIME (Fold 5) --- */
-  /* Conteúdo de Aplicações sai — de 56% a 62% (duração: 0.06) */
-  scrollTl.to([
-    '[data-second-kicker]',
-    '[data-second-title]',
-    '[data-second-text]',
-    '[data-second-card]',
-    '[data-second-cta]',
-    '[data-second-microcopy]'
-  ], {
-    autoAlpha: 0, y: -40, stagger: 0.01, ease: 'none', duration: 0.06
-  }, 0.56);
-
-  /* Nosso Time sobe — de 56% a 65% (duração: 0.09) */
-  scrollTl.to('[data-team-fold]', {
-    yPercent: 0, ease: 'none', duration: 0.09
-  }, 0.56);
-
-  /* Conteúdo de Nosso Time entra em cascata — de 61% a 65% */
-  scrollTl.to('.team-breadcrumb', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04
-  }, 0.61);
-
-  scrollTl.to('.team-title', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04
-  }, 0.62);
-
-  scrollTl.to('.team-card', {
-    autoAlpha: 1, y: 0,
-    stagger: 0.01, ease: 'power3.out', duration: 0.04
-  }, 0.63);
-
-
-  /* --- TRANSIÇÃO 5: NOSSO TIME -> FAQ (Fold 6) --- */
-  /* Conteúdo de Nosso Time sai — de 74% a 80% (duração: 0.06) */
-  scrollTl.to([
-    '.team-breadcrumb',
-    '.team-title',
-    '.team-card'
-  ], {
-    autoAlpha: 0, y: -40, stagger: 0.01, ease: 'none', duration: 0.06
-  }, 0.74);
-
-  /* FAQ sobe — de 74% a 83% (duração: 0.09) */
-  scrollTl.to('[data-faq-fold]', {
-    yPercent: 0, ease: 'none', duration: 0.09
-  }, 0.74);
-
-  /* Parallax na palavra de fundo "faq" — de 74% a 90% */
-  scrollTl.fromTo('.faq-bg-word',
-    { y: 80 },
-    { y: -80, ease: 'none', duration: 0.16 },
-    0.74
-  );
-
-  /* Conteúdo de FAQ entra em cascata — de 79% a 83% */
-  scrollTl.to('.faq-breadcrumb', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04
-  }, 0.79);
-
-  scrollTl.to('.faq-title', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04
-  }, 0.80);
-
-  scrollTl.to('.faq-text', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04
-  }, 0.81);
-
-  scrollTl.to('.faq-cta-box', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04
-  }, 0.82);
-
-  scrollTl.to('.faq-item', {
-    autoAlpha: 1, y: 0,
-    stagger: 0.01, ease: 'power3.out', duration: 0.04
-  }, 0.82);
-
-
-  /* --- TRANSIÇÃO 6: FAQ -> ORÇAMENTO (Fold 7) --- */
-  /* Conteúdo de FAQ sai — de 91% a 95% (duração: 0.04) */
-  scrollTl.to([
-    '.faq-breadcrumb',
-    '.faq-title',
-    '.faq-text',
-    '.faq-cta-box',
-    '.faq-item'
-  ], {
-    autoAlpha: 0, y: -40, stagger: 0.01, ease: 'none', duration: 0.04
-  }, 0.91);
-
-  /* Orçamento sobe — de 91% a 97% (duração: 0.06) */
-  scrollTl.to('[data-fourth-fold]', {
-    yPercent: 0, ease: 'none', duration: 0.06
-  }, 0.91);
-
-  /* Conteúdo de Orçamento entra em cascata — de 94% a 97% */
-  scrollTl.to('[data-fourth-kicker]', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03
-  }, 0.94);
-
-  scrollTl.to('[data-fourth-title]', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03
-  }, 0.95);
-
-  scrollTl.to('[data-fourth-info]', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03
-  }, 0.95);
-
-  scrollTl.to('[data-fourth-form]', {
-    autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03
-  }, 0.96);
-
-  /* Estende a timeline para durar exatamente 1.00 segundo de tempo interno,
-     garantindo sincronia direta de 1:1 entre scroll progress (0 a 1) e tempo da timeline (0 a 1). */
-  scrollTl.to({}, { duration: 0.03 }, 0.97);
-
-  /* Limpeza ao sair do desktop */
-  return () => {
-    document.body.classList.remove('light-hud');
-    lastActiveDot = -1;
-    lastLightHUD = null;
-  };
+  /* Desktop com palco fixo de 7 dobras */
+  if (href === '#hero' || href === '#') {
+    e.preventDefault();
+    if (window.__scrollToProgress) window.__scrollToProgress(0.0);
+  } else if (href === '#projetos') {
+    e.preventDefault();
+    if (window.__scrollToProgress) window.__scrollToProgress(0.21);
+  } else if (href === '#experiencia') {
+    e.preventDefault();
+    if (window.__scrollToProgress) window.__scrollToProgress(0.36);
+  } else if (href === '#aplicacoes') {
+    e.preventDefault();
+    if (window.__scrollToProgress) window.__scrollToProgress(0.52);
+  } else if (href === '#nosso-time') {
+    e.preventDefault();
+    if (window.__scrollToProgress) window.__scrollToProgress(0.69);
+  } else if (href === '#faq') {
+    e.preventDefault();
+    if (window.__scrollToProgress) window.__scrollToProgress(0.87);
+  } else if (href === '#orcamento') {
+    e.preventDefault();
+    if (window.__scrollToProgress) window.__scrollToProgress(1.00);
+    setTimeout(() => {
+      const inputName = document.getElementById('form-name');
+      if (inputName) inputName.focus();
+    }, 1100);
+  } else if (href === '#onde-estamos') {
+    e.preventDefault();
+    if (window.__scrollToLocation) window.__scrollToLocation();
+  }
 });
 
 /* ============================================================
-   MOBILE — revelação ultra leve com IntersectionObserver nativo
-   Zero bloqueio de CPU (sem ScrollTrigger.batch em 30 nós)
+   MOBILE — REVELAÇÃO ULTRA-RÁPIDA VIA INTERSECTION OBSERVER NATIVO
+   Zero dependência, zero bloqueio de CPU (TBT = 0ms)
 ============================================================ */
-mm.add('(max-width: 900px) and (prefers-reduced-motion: no-preference)', () => {
+if (isMobileView() && !NO_MOTION) {
   const targets = document.querySelectorAll([
     '[data-third-kicker]', '[data-third-title]', '[data-third-text]', '[data-third-card]', '[data-third-cta]',
     '[data-new-card]', '[data-new-footer]',
@@ -2728,12 +2337,217 @@ mm.add('(max-width: 900px) and (prefers-reduced-motion: no-preference)', () => {
     el.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
     io.observe(el);
   });
-});
+}
 
 /* ============================================================
-   ONDE ESTAMOS — reveal no desktop
+   DESKTOP STAGE INITIALIZER
+   Invocado apenas quando a tela for > 900px
 ============================================================ */
-mm.add('(min-width: 901px) and (prefers-reduced-motion: no-preference)', () => {
+function initDesktopStage() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  window.__desktopReady = true;
+
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+
+  /* Lenis smooth scroll */
+  try {
+    if (typeof Lenis !== 'undefined') {
+      lenis = new Lenis({
+        duration: 0.9,
+        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smooth: true,
+        smoothTouch: false,
+      });
+      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.lagSmoothing(0);
+    }
+  } catch (e) {
+    lenis = null;
+  }
+
+  /* Video hero scrubbing */
+  const vid = document.getElementById('vid');
+  const poster = document.getElementById('poster');
+  const progFill = document.getElementById('prog-fill');
+  let videoReady = false;
+  let lastProgress = -1;
+
+  if (vid) {
+    vid.load();
+    function markVideoReady() {
+      if (videoReady) return;
+      videoReady = true;
+      vid.currentTime = 0;
+      vid.classList.add('rdy');
+      if (poster) poster.style.opacity = '0';
+    }
+    vid.addEventListener('loadedmetadata', markVideoReady);
+    vid.addEventListener('canplay', markVideoReady);
+    vid.addEventListener('canplaythrough', markVideoReady);
+    setTimeout(() => { if (!videoReady && vid.readyState >= 1) markVideoReady(); }, 3000);
+  }
+
+  function scrubVideo(progress) {
+    if (vid && videoReady && vid.duration) {
+      if (Math.abs(progress - lastProgress) >= 0.0003) {
+        lastProgress = progress;
+        const videoProgress = Math.min(progress / 0.15, 1.0);
+        const targetTime = videoProgress * vid.duration;
+        let canSeek = false;
+        for (let i = 0; i < vid.buffered.length; i++) {
+          if (vid.buffered.start(i) <= targetTime && targetTime <= vid.buffered.end(i)) {
+            canSeek = true;
+            break;
+          }
+        }
+        if (canSeek) vid.currentTime = targetTime;
+      }
+    }
+    if (progFill) progFill.style.height = (progress * 100) + '%';
+  }
+
+  /* Palco fixo e timeline de 7 dobras */
+  const allDots = document.querySelectorAll('[data-dot]');
+  const cachedMenuLinks = document.querySelectorAll('.menu-link');
+  let lastLightHUD = null;
+
+  gsap.set('[data-third-fold]', { yPercent: 100, autoAlpha: 1 });
+  gsap.set('[data-new-fold]', { yPercent: 100, autoAlpha: 1 });
+  gsap.set('[data-second-fold]', { yPercent: 100, autoAlpha: 1 });
+  gsap.set('[data-team-fold]', { yPercent: 100, autoAlpha: 1 });
+  gsap.set('[data-faq-fold]', { yPercent: 100, autoAlpha: 1 });
+  gsap.set('[data-fourth-fold]', { yPercent: 100, autoAlpha: 1 });
+
+  gsap.set([
+    '[data-third-kicker]', '[data-third-title]', '[data-third-text]',
+    '[data-third-card]', '[data-third-cta]', '[data-third-microcopy]'
+  ], { autoAlpha: 0, y: 40 });
+
+  gsap.set(['[data-new-card]', '[data-new-footer]'], { autoAlpha: 0, y: 40 });
+
+  gsap.set([
+    '[data-second-kicker]', '[data-second-title]', '[data-second-text]',
+    '[data-second-card]', '[data-second-cta]', '[data-second-microcopy]'
+  ], { autoAlpha: 0, y: 40 });
+
+  gsap.set(['.team-breadcrumb', '.team-title', '.team-card'], { autoAlpha: 0, y: 40 });
+
+  gsap.set([
+    '.faq-breadcrumb', '.faq-title', '.faq-text', '.faq-cta-box', '.faq-item'
+  ], { autoAlpha: 0, y: 40 });
+
+  gsap.set([
+    '[data-fourth-kicker]', '[data-fourth-title]', '[data-fourth-info]', '[data-fourth-form]'
+  ], { autoAlpha: 0, y: 40 });
+
+  const scrollTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.scroll-experience',
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 0.4,
+      pin: '.pinned-stage',
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onUpdate(self) {
+        scrubVideo(self.progress);
+
+        let activeDot = 0;
+        if (self.progress < 0.10) activeDot = 0;
+        else if (self.progress < 0.25) activeDot = 1;
+        else if (self.progress < 0.40) activeDot = 2;
+        else if (self.progress < 0.56) activeDot = 3;
+        else if (self.progress < 0.74) activeDot = 4;
+        else if (self.progress < 0.91) activeDot = 5;
+        else activeDot = 6;
+
+        if (activeDot !== lastActiveDot) {
+          lastActiveDot = activeDot;
+          allDots.forEach(d => {
+            const idx = parseInt(d.dataset.dot);
+            d.classList.toggle('on', idx === activeDot);
+          });
+          cachedMenuLinks.forEach((link, idx) => {
+            link.classList.toggle('is-active', idx === activeDot);
+          });
+        }
+
+        const isLightHUD = (self.progress >= 0.33 && self.progress < 0.44) || 
+                           (self.progress >= 0.62 && self.progress < 0.94);
+        if (isLightHUD !== lastLightHUD) {
+          lastLightHUD = isLightHUD;
+          document.body.classList.toggle('light-hud', isLightHUD);
+        }
+      }
+    }
+  });
+
+  /* Fold 2: Projetos */
+  scrollTl.to('[data-third-fold]', { yPercent: 0, ease: 'none', duration: 0.08 }, 0.10);
+  scrollTl.to('[data-hero-title]', { autoAlpha: 0, y: -80, ease: 'none', duration: 0.07 }, 0.10);
+  scrollTl.to('[data-hero-media]', { yPercent: -18, scale: 0.96, autoAlpha: 0.20, ease: 'none', duration: 0.08 }, 0.10);
+  scrollTl.to('[data-third-kicker]', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04 }, 0.13);
+  scrollTl.to('[data-third-title]', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04 }, 0.14);
+  scrollTl.to('[data-third-text]', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04 }, 0.15);
+  scrollTl.to('[data-third-card]', { autoAlpha: 1, y: 0, stagger: 0.015, ease: 'power3.out', duration: 0.04 }, 0.15);
+  scrollTl.to('[data-third-cta]', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04 }, 0.16);
+  scrollTl.to('[data-third-microcopy]', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04 }, 0.17);
+
+  /* Fold 3: Acrílico */
+  scrollTl.to(['[data-third-kicker]', '[data-third-title]', '[data-third-text]', '[data-third-card]', '[data-third-cta]', '[data-third-microcopy]'], {
+    autoAlpha: 0, y: -40, stagger: 0.01, ease: 'none', duration: 0.04
+  }, 0.25);
+  scrollTl.to('[data-new-fold]', { yPercent: 0, ease: 'none', duration: 0.06 }, 0.25);
+  scrollTl.to('[data-new-card]', { autoAlpha: 1, y: 0, stagger: 0.015, ease: 'power3.out', duration: 0.04 }, 0.28);
+  scrollTl.to('[data-new-footer]', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.04 }, 0.29);
+
+  /* Fold 4: Catálogo */
+  scrollTl.to(['[data-new-card]', '[data-new-footer]'], {
+    autoAlpha: 0, y: -40, stagger: 0.01, ease: 'none', duration: 0.04
+  }, 0.40);
+  scrollTl.to('[data-second-fold]', { yPercent: 0, ease: 'none', duration: 0.06 }, 0.40);
+  scrollTl.to('[data-second-kicker]', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03 }, 0.43);
+  scrollTl.to('[data-second-title]', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03 }, 0.44);
+  scrollTl.to('[data-second-text]', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03 }, 0.44);
+  scrollTl.to('[data-second-card]', { autoAlpha: 1, y: 0, stagger: 0.01, ease: 'power3.out', duration: 0.04 }, 0.45);
+  scrollTl.to('[data-second-cta]', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03 }, 0.47);
+  scrollTl.to('[data-second-microcopy]', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03 }, 0.48);
+
+  /* Fold 5: Nosso Time */
+  scrollTl.to(['[data-second-kicker]', '[data-second-title]', '[data-second-text]', '[data-second-card]', '[data-second-cta]', '[data-second-microcopy]'], {
+    autoAlpha: 0, y: -40, stagger: 0.01, ease: 'none', duration: 0.04
+  }, 0.56);
+  scrollTl.to('[data-team-fold]', { yPercent: 0, ease: 'none', duration: 0.06 }, 0.56);
+  scrollTl.to('.team-breadcrumb', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03 }, 0.59);
+  scrollTl.to('.team-title', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03 }, 0.60);
+  scrollTl.to('.team-card', { autoAlpha: 1, y: 0, stagger: 0.01, ease: 'power3.out', duration: 0.04 }, 0.61);
+
+  /* Fold 6: FAQ */
+  scrollTl.to(['.team-breadcrumb', '.team-title', '.team-card'], {
+    autoAlpha: 0, y: -40, stagger: 0.01, ease: 'none', duration: 0.04
+  }, 0.74);
+  scrollTl.to('[data-faq-fold]', { yPercent: 0, ease: 'none', duration: 0.06 }, 0.74);
+  scrollTl.to('.faq-breadcrumb', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03 }, 0.77);
+  scrollTl.to('.faq-title', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03 }, 0.78);
+  scrollTl.to('.faq-text', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03 }, 0.79);
+  scrollTl.to('.faq-cta-box', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03 }, 0.80);
+  scrollTl.to('.faq-item', { autoAlpha: 1, y: 0, stagger: 0.01, ease: 'power3.out', duration: 0.04 }, 0.82);
+
+  /* Fold 7: Orçamento */
+  scrollTl.to(['.faq-breadcrumb', '.faq-title', '.faq-text', '.faq-cta-box', '.faq-item'], {
+    autoAlpha: 0, y: -40, stagger: 0.01, ease: 'none', duration: 0.04
+  }, 0.91);
+  scrollTl.to('[data-fourth-fold]', { yPercent: 0, ease: 'none', duration: 0.06 }, 0.91);
+  scrollTl.to('[data-fourth-kicker]', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03 }, 0.94);
+  scrollTl.to('[data-fourth-title]', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03 }, 0.95);
+  scrollTl.to('[data-fourth-info]', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03 }, 0.95);
+  scrollTl.to('[data-fourth-form]', { autoAlpha: 1, y: 0, ease: 'power3.out', duration: 0.03 }, 0.96);
+  scrollTl.to({}, { duration: 0.03 }, 0.97);
+
+  /* Onde Estamos no desktop */
   const locItems = gsap.utils.toArray('[data-loc-reveal]');
   gsap.set(locItems, { autoAlpha: 0, y: 30 });
   ScrollTrigger.batch(locItems, {
@@ -2743,159 +2557,31 @@ mm.add('(min-width: 901px) and (prefers-reduced-motion: no-preference)', () => {
       autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out', overwrite: true
     })
   });
-});
 
-/* Menu: destaca "Onde Estamos" enquanto a seção está na tela */
-ScrollTrigger.create({
-  trigger: '#onde-estamos',
-  start: 'top 55%',
-  end: 'bottom top',
-  onToggle(self) {
-    const activeIdx = self.isActive ? 7 : Math.max(lastActiveDot, 0);
-    cachedMenuLinks.forEach((link, idx) => link.classList.toggle('is-active', idx === activeIdx));
-  }
-});
+  ScrollTrigger.create({
+    trigger: '#onde-estamos',
+    start: 'top 55%',
+    end: 'bottom top',
+    onToggle(self) {
+      const activeIdx = self.isActive ? 7 : Math.max(lastActiveDot, 0);
+      cachedMenuLinks.forEach((link, idx) => link.classList.toggle('is-active', idx === activeIdx));
+    }
+  });
 
-/* ============================================================
-   ANIMAÇÕES DE ENTRADA
-   
-   Elementos NÃO têm opacity:0 no CSS.
-   GSAP anima "from" (estado inicial) para o estado final.
-   Isso garante que se o JS falhar, o conteúdo ainda aparece.
-============================================================ */
-function runEntryAnims() {
-  if (NO_MOTION || isMobileView()) return; // exibe tudo imediatamente no celular para LCP máximo
-
-  const ease = 'power4.out';
-
-  const tl = gsap.timeline({ defaults: { ease } });
-  tl.timeScale(2.0);
-
-  tl
-    /* Header desliza de cima */
-    .from('#hdr', { y: -20, opacity: 0, duration: 0.8 }, 0.05)
-
-    /* Eyebrow */
-    .from('.eyebrow', { opacity: 0, duration: 0.6 }, 0.1)
-
-    /* Headline — stagger por linha */
-    .from(['#h1','#h2','#h3','#h4'], {
-      y: '108%', opacity: 0,
-      duration: 0.9, stagger: 0.08, ease: 'power3.out',
-    }, 0.15)
-
-    /* Tagline */
-    .from('.tagline', { opacity: 0, y: 14, duration: 0.7 }, 0.35)
-
-    /* CTAs */
-    .from('.hero-cta-left', { opacity: 0, y: 12, duration: 0.7 }, 0.45)
-
-    /* Rodapé esquerdo */
-    .from('.hero-foot-l', { opacity: 0, duration: 0.6 }, 0.55)
-
-    /* Elementos direita */
-    .from(['#dots'], { opacity: 0, duration: 0.6, stagger: 0.08 }, 0.4)
-    .from(['#fixed-social', '.base-line'], { opacity: 0, duration: 0.6, stagger: 0.06 }, 0.5);
-}
-
-/* ============================================================
-   INIT
-============================================================ */
-document.addEventListener('DOMContentLoaded', () => {
-  runEntryAnims();
-  requestAnimationFrame(() => ScrollTrigger.refresh());
-
-  /* ============================================================
-     FLASHLIGHT EFFECT — Coordenadas nos cards e formulário
-     ============================================================ */
-  function initFlashlightEffect() {
-    document.querySelectorAll('.sf-card, .pj-card, .contact-form, .resume-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty('--mx', `${x}px`);
-        card.style.setProperty('--my', `${y}px`);
-      });
-    });
-  }
-  initFlashlightEffect();
-
-  /* ============================================================
-     CUSTOM SCROLL-TO LOGIC — Sincronia de cliques com GSAP progress
-     ============================================================ */
-  function scrollToProgress(progressTarget) {
+  /* Navegação suave desktop */
+  window.__scrollToProgress = function(progressTarget) {
     const scrollEl = document.querySelector('.scroll-experience');
     if (!scrollEl) return;
     const maxScroll = scrollEl.scrollHeight - window.innerHeight;
     const targetScroll = maxScroll * progressTarget;
-    
     if (lenis) {
       lenis.scrollTo(targetScroll, { duration: 1.2 });
     } else {
-      window.scrollTo({
-        top: targetScroll,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: targetScroll, behavior: 'smooth' });
     }
-  }
+  };
 
-  // Intercepta cliques de todas as âncoras na página (Event Delegation)
-  document.addEventListener('click', e => {
-    const anchor = e.target.closest('a[href^="#"]');
-    if (!anchor) return;
-    
-    // Se for link do menu, fecha o menu
-    if (anchor.classList.contains('menu-link')) {
-      if (typeof toggleMenu === 'function') toggleMenu(false);
-    }
-    
-    const href = anchor.getAttribute('href');
-
-    /* Celular: as seções são páginas normais — rola direto até a seção real */
-    if (isMobileView()) {
-      const target = href.length > 1 ? document.querySelector(href) : null;
-      if (target || href === '#') {
-        e.preventDefault();
-        const top = target ? target.getBoundingClientRect().top + window.scrollY : 0;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
-      return;
-    }
-    if (href === '#hero' || href === '#') {
-      e.preventDefault();
-      scrollToProgress(0.0);
-    } else if (href === '#projetos') {
-      e.preventDefault();
-      scrollToProgress(0.21);
-    } else if (href === '#experiencia') {
-      e.preventDefault();
-      scrollToProgress(0.36);
-    } else if (href === '#aplicacoes') {
-      e.preventDefault();
-      scrollToProgress(0.52);
-    } else if (href === '#nosso-time') {
-      e.preventDefault();
-      scrollToProgress(0.69);
-    } else if (href === '#faq') {
-      e.preventDefault();
-      scrollToProgress(0.87);
-    } else if (href === '#orcamento') {
-      e.preventDefault();
-      scrollToProgress(1.00);
-      // Foca o primeiro input do formulário de orçamento após a rolagem concluir
-      setTimeout(() => {
-        const inputName = document.getElementById('form-name');
-        if (inputName) inputName.focus();
-      }, 1100);
-    } else if (href === '#onde-estamos') {
-      e.preventDefault();
-      scrollToLocation();
-    }
-  });
-
-  /* "Onde Estamos" fica fora do palco fixo: rola direto até o elemento */
-  function scrollToLocation() {
+  window.__scrollToLocation = function() {
     const target = document.getElementById('onde-estamos');
     if (!target) return;
     if (lenis) {
@@ -2903,59 +2589,72 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY, behavior: 'smooth' });
     }
-  }
+  };
 
-  // Torna os dots clicáveis
-  document.querySelectorAll('[data-dot]').forEach(dot => {
+  /* Dots laterais */
+  allDots.forEach(dot => {
     dot.style.cursor = 'pointer';
     dot.addEventListener('click', () => {
       const idx = parseInt(dot.dataset.dot);
-      if (idx === 7) { scrollToLocation(); return; }
-      let targetProgress = 0;
-      if (idx === 0) targetProgress = 0.0;
-      else if (idx === 1) targetProgress = 0.21;
-      else if (idx === 2) targetProgress = 0.36;
-      else if (idx === 3) targetProgress = 0.52;
-      else if (idx === 4) targetProgress = 0.69;
-      else if (idx === 5) targetProgress = 0.87;
-      else if (idx === 6) targetProgress = 1.00;
-      
-      scrollToProgress(targetProgress);
+      if (idx === 7) { window.__scrollToLocation(); return; }
+      const targets = [0.0, 0.21, 0.36, 0.52, 0.69, 0.87, 1.00];
+      window.__scrollToProgress(targets[idx] || 0);
     });
   });
 
-  /* MENU TOGGLE */
-  const btnMenu = document.getElementById('btn-menu');
-  const fullMenu = document.getElementById('full-menu');
-  const menuOverlay = document.getElementById('menu-overlay');
-  let menuOpen = false;
+  /* Flashlight hover */
+  document.querySelectorAll('.sf-card, .pj-card, .contact-form, .resume-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+    });
+  });
 
-  function toggleMenu(state) {
-    menuOpen = typeof state === 'boolean' ? state : !menuOpen;
-    btnMenu.classList.toggle('is-active', menuOpen);
-    fullMenu.classList.toggle('is-open', menuOpen);
-    if(menuOverlay) menuOverlay.classList.toggle('is-open', menuOpen);
-    
-    btnMenu.setAttribute('aria-expanded', menuOpen);
-    fullMenu.setAttribute('aria-hidden', !menuOpen);
-    
-    if (lenis) {
-      if (menuOpen) lenis.stop();
-      else lenis.start();
-    } else {
-      /* Celular (rolagem nativa): trava o fundo enquanto o menu está aberto */
-      document.documentElement.style.overflow = menuOpen ? 'hidden' : '';
-    }
+  /* Entrada sutil desktop */
+  if (!NO_MOTION) {
+    const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+    tl.timeScale(2.0);
+    tl.from('#hdr', { y: -20, opacity: 0, duration: 0.8 }, 0.05)
+      .from('.eyebrow', { opacity: 0, duration: 0.6 }, 0.1)
+      .from(['#h1','#h2','#h3'], { y: '108%', opacity: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out' }, 0.15)
+      .from('.tagline', { opacity: 0, y: 14, duration: 0.7 }, 0.35)
+      .from('.hero-cta-left', { opacity: 0, y: 12, duration: 0.7 }, 0.45)
+      .from('.hero-foot-l', { opacity: 0, duration: 0.6 }, 0.55)
+      .from(['#dots'], { opacity: 0, duration: 0.6, stagger: 0.08 }, 0.4)
+      .from(['#fixed-social', '.base-line'], { opacity: 0, duration: 0.6, stagger: 0.06 }, 0.5);
   }
 
-  btnMenu.addEventListener('click', () => toggleMenu());
-  if(menuOverlay) menuOverlay.addEventListener('click', () => toggleMenu(false));
+  requestAnimationFrame(() => ScrollTrigger.refresh());
+}
 
-  // (Tratado pelo Event Delegation global acima)
-});
+/* ============================================================
+   LOADER DINÂMICO PARA DESKTOP
+   Se a janela for > 900px, carrega as bibliotecas assincronamente
+============================================================ */
+if (!isMobileView()) {
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = src;
+      s.async = true;
+      s.onload = resolve;
+      s.onerror = reject;
+      document.body.appendChild(s);
+    });
+  }
 
-/* Resize: o ScrollTrigger já recalcula sozinho (e ignora a barra do navegador mobile).
-   O refresh manual que existia aqui disparava a cada rolagem no celular e causava pulos. */
+  Promise.all([
+    loadScript('https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js'),
+    loadScript('https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js')
+  ]).then(() => {
+    return loadScript('https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js');
+  }).then(() => {
+    initDesktopStage();
+  }).catch(err => {
+    console.warn('[Desktop Experience] Executando em modo simplificado:', err);
+  });
+}
 </script>
 <script src="tracking.js" async></script>
 </body>
