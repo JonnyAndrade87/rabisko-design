@@ -70,11 +70,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" /></noscript>
 
-  <!-- GSAP + ScrollTrigger + Lenis: carregados no fim do <body> para não bloquear a renderização -->
-
-  <!-- Elephill Tracking — Windsor.ai Data Layer -->
-  <!-- Fase 1: Instagram Insights | Fase 2: Meta Ads + GA4 -->
-  <script src="tracking.js" defer></script>
+  <!-- GSAP + ScrollTrigger + Lenis + Tracking: carregados no fim do <body> -->
 
   <style>
     /* ==========================================================================
@@ -2702,37 +2698,42 @@ mm.add('(min-width: 901px) and (prefers-reduced-motion: no-preference)', () => {
 });
 
 /* ============================================================
-   MOBILE — entradas leves por seção (rolagem nativa, sem pin)
-   Cada bloco aparece uma única vez quando entra na tela.
+   MOBILE — revelação ultra leve com IntersectionObserver nativo
+   Zero bloqueio de CPU (sem ScrollTrigger.batch em 30 nós)
 ============================================================ */
 mm.add('(max-width: 900px) and (prefers-reduced-motion: no-preference)', () => {
-  const revealTargets = gsap.utils.toArray([
+  const targets = document.querySelectorAll([
     '[data-third-kicker]', '[data-third-title]', '[data-third-text]', '[data-third-card]', '[data-third-cta]',
     '[data-new-card]', '[data-new-footer]',
     '[data-second-kicker]', '[data-second-title]', '[data-second-text]', '[data-second-card]', '[data-second-cta]',
     '.team-breadcrumb', '.team-title', '.team-card',
     '.faq-breadcrumb', '.faq-title', '.faq-text', '.faq-cta-box', '.faq-item',
-    '[data-fourth-kicker]', '[data-fourth-title]', '[data-fourth-info]', '[data-fourth-form]'
+    '[data-fourth-kicker]', '[data-fourth-title]', '[data-fourth-info]', '[data-fourth-form]',
+    '[data-loc-reveal]'
   ].join(','));
 
-  gsap.set(revealTargets, { autoAlpha: 0, y: 24 });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -5% 0px' });
 
-  ScrollTrigger.batch(revealTargets, {
-    start: 'top 92%',
-    once: true,
-    onEnter: batch => gsap.to(batch, {
-      autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.06, ease: 'power2.out', overwrite: true
-    })
+  targets.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+    io.observe(el);
   });
-
-  /* Segurança: o que já estiver na tela ao carregar aparece imediatamente */
-  ScrollTrigger.refresh();
 });
 
 /* ============================================================
-   ONDE ESTAMOS — seção em fluxo normal após o palco (desktop e celular)
+   ONDE ESTAMOS — reveal no desktop
 ============================================================ */
-mm.add('(prefers-reduced-motion: no-preference)', () => {
+mm.add('(min-width: 901px) and (prefers-reduced-motion: no-preference)', () => {
   const locItems = gsap.utils.toArray('[data-loc-reveal]');
   gsap.set(locItems, { autoAlpha: 0, y: 30 });
   ScrollTrigger.batch(locItems, {
@@ -2956,6 +2957,6 @@ document.addEventListener('DOMContentLoaded', () => {
 /* Resize: o ScrollTrigger já recalcula sozinho (e ignora a barra do navegador mobile).
    O refresh manual que existia aqui disparava a cada rolagem no celular e causava pulos. */
 </script>
-
+<script src="tracking.js" async></script>
 </body>
 </html>
