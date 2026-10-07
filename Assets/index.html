@@ -29,6 +29,15 @@
     "logo": "https://rabiskogroup.com.br/LOGOS/logo_group.png",
     "image": "https://rabiskogroup.com.br/IMGS/produtos/placa_3em1.png",
     "telephone": "+55-41-98499-8106",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "R. Gilberto Nascimento, 680 - Planta Araçatuba",
+      "addressLocality": "Piraquara",
+      "addressRegion": "PR",
+      "postalCode": "83301-480",
+      "addressCountry": "BR"
+    },
+    "hasMap": "https://www.google.com/maps/place/Rabisko+Design/data=!4m2!3m1!1s0x0:0x7d244a4f151e3f46",
     "priceRange": "R$ 9,00 - R$ 150,00",
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -1301,6 +1310,84 @@
     }
 
     /* ==========================================================================
+       ONDE ESTAMOS — seção em fluxo normal, logo após o palco fixo
+       ========================================================================== */
+    .location-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center;
+      background: #0d0d0d;
+      padding: clamp(6rem, 13vh, 9rem) var(--pad-x) clamp(4rem, 9vh, 6rem);
+      border-top: 1px solid rgba(255,255,255,.06);
+      overflow: hidden;
+    }
+    .location-section::before {
+      content: ''; position: absolute; width: 60vw; height: 60vw; right: -20vw; top: -25vw;
+      background: radial-gradient(circle, rgba(var(--accent-rgb),.10), transparent 60%);
+      pointer-events: none;
+    }
+    .loc-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.25fr);
+      gap: clamp(2rem, 5vw, 4.5rem);
+      align-items: center;
+    }
+    .loc-info { display: flex; flex-direction: column; align-items: flex-start; }
+    .loc-info .sf-body { margin-bottom: clamp(1.5rem, 3.5vh, 2.2rem); }
+
+    .loc-address {
+      display: flex; align-items: flex-start; gap: 1rem;
+      font-style: normal; font-size: clamp(.86rem, 1.1vw, .98rem); line-height: 1.6; color: var(--text-sub);
+      padding: 1.15rem 1.35rem; width: 100%; max-width: 460px;
+      background: rgba(255,255,255,.025); border: 1px solid rgba(255,255,255,.08); border-radius: 12px;
+    }
+    .loc-address strong { display: block; color: #fff; font-weight: 600; font-size: 1.05em; }
+    .loc-pin {
+      width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(var(--accent-rgb),.14); border: 1px solid rgba(var(--accent-rgb),.35); color: var(--accent);
+    }
+    .loc-pin svg { width: 18px; height: 18px; }
+
+    .loc-rating {
+      display: inline-flex; align-items: center; gap: .5rem; margin: 1.1rem 0 clamp(1.6rem, 3.5vh, 2.2rem);
+      font-size: .8rem; color: var(--text-sub); text-decoration: none; transition: color .3s;
+    }
+    .loc-rating:hover { color: #fff; }
+    .loc-rating strong { color: #fff; font-weight: 700; }
+    .loc-stars { color: #fbbc04; letter-spacing: .08em; font-size: .9rem; }
+
+    .loc-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+    .loc-actions .btn { padding: 1rem 1.5rem; }
+    .loc-actions .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* Mapa com moldura e tons escuros (combina com o site) */
+    .loc-map {
+      position: relative; width: 100%; aspect-ratio: 16 / 11;
+      border-radius: 16px; overflow: hidden; background: #1a1a1a;
+      border: 1px solid rgba(255,255,255,.09);
+      box-shadow: 0 30px 80px rgba(0,0,0,.55), 0 0 0 6px rgba(255,255,255,.02);
+    }
+    .loc-map iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+      filter: invert(.9) hue-rotate(180deg) saturate(.75) contrast(.92);
+      transition: filter .6s var(--ease);
+    }
+    .loc-map:hover iframe { filter: invert(.9) hue-rotate(180deg) saturate(1) contrast(1); }
+    .loc-map::after { /* vinheta sutil nas bordas */
+      content: ''; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+      box-shadow: inset 0 0 60px rgba(0,0,0,.45);
+    }
+
+    @media (max-width: 900px) {
+      .location-section { min-height: 0; padding-top: 5.5rem; padding-bottom: 4.5rem; }
+      .loc-grid { grid-template-columns: 1fr; gap: 2.25rem; }
+      .loc-map { aspect-ratio: 4 / 3.4; border-radius: 12px; }
+      .loc-actions { width: 100%; }
+      .loc-actions .btn { flex: 1 1 100%; justify-content: center; }
+    }
+
+    /* ==========================================================================
        RESPONSIVE
        ========================================================================== */
     [data-scroll-title] {
@@ -1446,6 +1533,7 @@
       <a href="#nosso-time" class="menu-link" style="transition-delay: 0.30s">Avaliações & Diferenciais</a>
       <a href="#faq" class="menu-link" style="transition-delay: 0.35s">Dúvidas Frequentes</a>
       <a href="#orcamento" class="menu-link" style="transition-delay: 0.40s">Canais de Atendimento</a>
+      <a href="#onde-estamos" class="menu-link" style="transition-delay: 0.45s">Onde Estamos</a>
     </div>
     <div class="menu-footer">
       <a href="https://www.instagram.com/rabiskodesign/" target="_blank" style="display:flex; align-items:center; gap:.5rem;">
@@ -1472,6 +1560,7 @@
         <div class="sdot" data-dot="4"></div>
         <div class="sdot" data-dot="5"></div>
         <div class="sdot" data-dot="6"></div>
+        <div class="sdot" data-dot="7"></div>
         <span class="side-lbl">Rabisko Laser</span>
       </div>
 
@@ -2059,6 +2148,62 @@
     </div><!-- /.pinned-stage -->
   </main>
 
+  <!-- ============ ONDE ESTAMOS (fluxo normal, depois do palco fixo) ============ -->
+  <section class="location-section" id="onde-estamos" aria-labelledby="loc-title">
+    <span class="sf-bg-word" aria-hidden="true">PIRAQUARA</span>
+
+    <div class="sf-inner">
+      <div class="loc-grid">
+
+        <div class="loc-info">
+          <span class="sf-kicker" data-loc-reveal>Onde Estamos</span>
+          <h2 class="sf-title" id="loc-title" data-loc-reveal>Nossa fábrica em <span class="accent-word">Piraquara.</span></h2>
+          <p class="sf-body" data-loc-reveal>
+            É aqui que nascem as placas, displays e organizadores da Rabisko, na região metropolitana de Curitiba — e daqui seguem para todo o Brasil.
+          </p>
+
+          <address class="loc-address" data-loc-reveal>
+            <span class="loc-pin" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <span>
+              <strong>R. Gilberto Nascimento, 680</strong>
+              Planta Araçatuba · Piraquara – PR<br />CEP 83301-480
+            </span>
+          </address>
+
+          <a class="loc-rating" id="loc-google-reviews" href="https://www.google.com/maps/place/Rabisko+Design/data=!4m2!3m1!1s0x0:0x7d244a4f151e3f46" target="_blank" rel="noopener" data-loc-reveal>
+            <span class="loc-stars" aria-hidden="true">★★★★★</span>
+            <strong>4,9</strong>
+            <span>· 73 avaliações no Google</span>
+          </a>
+
+          <div class="loc-actions" data-loc-reveal>
+            <a class="btn btn-p" id="btn-como-chegar" href="https://www.google.com/maps/dir/?api=1&amp;destination=Rabisko+Design%2C+R.+Gilberto+Nascimento%2C+680%2C+Piraquara+-+PR%2C+83301-480" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+              Como chegar
+              <svg class="btn-arrow" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn btn-s" id="btn-loc-whatsapp" href="https://wa.me/5541984998106?text=Ol%C3%A1%2C+vim+pelo+site+e+quero+falar+com+a+Rabisko!" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Chamar no WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="loc-map" data-loc-reveal>
+          <iframe
+            title="Mapa: Rabisko Design em Piraquara - PR"
+            src="https://maps.google.com/maps?q=Rabisko+Design,+R.+Gilberto+Nascimento,+680,+Piraquara+-+PR,+83301-480&amp;z=16&amp;hl=pt-BR&amp;output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
 
 <!-- GSAP + ScrollTrigger + Lenis (movidos do <head> para não bloquear o primeiro paint) -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -2582,6 +2727,32 @@ mm.add('(max-width: 900px) and (prefers-reduced-motion: no-preference)', () => {
 });
 
 /* ============================================================
+   ONDE ESTAMOS — seção em fluxo normal após o palco (desktop e celular)
+============================================================ */
+mm.add('(prefers-reduced-motion: no-preference)', () => {
+  const locItems = gsap.utils.toArray('[data-loc-reveal]');
+  gsap.set(locItems, { autoAlpha: 0, y: 30 });
+  ScrollTrigger.batch(locItems, {
+    start: 'top 90%',
+    once: true,
+    onEnter: batch => gsap.to(batch, {
+      autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out', overwrite: true
+    })
+  });
+});
+
+/* Menu: destaca "Onde Estamos" enquanto a seção está na tela */
+ScrollTrigger.create({
+  trigger: '#onde-estamos',
+  start: 'top 55%',
+  end: 'bottom top',
+  onToggle(self) {
+    const activeIdx = self.isActive ? 7 : Math.max(lastActiveDot, 0);
+    cachedMenuLinks.forEach((link, idx) => link.classList.toggle('is-active', idx === activeIdx));
+  }
+});
+
+/* ============================================================
    ANIMAÇÕES DE ENTRADA
    
    Elementos NÃO têm opacity:0 no CSS.
@@ -2713,14 +2884,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const inputName = document.getElementById('form-name');
         if (inputName) inputName.focus();
       }, 1100);
+    } else if (href === '#onde-estamos') {
+      e.preventDefault();
+      scrollToLocation();
     }
   });
+
+  /* "Onde Estamos" fica fora do palco fixo: rola direto até o elemento */
+  function scrollToLocation() {
+    const target = document.getElementById('onde-estamos');
+    if (!target) return;
+    if (lenis) {
+      lenis.scrollTo(target, { duration: 1.4 });
+    } else {
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY, behavior: 'smooth' });
+    }
+  }
 
   // Torna os dots clicáveis
   document.querySelectorAll('[data-dot]').forEach(dot => {
     dot.style.cursor = 'pointer';
     dot.addEventListener('click', () => {
       const idx = parseInt(dot.dataset.dot);
+      if (idx === 7) { scrollToLocation(); return; }
       let targetProgress = 0;
       if (idx === 0) targetProgress = 0.0;
       else if (idx === 1) targetProgress = 0.21;
