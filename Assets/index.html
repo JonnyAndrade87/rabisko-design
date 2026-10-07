@@ -66,7 +66,9 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" /></noscript>
 
   <!-- GSAP + ScrollTrigger + Lenis: carregados no fim do <body> para não bloquear a renderização -->
 
@@ -561,7 +563,7 @@
     .sf-cta:hover svg { transform: translateX(4px); }
     .sf-microcopy {
       font-size: .6rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--text-dim);
+      color: rgba(255,255,255,0.72);
     }
     /* ==========================================================================
        TERCEIRA DOBRA — PROJETOS
@@ -1469,6 +1471,7 @@
       .faq-fold { padding-left: var(--pad-x); padding-right: var(--pad-x); }
 
       /* Efeitos contínuos pesados desligados no celular (economia de bateria/GPU) */
+      .sf-bg-word { display: none; }
       .team-grain { display: none; }
       .team-bg-geometry svg { animation: none; }
 
@@ -1502,7 +1505,7 @@
   <!-- HEADER -->
   <header class="hdr" id="hdr" role="banner">
     <a href="/" class="hdr-brand" aria-label="Rabisko Group — Início">
-      <img src="./LOGOS/logo_group_branco.png" alt="Rabisko Group" class="hdr-logo" />
+      <img src="./LOGOS/logo_group_branco.png" alt="Rabisko Group" class="hdr-logo" width="109" height="36" />
     </a>
     <button class="hdr-burger" id="btn-menu" aria-label="Alternar menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -1655,7 +1658,7 @@
 
             <a class="pj-card" data-third-card href="https://shopee.com.br/rabiskodesign" target="_blank" rel="noopener">
               <div class="pj-card-img-wrap">
-                <img src="./IMGS/produtos/placa_3em1.webp" decoding="async" alt="Placa 3 em 1 Pix, Instagram e Wi-Fi em acrílico" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/>
+                <img src="./IMGS/produtos/placa_3em1.webp" width="500" height="500" decoding="async" alt="Placa 3 em 1 Pix, Instagram e Wi-Fi em acrílico" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/>
                 <div class="pj-card-overlay"></div>
               </div>
               <div class="pj-card-body">
@@ -1667,7 +1670,7 @@
 
             <a class="pj-card" data-third-card href="https://www.mercadolivre.com.br/pagina/rabiskolaser" target="_blank" rel="noopener">
               <div class="pj-card-img-wrap">
-                <img src="./IMGS/produtos/suporte_banheiro.webp" decoding="async" alt="Suporte organizador de banheiro para aparelho de barbear" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/>
+                <img src="./IMGS/produtos/suporte_banheiro.webp" width="500" height="500" decoding="async" alt="Suporte organizador de banheiro para aparelho de barbear" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/>
                 <div class="pj-card-overlay"></div>
               </div>
               <div class="pj-card-body">
@@ -1679,7 +1682,7 @@
 
             <a class="pj-card" data-third-card href="https://www.tiktok.com/@rabiskolaser" target="_blank" rel="noopener">
               <div class="pj-card-img-wrap">
-                <img src="./IMGS/produtos/placa_pix.webp" decoding="async" alt="Placa Pix Acrílico QR Code" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/>
+                <img src="./IMGS/produtos/placa_pix.webp" width="500" height="500" decoding="async" alt="Placa Pix Acrílico QR Code" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/>
                 <div class="pj-card-overlay"></div>
               </div>
               <div class="pj-card-body">
@@ -1890,7 +1893,7 @@
             
             <div class="team-card">
               <div class="team-img-wrap">
-                <img src="./IMGS/produtos/placa_wifi.webp" decoding="async" alt="Placa WiFi Acrílico" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
+                <img src="./IMGS/produtos/placa_wifi.webp" width="500" height="500" decoding="async" alt="Placa WiFi Acrílico" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
               </div>
               <div class="team-info">
                 <h3 class="team-name">+41.000 avaliações</h3>
@@ -1900,7 +1903,7 @@
 
             <div class="team-card">
               <div class="team-img-wrap">
-                <img src="./IMGS/produtos/medalha.webp" decoding="async" alt="Medalha Acrílico Personalizada" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
+                <img src="./IMGS/produtos/medalha.webp" width="500" height="500" decoding="async" alt="Medalha Acrílico Personalizada" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
               </div>
               <div class="team-info">
                 <h3 class="team-name">Loja Indicada</h3>
@@ -1910,7 +1913,7 @@
 
             <div class="team-card">
               <div class="team-img-wrap">
-                <img src="./IMGS/produtos/placa_3em1.webp" decoding="async" alt="Placa 3 em 1 Acrílico" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
+                <img src="./IMGS/produtos/placa_3em1.webp" width="500" height="500" decoding="async" alt="Placa 3 em 1 Acrílico" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
               </div>
               <div class="team-info">
                 <h3 class="team-name">100% Acrílico Nobre</h3>
@@ -1920,7 +1923,7 @@
 
             <div class="team-card">
               <div class="team-img-wrap">
-                <img src="./IMGS/produtos/placa_pix.webp" decoding="async" alt="Placa Pix Acrílico" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
+                <img src="./IMGS/produtos/placa_pix.webp" width="500" height="500" decoding="async" alt="Placa Pix Acrílico" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
               </div>
               <div class="team-info">
                 <h3 class="team-name">Acabamento Polido</h3>
@@ -1930,7 +1933,7 @@
 
             <div class="team-card">
               <div class="team-img-wrap">
-                <img src="./IMGS/produtos/organizador_controle.webp" decoding="async" alt="Organizador Controle Acrílico" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
+                <img src="./IMGS/produtos/organizador_controle.webp" width="500" height="500" decoding="async" alt="Organizador Controle Acrílico" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
               </div>
               <div class="team-info">
                 <h3 class="team-name">Envio Rápido e Seguro</h3>
@@ -1940,7 +1943,7 @@
 
             <div class="team-card">
               <div class="team-img-wrap">
-                <img src="./IMGS/produtos/suporte_banheiro.webp" decoding="async" alt="Suporte Banheiro Acrílico" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
+                <img src="./IMGS/produtos/suporte_banheiro.webp" width="500" height="500" decoding="async" alt="Suporte Banheiro Acrílico" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
               </div>
               <div class="team-info">
                 <h3 class="team-name">Pronto para Instalar</h3>
@@ -1950,7 +1953,7 @@
 
             <div class="team-card">
               <div class="team-img-wrap">
-                <img src="./IMGS/produtos/organizador_livros.webp" decoding="async" alt="Organizador Livros Acrílico" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
+                <img src="./IMGS/produtos/organizador_livros.webp" width="500" height="500" decoding="async" alt="Organizador Livros Acrílico" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
               </div>
               <div class="team-info">
                 <h3 class="team-name">Frete Grátis Disponível</h3>
@@ -1960,7 +1963,7 @@
 
             <div class="team-card">
               <div class="team-img-wrap">
-                <img src="./IMGS/produtos/placa_fechado.webp" decoding="async" alt="Placa Aberto Fechado Acrílico" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
+                <img src="./IMGS/produtos/placa_fechado.webp" width="500" height="500" decoding="async" alt="Placa Aberto Fechado Acrílico" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
               </div>
               <div class="team-info">
                 <h3 class="team-name">Atendimento Ágil</h3>
@@ -2760,38 +2763,38 @@ ScrollTrigger.create({
    Isso garante que se o JS falhar, o conteúdo ainda aparece.
 ============================================================ */
 function runEntryAnims() {
-  if (NO_MOTION) return; // exibe tudo imediatamente sem animação
+  if (NO_MOTION || isMobileView()) return; // exibe tudo imediatamente no celular para LCP máximo
 
   const ease = 'power4.out';
 
   const tl = gsap.timeline({ defaults: { ease } });
-  tl.timeScale(1.6); /* mesma coreografia, ~40% mais rápida: conteúdo aparece antes */
+  tl.timeScale(2.0);
 
   tl
     /* Header desliza de cima */
-    .from('#hdr', { y: -20, opacity: 0, duration: 1.1 }, 0.08)
+    .from('#hdr', { y: -20, opacity: 0, duration: 0.8 }, 0.05)
 
     /* Eyebrow */
-    .from('.eyebrow', { opacity: 0, duration: 0.8 }, 0.4)
+    .from('.eyebrow', { opacity: 0, duration: 0.6 }, 0.1)
 
-    /* Headline — stagger por linha (DS4: text-reveal-content) */
+    /* Headline — stagger por linha */
     .from(['#h1','#h2','#h3','#h4'], {
       y: '108%', opacity: 0,
-      duration: 1.15, stagger: 0.1, ease: 'power3.out',
-    }, 0.55)
+      duration: 0.9, stagger: 0.08, ease: 'power3.out',
+    }, 0.15)
 
     /* Tagline */
-    .from('.tagline', { opacity: 0, y: 14, duration: 0.9 }, 0.95)
+    .from('.tagline', { opacity: 0, y: 14, duration: 0.7 }, 0.35)
 
     /* CTAs */
-    .from('.hero-cta-left', { opacity: 0, y: 12, duration: 0.9 }, 1.1)
+    .from('.hero-cta-left', { opacity: 0, y: 12, duration: 0.7 }, 0.45)
 
     /* Rodapé esquerdo */
-    .from('.hero-foot-l', { opacity: 0, duration: 0.7 }, 1.25)
+    .from('.hero-foot-l', { opacity: 0, duration: 0.6 }, 0.55)
 
     /* Elementos direita */
-    .from(['#dots'], { opacity: 0, duration: 0.8, stagger: 0.12 }, 0.95)
-    .from(['#fixed-social', '.base-line'], { opacity: 0, duration: 0.7, stagger: 0.08 }, 1.15);
+    .from(['#dots'], { opacity: 0, duration: 0.6, stagger: 0.08 }, 0.4)
+    .from(['#fixed-social', '.base-line'], { opacity: 0, duration: 0.6, stagger: 0.06 }, 0.5);
 }
 
 /* ============================================================
