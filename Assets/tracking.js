@@ -257,11 +257,11 @@
     log('📊 Windsor.ai dataLayer disponível em window.dataLayer');
   }
 
-  // Aguarda DOM pronto
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+  // Executa após a página carregar e a CPU estiver ociosa (zero impacto no LCP/TBT)
+  if (typeof requestIdleCallback === 'function') {
+    requestIdleCallback(init, { timeout: 2500 });
   } else {
-    init();
+    window.addEventListener('load', () => setTimeout(init, 300));
   }
 
 })();
